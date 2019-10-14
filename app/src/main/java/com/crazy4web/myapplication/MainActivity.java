@@ -23,6 +23,10 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_Chat)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
+        // I commented it to avoid nullpoint exception as I was changing the theme to Noactionbar
+        // please uncomment if you would like to use actionbar
+
 //        NavigationUI.setupActionBarWithNavController(this, navController, appBarConfiguration);
         NavigationUI.setupWithNavController(navView, navController);
     }
