@@ -8,6 +8,7 @@ import android.os.Handler;
 
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.Slider.IntroSlider;
 import com.crazy4web.myapplication.ui.home.HomeFragment;
 
 public class SplashScreen extends AppCompatActivity {
@@ -27,7 +28,7 @@ public class SplashScreen extends AppCompatActivity {
             @Override
             public void run() {
 
-                Intent intent = new Intent(getApplicationContext(), MainActivity.class);
+                Intent intent = new Intent(getApplicationContext(), IntroSlider.class);
 
                 startActivity(intent);
                 finish();
