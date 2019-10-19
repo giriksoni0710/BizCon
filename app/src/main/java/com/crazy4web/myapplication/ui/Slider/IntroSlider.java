@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.viewpager.widget.ViewPager;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
 import android.view.View;
@@ -17,6 +18,7 @@ import com.crazy4web.myapplication.R;
 
 public class IntroSlider extends AppCompatActivity {
 
+    SharedPreferences preferences = null;
 
     private ViewPager viewPager;
     private LinearLayout relativeLayout;
@@ -32,6 +34,10 @@ public class IntroSlider extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_intro_slider);
+
+        // Checking the first run of the application
+
+        preferences = getSharedPreferences("com.crazy4web.myapplication",MODE_PRIVATE);
 
         viewPager = (ViewPager) findViewById(R.id.viewpager);
 
@@ -80,6 +86,22 @@ public class IntroSlider extends AppCompatActivity {
             }
         });
 
+
+    }
+
+    // Checking the first time launch in the onresume
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+        if(preferences.getBoolean("firstrun", true)){
+
+
+            preferences.edit().putBoolean("firstrun", false).commit();
+
+        }
 
     }
 
