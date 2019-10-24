@@ -95,15 +95,17 @@ public class IntroSlider extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
-        if(preferences.getBoolean("firstrun", true)){
+        if(preferences.getBoolean("firstrun", true)) {
 
 
             preferences.edit().putBoolean("firstrun", false).commit();
 
+            Intent intent = new Intent(getApplicationContext(),MainActivity.class);
+            startActivity(intent);
+
+        }
         }
 
-    }
 
     public void addDotsIndicator(int position){
 
