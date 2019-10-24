@@ -11,15 +11,7 @@
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity
             android:name=".ui.signup.SignUpEmail"
-            android:label="@string/title_activity_sign_up_email"
-            android:theme="@style/NoActionBar">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
+            android:label="@string/title_activity_sign_up_email">
         </activity>
         <activity android:name=".ui.signup.SignUpOptions">
         </activity>
@@ -28,7 +20,13 @@
         <activity android:name=".ui.chat.ChatFragment" />
         <activity
             android:name=".MainActivity"
-            android:label="@string/app_name" />
+            android:label="@string/app_name">
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
     </application>
 
 </manifest>
