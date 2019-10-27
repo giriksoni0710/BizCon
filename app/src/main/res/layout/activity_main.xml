@@ -31,15 +31,7 @@
         app:layout_constraintTop_toTopOf="parent"
         app:navGraph="@navigation/mobile_navigation" />
 
-    <SearchView
-        android:layout_width="60dp"
-        android:layout_height="36dp"
 
-        android:layout_marginBottom="616dp"
-        app:layout_constraintBottom_toTopOf="@+id/nav_view"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.954"
-        app:layout_constraintStart_toStartOf="parent" />
 
     <ScrollView
         android:layout_width="match_parent"
@@ -52,5 +44,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical" />
     </ScrollView>
+
+    <SearchView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
