@@ -30,11 +30,16 @@
             </intent-filter>
         </activity>
         <activity
+            android:name=".ui.cardDetail.DetailActivityFragment"
+            android:label="@string/title_activity_detail_fragment"
+            android:theme="@style/NoActionBar"></activity>
+        <activity
             android:name=".ui.signup.SignUpEmail"
             android:label="@string/title_activity_sign_up_email">
         </activity>
-        <activity android:name=".ui.signup.SignUpOptions">
-        </activity>
+        <activity android:name=".ui.signup.SignUpOptions"
+            android:label="@string/title_activity_sign_up_email"></activity>
+
         <activity android:name=".ui.chat.ChatFragment" />
 
         <activity android:name=".ui.home.HomeFragment" >
