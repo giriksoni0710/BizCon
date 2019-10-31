@@ -8,7 +8,6 @@
 
 
     <ImageView
-        android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@mipmap/ic_launcher_round"
@@ -90,7 +89,6 @@
         app:layout_constraintTop_toBottomOf="@+id/button2" />
 
     <TextView
-        android:id="@+id/textView4"
         android:layout_width="121dp"
         android:layout_height="19dp"
         android:layout_marginStart="120dp"
@@ -105,7 +103,6 @@
         app:layout_constraintVertical_bias="0.744" />
 
     <TextView
-        android:id="@+id/textview5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="16dp"
@@ -119,7 +116,6 @@
     </TextView>
 
     <TextView
-        android:id="@+id/textView3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Forgot password? click here"

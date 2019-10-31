@@ -4,7 +4,6 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:id="@+id/Constraintlayout"
     android:scrollbars="vertical"
     >
 
@@ -39,13 +38,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:id="@+id/categoryText"
             android:textSize="16dp"
             android:text="Categories"
             android:layout_marginLeft="10dp"></TextView>
 
         <TextView
-            android:id="@+id/seeallText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
@@ -61,7 +58,6 @@
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:id="@+id/categories"
         app:layout_constraintTop_toBottomOf="@id/categorynameLayout"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
@@ -73,7 +69,6 @@
 <ImageView
     android:layout_width="67.33dp"
     android:layout_height="67.33dp"
-    android:id="@+id/designCategory"
     android:src="@drawable/artartistcalligraphy57690"
     >
 
@@ -84,7 +79,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/categoryCategory"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="5dp"
             >
@@ -97,7 +91,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/beauticianCategory"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="5dp"
             >
@@ -109,7 +102,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/designCategory"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="5dp"
             >
@@ -121,7 +113,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/carpenterCategory"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="5dp"
             >
@@ -133,7 +124,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/carpenterCategory"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="5dp"
             >
@@ -145,7 +135,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/carpenterCategory"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="5dp"
             >
