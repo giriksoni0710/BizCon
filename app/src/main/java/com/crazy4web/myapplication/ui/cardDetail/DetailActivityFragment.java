@@ -10,6 +10,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
+import android.widget.RatingBar;
 
 import com.crazy4web.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
@@ -22,6 +23,9 @@ public class DetailActivityFragment extends AppCompatActivity {
         setContentView(R.layout.activity_detail_fragment);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+
+//        final RatingBar ratingBar = (RatingBar) findViewById(R.id.rating);
+
 
         final ViewPager viewPager = findViewById(R.id.viewPager);
 
@@ -41,6 +45,9 @@ public class DetailActivityFragment extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+//                if(tab.getPosition() == 2){
+//                    ratingBar.setRating(int );
+//                }
             }
 
             @Override

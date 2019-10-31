@@ -7,5 +7,4 @@
     <string name="title_activity_detail_fragment">DetailActivityFragment</string>
     <string name="about_tab">About Tab</string>
     <string name="services_tab">Home wiring</string>
-    <string name="reviews_tab">Reviews Tab</string>
 </resources>
