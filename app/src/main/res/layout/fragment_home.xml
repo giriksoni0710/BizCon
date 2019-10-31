@@ -8,11 +8,18 @@
     android:orientation="vertical">
 
 
+    <androidx.appcompat.widget.SearchView
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+
+</androidx.appcompat.widget.SearchView>
+
+
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
-        android:layout_marginBottom="348dp"
+        android:layout_marginBottom="48dp"
         app:fillColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,14 +32,12 @@
         app:strokeWidth="1dp"></com.synnapps.carouselview.CarouselView>
 
     <LinearLayout
-        android:layout_width="300dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/categorynameLayout"
-        app:layout_constraintTop_toBottomOf="@id/carouselview"
-        app:layout_constraintLeft_toRightOf="parent"
-        app:layout_constraintRight_toLeftOf="parent"
-        android:layout_marginTop="20dp"
+
+
         >
 
         <TextView
@@ -55,6 +60,10 @@
 
     </LinearLayout>
 
+<HorizontalScrollView
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:fillViewport="true">
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -63,10 +72,11 @@
         app:layout_constraintRight_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        android:scrollbars="horizontal"
         android:paddingLeft="55dp">
 
-<ImageView
+
+
+    <ImageView
     android:layout_width="67.33dp"
     android:layout_height="67.33dp"
     android:src="@drawable/artartistcalligraphy57690"
@@ -144,4 +154,9 @@
         </ImageView>
 
     </LinearLayout>
-</LinearLayout>
+
+    </HorizontalScrollView>
+
+
+    </LinearLayout>
+
