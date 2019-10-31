@@ -12,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.view.View;
 
 import com.crazy4web.myapplication.R;
+import com.google.android.material.tabs.TabLayout;
 
 public class DetailActivityFragment extends AppCompatActivity {
 
@@ -22,12 +23,41 @@ public class DetailActivityFragment extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
 
-        ViewPager viewPager = findViewById(R.id.viewPager);
+        final ViewPager viewPager = findViewById(R.id.viewPager);
 
-        viewPager.setOffscreenPageLimit(1); // how many fragments you want to load in the memory
-        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
+        TabLayout tabLayout = findViewById(R.id.tab_layout);
+        tabLayout.addTab(tabLayout.newTab().setText("Services"));
+        tabLayout.addTab(tabLayout.newTab().setText("About"));
+        tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
+
+        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+
+        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+
         viewPager.setAdapter(swipeAdapter);
-        viewPager.setCurrentItem(0);//the first fragment
+        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+
+        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+            @Override
+            public void onTabSelected(TabLayout.Tab tab) {
+                viewPager.setCurrentItem(tab.getPosition());
+            }
+
+            @Override
+            public void onTabUnselected(TabLayout.Tab tab) {
+
+            }
+
+            @Override
+            public void onTabReselected(TabLayout.Tab tab) {
+
+            }
+        });
+
+//        viewPager.setOffscreenPageLimit(1); // how many fragments you want to load in the memory
+//        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
+//        viewPager.setAdapter(swipeAdapter);
+//        viewPager.setCurrentItem(0);//the first fragment
     }
 
 }

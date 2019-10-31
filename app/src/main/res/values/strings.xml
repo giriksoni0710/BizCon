@@ -6,4 +6,7 @@
     <string name="title_activity_sign_up_email">SignUpEmail</string>
     <string name="title_activity_detail_fragment">DetailActivityFragment</string>
     <string name="title_activity_card_detail_page">CardDetailPage</string>
+    <string name="about_tab">About Tab</string>
+    <string name="services_tab">Services Tab</string>
+    <string name="reviews_tab">Reviews Tab</string>
 </resources>

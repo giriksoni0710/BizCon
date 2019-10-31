@@ -1,4 +1,4 @@
-package com.crazy4web.myapplication.ui.cardDetail2;
+package com.crazy4web.myapplication.ui.cardDetail;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
