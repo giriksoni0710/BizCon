@@ -48,7 +48,6 @@
         app:layout_constraintTop_toBottomOf="@+id/google_signup" />
 
     <TextView
-        android:id="@+id/terms_of_service"
         android:layout_width="350dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="12dp"
