@@ -1,9 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="vertical"
+    android:orientation="vertical">
 
 
     <com.synnapps.carouselview.CarouselView
@@ -22,4 +24,124 @@
         app:strokeColor="#000000"
         app:strokeWidth="1dp"></com.synnapps.carouselview.CarouselView>
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <LinearLayout
+        android:layout_width="300dp"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/categorynameLayout"
+        app:layout_constraintTop_toBottomOf="@id/carouselview"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:layout_marginTop="20dp"
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Categories"
+            android:layout_marginLeft="10dp"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="SEE ALL"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffa500"
+            android:textSize="16dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@id/categorynameLayout"
+        app:layout_constraintLeft_toRightOf="parent"
+        app:layout_constraintRight_toLeftOf="parent"
+        android:layout_marginTop="20dp"
+        android:orientation="horizontal"
+        android:scrollbars="horizontal"
+        android:paddingLeft="55dp">
+
+<ImageView
+    android:layout_width="67.33dp"
+    android:layout_height="67.33dp"
+    android:src="@drawable/artartistcalligraphy57690"
+    >
+
+
+
+</ImageView>
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="5dp"
+            >
+
+
+
+        </ImageView>
+
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="5dp"
+            >
+
+
+
+        </ImageView>
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="5dp"
+            >
+
+
+
+        </ImageView>
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="5dp"
+            >
+
+
+
+        </ImageView>
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="5dp"
+            >
+
+
+
+        </ImageView>
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="5dp"
+            >
+
+
+
+        </ImageView>
+
+    </LinearLayout>
+</LinearLayout>
