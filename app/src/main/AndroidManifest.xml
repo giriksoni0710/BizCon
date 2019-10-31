@@ -22,17 +22,20 @@
         </activity>
         <activity android:name=".ui.Slider.IntroSlider" />
         <activity android:name=".ui.splashscreen.SplashScreen" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
 
         </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:label="@string/title_activity_detail_fragment"
             android:theme="@style/NoActionBar">
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+
         </activity>
         <activity
             android:name=".ui.signup.SignUpEmail"
