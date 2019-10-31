@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical">
@@ -10,15 +11,25 @@
 
 </androidx.appcompat.widget.SearchView>
 
-<com.synnapps.carouselview.CarouselView
-    android:layout_width="match_parent"
-    android:layout_height="200dp"
-    android:id="@+id/carousel">
 
 
+    <com.synnapps.carouselview.CarouselView
+        android:id="@+id/carouselview"
+        android:layout_width="match_parent"
+        android:layout_height="200dp"
+        android:layout_marginBottom="348dp"
+        app:fillColor="#000000"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:pageColor="#00000000"
+        app:radius="6dp"
+        app:slideInterval="2000"
+        app:strokeColor="#000000"
+        app:strokeWidth="1dp"></com.synnapps.carouselview.CarouselView>
 
-
-</com.synnapps.carouselview.CarouselView>
 
 
 </LinearLayout>
+
