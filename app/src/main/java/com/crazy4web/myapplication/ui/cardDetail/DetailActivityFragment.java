@@ -2,6 +2,7 @@ package com.crazy4web.myapplication.ui.cardDetail;
 
 import android.os.Bundle;
 
+import com.crazy4web.myapplication.MainActivity;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -11,6 +12,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.view.View;
 import android.widget.RatingBar;
+import android.widget.Toast;
 
 import com.crazy4web.myapplication.R;
 import com.google.android.material.tabs.TabLayout;
@@ -25,7 +27,13 @@ public class DetailActivityFragment extends AppCompatActivity {
         setSupportActionBar(toolbar);
 
 //        final RatingBar ratingBar = (RatingBar) findViewById(R.id.rating);
-
+        FloatingActionButton fab = findViewById(R.id.fab);
+//        fab.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Toast.makeText(view.getContext(),"fab clicked", Toast.LENGTH_LONG).show();
+//            }
+//        });
 
         final ViewPager viewPager = findViewById(R.id.viewPager);
 
