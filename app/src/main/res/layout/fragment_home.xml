@@ -36,7 +36,8 @@
         android:layout_height="wrap_content"
         android:orientation="horizontal"
         android:id="@+id/categorynameLayout"
-
+    android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
 
         >
 
@@ -72,7 +73,7 @@
         app:layout_constraintRight_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        android:paddingLeft="55dp">
+        android:paddingLeft="40dp">
 
 
 
@@ -157,6 +158,201 @@
 
     </HorizontalScrollView>
 
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:id="@+id/recommendernameLayout"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+
+        >
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textSize="16dp"
+            android:text="Recommended for you"
+            android:layout_marginLeft="10dp"></TextView>
+
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="right"
+            android:text="SEE ALL"
+            android:layout_marginRight="10dp"
+            android:textColor="#ffa500"
+            android:textSize="16dp">
+
+        </TextView>
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_marginTop="10dp">
+
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="30dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+
+                android:src="@drawable/blackandwhitebooksconnection251225"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Heading1"
+                android:paddingLeft="8dp"
+                    android:paddingTop="5dp"
+                >
+
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="120dp"
+                android:text="Description"
+
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"></TextView>
+
+
+    </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="30dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+
+                android:src="@drawable/bucketbuildingcleaner756883"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Heading1"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                >
+
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="120dp"
+                android:text="Description"
+
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"></TextView>
+
+
+        </com.google.android.material.card.MaterialCardView>
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="30dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+
+                android:src="@drawable/blackandwhitebooksconnection251225"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Heading1"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                >
+
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="120dp"
+                android:text="Description"
+
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"></TextView>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="100dp"
+            android:layout_height="160dp"
+            android:layout_marginLeft="30dp"
+            app:cardBackgroundColor="#ffffff"
+            app:cardCornerRadius="3dp"
+            app:cardElevation="8dp"
+            app:cardUseCompatPadding="false">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="100dp"
+
+                android:src="@drawable/carpentercarpentrycloseup1249611"></ImageView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="20dp"
+                android:layout_marginTop="100dp"
+                android:text="Heading1"
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"
+                >
+
+
+            </TextView>
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="30dp"
+                android:layout_marginTop="120dp"
+                android:text="Description"
+
+                android:paddingLeft="8dp"
+                android:paddingTop="5dp"></TextView>
+
+
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
 
     </LinearLayout>
 
