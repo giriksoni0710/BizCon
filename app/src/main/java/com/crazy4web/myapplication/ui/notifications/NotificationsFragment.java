@@ -29,26 +29,12 @@ public class NotificationsFragment extends Fragment {
 
         notificationsViewModel = ViewModelProviders.of(this).get(NotificationsViewModel.class);
         View root = inflater.inflate(R.layout.fragment_notifications, container, false);
+
         recyclerView = root.findViewById(R.id.rv);
 
-
-        //        final TextView textView = root.findViewById(R.id.text_notifications);
-//        notificationsViewModel.getText().observe(this, new Observer<String>() {
-//            @Override
-//            public void onChanged(@Nullable String s) {
-//                textView.setText(s);
-//            }
-//        });
-//
-//        if (root.findViewById(R.id.rv) != null) {
-            recyclerAdapter = new RecyclerAdapter();
-            recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
-//            mLayoutManager = new LinearLayoutManager(this);
-//            recyclerView.setLayoutManager(mLayoutManager);
-
-            recyclerView.setAdapter(recyclerAdapter);
-//
-//           }
+        recyclerAdapter = new RecyclerAdapter();
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setAdapter(recyclerAdapter);
 
         return root;
 
