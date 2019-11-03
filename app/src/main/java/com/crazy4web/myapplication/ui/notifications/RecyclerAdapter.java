@@ -13,18 +13,8 @@ import com.crazy4web.myapplication.R;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-//    List<String> list;
-//    Context context;
-
-//    public RecyclerAdapter(Context context, List<String> list) {
-//        this.list = list;
-//        this.context = context;
-//    }
     private static final String TAG = "RecyclerAdapter";
 
-//    public RecyclerAdapter(Context context) {
-//        this.context = context;
-//    }
 
     @NonNull
     @Override
@@ -45,7 +35,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 40;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
