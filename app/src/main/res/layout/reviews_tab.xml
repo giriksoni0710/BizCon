@@ -124,7 +124,6 @@
         app:layout_constraintTop_toBottomOf="@+id/rating2" />
 
     <com.google.android.material.floatingactionbutton.FloatingActionButton
-        android:id="@+id/fab2"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
