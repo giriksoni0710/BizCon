@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="wrap_content"
+    android:layout_height="match_parent"
     android:scrollbars="vertical"
     android:orientation="vertical">
 
@@ -73,7 +73,7 @@
         app:layout_constraintRight_toLeftOf="parent"
         android:layout_marginTop="20dp"
         android:orientation="horizontal"
-        android:paddingLeft="40dp">
+        >
 
 
 
@@ -382,6 +382,7 @@
             android:src="@drawable/new1">
 
         </ImageView>
+
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
@@ -389,6 +390,16 @@
             android:text="Rebel Electronics">
 
         </TextView>
+        <RatingBar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:numStars="4"
+            android:stepSize="0.4"
+            android:rating="4"
+            android:layout_marginTop="100dp"
+           >
+
+        </RatingBar>
 
 
     </androidx.cardview.widget.CardView>

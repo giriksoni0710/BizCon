@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:orientation="vertical">
+    android:orientation="vertical"
+    android:id="@+id/chatrow">
 
     <ImageView
         android:id="@+id/user_img"
@@ -19,12 +20,12 @@
         app:srcCompat="@drawable/artartistcalligraphy57690" />
 
     <TextView
-        android:id="@+id/notification"
+        android:id="@+id/user_name"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="12dp"
         android:layout_marginEnd="8dp"
-        android:text="Notification 1"
+        android:text="Chat 1"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintBottom_toTopOf="@+id/last_msg"
         app:layout_constraintEnd_toEndOf="parent"
@@ -32,11 +33,11 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/body"
+        android:id="@+id/last_msg"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginEnd="8dp"
-        android:text="details of notificaion...lorem ipsum...."
+        android:text="last message..."
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
