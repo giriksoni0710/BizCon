@@ -55,12 +55,12 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
 
-        android:layout_marginStart="340dp"
+        android:layout_marginStart="328dp"
         android:src="@drawable/carpentercarpentrycloseup1249611"
         app:layout_constraintBottom_toTopOf="@+id/type_message"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.219"></ImageView>
+        app:layout_constraintVertical_bias="0.244"></ImageView>
 
     <EditText
         style="@style/Widget.AppCompat.EditText"

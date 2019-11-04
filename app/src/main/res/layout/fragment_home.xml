@@ -1,9 +1,13 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<ScrollView xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:fillViewport="true"
+    xmlns:android="http://schemas.android.com/apk/res/android" >
+<LinearLayout
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:scrollbars="vertical"
     android:orientation="vertical">
 
@@ -62,12 +66,12 @@
     </LinearLayout>
 
 <HorizontalScrollView
-    android:layout_width="match_parent"
+    android:layout_width="wrap_content"
     android:layout_height="wrap_content"
-    android:fillViewport="true">
+    >
     <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         app:layout_constraintTop_toBottomOf="@id/categorynameLayout"
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
@@ -157,6 +161,8 @@
     </LinearLayout>
 
     </HorizontalScrollView>
+
+
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -358,6 +364,8 @@
         android:layout_height="wrap_content"
         android:text="Newly added"
         android:layout_marginLeft="30dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginBottom="5dp"
         ></TextView>
 
     <LinearLayout
@@ -367,40 +375,43 @@
         >
 
     <androidx.cardview.widget.CardView
-        android:layout_width="150dp"
-        android:layout_height="150dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="30dp"
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="3dp"
-        app:cardElevation="8dp"
+        app:cardElevation="10dp"
         app:cardUseCompatPadding="false"
+        android:layout_marginBottom="20dp"
         >
 
         <ImageView
-            android:layout_width="150dp"
-            android:layout_height="100dp"
-            android:src="@drawable/new1">
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/newlyadded1">
 
         </ImageView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginTop="80dp"
+            android:layout_marginTop="100dp"
+            android:layout_marginLeft="35dp"
             android:text="Rebel Electronics">
 
         </TextView>
+
         <RatingBar
-            android:layout_width="match_parent"
+            android:id="@+id/rating"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:numStars="4"
-            android:stepSize="0.4"
+            android:layout_marginStart="35dp"
+            android:isIndicator="true"
+            android:numStars="5"
+            android:stepSize="0.1"
             android:rating="4"
-            android:layout_marginTop="100dp"
-           >
-
-        </RatingBar>
-
+            android:layout_marginTop="120dp"></RatingBar>
 
     </androidx.cardview.widget.CardView>
 
@@ -409,3 +420,4 @@
     </LinearLayout>
     </LinearLayout>
 
+</ScrollView>
