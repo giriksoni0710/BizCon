@@ -375,12 +375,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:layout_gravity="center_horizontal"
         >
 
     <androidx.cardview.widget.CardView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="30dp"
+        android:layout_marginLeft="55dp"
+        android:layout_marginRight="15dp"
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="3dp"
         app:cardElevation="10dp"
@@ -390,17 +392,17 @@
         >
 
         <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/newlyadded1">
+            android:layout_width="300dp"
+            android:layout_height="200dp"
+            android:src="@drawable/categorypage1">
 
         </ImageView>
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
-            android:layout_marginTop="100dp"
-            android:layout_marginLeft="15dp"
+            android:layout_marginTop="210dp"
+            android:layout_marginLeft="40dp"
             android:text="Rebel Electronics">
 
         </TextView>
@@ -410,12 +412,12 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="15dp"
+            android:layout_marginLeft="40dp"
+            android:layout_marginTop="230dp"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.1"
             android:rating="4"
-            android:layout_marginTop="120dp"
             android:paddingBottom="20dp"></RatingBar>
 
     </androidx.cardview.widget.CardView>

@@ -37,7 +37,7 @@ public class HomeFragment extends Fragment {
     Intent intent;
 
     private int[] images = new int[]{
-            R.drawable.ic_notifications_black_24dp,R.drawable.ic_dashboard_black_24dp, R.drawable.ic_launcher_background, R.drawable.ic_launcher_foreground};
+            R.drawable.categorypage1,R.drawable.categorypage2, R.drawable.categorypage1, R.drawable.categorypage2};
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -98,15 +98,6 @@ public class HomeFragment extends Fragment {
         });
 
         return root;
-
-
-
-
-
-
-
-
-
 
     }
 
