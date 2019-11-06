@@ -383,6 +383,7 @@
         app:cardBackgroundColor="#ffffff"
         app:cardCornerRadius="3dp"
         app:cardElevation="10dp"
+
         app:cardUseCompatPadding="false"
         android:layout_marginBottom="20dp"
         >
@@ -398,7 +399,7 @@
             android:layout_width="match_parent"
             android:layout_height="20dp"
             android:layout_marginTop="100dp"
-            android:layout_marginLeft="35dp"
+            android:layout_marginLeft="15dp"
             android:text="Rebel Electronics">
 
         </TextView>
@@ -408,14 +409,16 @@
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="35dp"
+            android:layout_marginStart="15dp"
             android:isIndicator="true"
             android:numStars="5"
             android:stepSize="0.1"
             android:rating="4"
-            android:layout_marginTop="120dp"></RatingBar>
+            android:layout_marginTop="120dp"
+            android:paddingBottom="20dp"></RatingBar>
 
     </androidx.cardview.widget.CardView>
+
 
 
 

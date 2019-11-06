@@ -16,6 +16,7 @@ import android.widget.TextView;
 
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.Login.Email_login;
 
 public class IntroSlider extends AppCompatActivity {
 
@@ -122,7 +123,7 @@ public class IntroSlider extends AppCompatActivity {
                     @Override
                     public void onClick(View view) {
 
-                        Intent newactivity = new Intent(getApplicationContext(), MainActivity.class);
+                        Intent newactivity = new Intent(getApplicationContext(), Email_login.class);
                         startActivity(newactivity);
 
 

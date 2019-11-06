@@ -27,22 +27,22 @@ public class SliderAdaptor extends PagerAdapter {
 
     public int[] slideImages = {
 
-            R.drawable.ic_home_black_24dp,
-            R.drawable.ic_dashboard_black_24dp,
-            R.drawable.ic_notifications_black_24dp
+            R.drawable.intro_image,
+            R.drawable.intro_image,
+            R.drawable.intro_image
     };
 
     public String[] slideHeadings = {
 
-            "Slide1", "slide2", "slide3"
+            "Never miss an opportunity", "Get your work done easily", "Let us help you"
 
     };
 
     public String[] slideDesc = {
 
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book"
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
+            "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
 
 
     };
