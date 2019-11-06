@@ -56,25 +56,33 @@
         android:layout_height="50dp"
 
         android:layout_marginStart="328dp"
+        android:layout_marginTop="140dp"
         android:src="@drawable/carpentercarpentrycloseup1249611"
-        app:layout_constraintBottom_toTopOf="@+id/type_message"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.515"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.244"></ImageView>
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <EditText
+        android:id="@+id/type_message"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="match_parent"
-        android:layout_height="40dp"
-        android:layout_marginBottom="40dp"
-        android:layout_marginRight="20dp"
+        android:layout_width="371dp"
+        android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:paddingRight="5dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="6dp"
+        android:layout_marginBottom="40dp"
         android:background="@drawable/edittextbackground"
+        android:maxHeight="80dp"
         android:enabled="true"
+        android:paddingLeft="15dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:id="@+id/type_message"></EditText>
+        app:layout_constraintStart_toStartOf="parent">
+
+    </EditText>
 
 
 
