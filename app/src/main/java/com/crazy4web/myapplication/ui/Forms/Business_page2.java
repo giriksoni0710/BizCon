@@ -32,6 +32,9 @@ public class Business_page2 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
+                Intent i = new Intent(getApplicationContext(), Business_page3.class);
+
+                startActivity(i);
 
 
             }

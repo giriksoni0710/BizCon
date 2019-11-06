@@ -22,7 +22,10 @@
         android:id="@+id/category"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="60dp"
+        android:background="@drawable/edittextinputbox"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:layout_editor_absoluteX="0dp">
 
@@ -30,12 +33,16 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Category" />
+
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/company_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="36dp"
         app:layout_constraintTop_toBottomOf="@+id/category"
         tools:layout_editor_absoluteX="0dp">
@@ -49,6 +56,9 @@
     <com.google.android.material.textfield.TextInputLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
         android:layout_marginTop="21dp"
         app:layout_constraintBottom_toTopOf="@+id/first_btn"
         app:layout_constraintTop_toBottomOf="@+id/company_name"
@@ -64,7 +74,7 @@
 
     <Button
         android:id="@+id/first_btn"
-        android:layout_width="394dp"
+        android:layout_width="380dp"
         android:layout_height="59dp"
         android:layout_marginBottom="104dp"
         android:text="Button"
