@@ -16,7 +16,10 @@
         <activity android:name=".ui.Forms.Business_page3" />
         <activity android:name=".ui.Forms.Business_page2" />
         <activity android:name=".ui.Forms.Business_page1">
-
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
 
         <activity android:name=".ui.Login.Email_login">
@@ -25,11 +28,7 @@
 
         <activity android:name=".ui.Slider.IntroSlider" />
         <activity android:name=".ui.splashscreen.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+               </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:label="@string/title_activity_detail_fragment"

@@ -9,14 +9,14 @@
 
     <ImageView
         android:id="@+id/imageView3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="200dp"
+        android:layout_height="50dp"
         android:layout_marginTop="64dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.498"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@drawable/ic_launcher_background" />
+        app:srcCompat="@drawable/first" />
 
     <com.google.android.material.textfield.TextInputLayout
         android:id="@+id/category"
@@ -25,7 +25,6 @@
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
         android:layout_marginTop="60dp"
-        android:background="@drawable/edittextinputbox"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
         tools:layout_editor_absoluteX="0dp">
 
@@ -40,6 +39,9 @@
         android:id="@+id/company_name"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        app:boxStrokeWidth="1dp"
+        app:hintAnimationEnabled="true"
 
         android:layout_marginLeft="15dp"
         android:layout_marginRight="15dp"
@@ -77,7 +79,7 @@
         android:layout_width="380dp"
         android:layout_height="59dp"
         android:layout_marginBottom="104dp"
-        android:text="Button"
+        android:text="Next"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
