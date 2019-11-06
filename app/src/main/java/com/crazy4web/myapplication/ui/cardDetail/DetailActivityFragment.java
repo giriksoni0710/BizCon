@@ -25,7 +25,12 @@ public class DetailActivityFragment extends AppCompatActivity {
         setContentView(R.layout.activity_detail_fragment);
         Toolbar toolbar = findViewById(R.id.toolbarCardDetail);
         setSupportActionBar(toolbar);
-        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+//        getSupportActionBar().setHomeButtonEnabled(true);
+//        getSupportActionBar().setDefaultDisplayHomeAsUpEnabled(true);
 
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
