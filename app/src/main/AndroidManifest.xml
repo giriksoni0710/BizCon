@@ -9,7 +9,8 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".ui.chat.chat_screen">
+        <activity android:name=".ui.chat.chat_screen"
+            android:windowSoftInputMode="stateVisible|adjustResize">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -18,15 +19,13 @@
         </activity>
         <activity android:name=".ui.Forms.Business_page3"></activity>
         <activity android:name=".ui.Forms.Business_page2" />
-        <activity android:name=".ui.Forms.Business_page1"></activity>
+        <activity android:name=".ui.Forms.Business_page1">
+
+        </activity>
         <activity android:name=".ui.Login.Email_login"></activity>
         <activity android:name=".ui.Slider.IntroSlider" />
         <activity android:name=".ui.splashscreen.SplashScreen">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
@@ -38,7 +37,11 @@
         <activity
             android:name=".ui.signup.SignUpOptions"
             android:label="@string/title_activity_sign_up_email"></activity>
-        <activity android:name=".ui.chat.ChatFragment" />
+        <activity android:name=".ui.chat.ChatFragment"
+            android:windowSoftInputMode="adjustPan">
+
+
+        </activity>
         <activity android:name=".ui.home.HomeFragment"></activity>
         <activity
             android:name=".MainActivity"

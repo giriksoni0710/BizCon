@@ -43,7 +43,7 @@
 
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout3"
+        android:id="@+id/category"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
@@ -59,13 +59,13 @@
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
-        android:id="@+id/textInputLayout4"
+        android:id="@+id/company_name"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout3">
+        app:layout_constraintTop_toBottomOf="@+id/category">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
@@ -82,7 +82,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.491"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputLayout4">
+        app:layout_constraintTop_toBottomOf="@+id/company_name">
 
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
