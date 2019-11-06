@@ -9,16 +9,14 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".ui.chat.chat_screen"
-            android:windowSoftInputMode="stateVisible|adjustResize">
-
-        </activity>
-        <activity android:name=".ui.Forms.Business_page3"></activity>
+        <activity android:name=".ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions"></activity>
+        <activity
+            android:name=".ui.chat.chat_screen"
+            android:windowSoftInputMode="stateVisible|adjustResize"></activity>
+        <activity android:name=".ui.Forms.Business_page3" />
         <activity android:name=".ui.Forms.Business_page2" />
-        <activity android:name=".ui.Forms.Business_page1">
-
-        </activity>
-        <activity android:name=".ui.Login.Email_login"></activity>
+        <activity android:name=".ui.Forms.Business_page1"></activity>
+        <activity android:name=".ui.Login.Email_login" />
         <activity android:name=".ui.Slider.IntroSlider" />
         <activity android:name=".ui.splashscreen.SplashScreen">
 
@@ -26,12 +24,13 @@
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:label="@string/title_activity_detail_fragment"
-            android:theme="@style/NoActionBar"></activity>
+            android:theme="@style/NoActionBar" />
         <activity
             android:name=".ui.signup.SignUpEmail"
-            android:label="@string/title_activity_sign_up_email"></activity>
+            android:label="@string/title_activity_sign_up_email" />
         <activity
             android:name=".ui.signup.SignUpOptions"
+
             android:label="@string/title_activity_sign_up_email"></activity>
         <activity android:name=".ui.chat.ChatFragment"
             android:windowSoftInputMode="adjustPan">
@@ -51,6 +50,6 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-    </application>
+        </application>
 
 </manifest>
