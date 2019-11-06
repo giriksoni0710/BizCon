@@ -1,6 +1,7 @@
 package com.crazy4web.myapplication.ui.dashboard.dashboardNotificationOptions;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -23,6 +24,17 @@ public class dashboardNotificationOptions extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_dashboard_notification_options);
+        Toolbar toolbar = findViewById(R.id.toolbarNotificationOptions);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 //        LayoutInflater layoutInflater = LayoutInflater.from(getApplicationContext());
 //        View root = layoutInflater.inflate(R.layout.fragment_dashboard,  , false);
 

@@ -1,5 +1,6 @@
 package com.crazy4web.myapplication.ui.dashboard;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -20,7 +21,10 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.Login.Email_login;
+import com.crazy4web.myapplication.ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -32,6 +36,7 @@ public class DashboardFragment extends Fragment {
     List<String> menuItems = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
+    Intent intent;
 
     private DashboardViewModel dashboardViewModel;
 
@@ -58,13 +63,16 @@ public class DashboardFragment extends Fragment {
 
         ArrayAdapter listAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1, menuItems);
         listViewDashboard.setAdapter(listAdapter);
-
         listViewDashboard.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Log.d(TAG, "tapped"+i);
-                Toast.makeText(getContext(), "clicked item: "+i, Toast.LENGTH_LONG).show();
+//                Toast.makeText(getContext(), "clicked item: "+i, Toast.LENGTH_LONG).show();
+                if(i == 2){
+                    intent = new Intent(getContext(), dashboardNotificationOptions.class);
+                    startActivity(intent);
+                }
             }
         });
         return root;
