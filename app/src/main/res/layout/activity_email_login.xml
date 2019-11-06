@@ -53,7 +53,7 @@
         android:id="@+id/view4"
         style="@style/Divider"
         android:layout_width="165dp"
-        android:layout_marginEnd="16dp"
+        android:layout_marginEnd="18dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
@@ -63,7 +63,7 @@
         android:id="@+id/view5"
         style="@style/Divider"
         android:layout_width="165dp"
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="18dp"
         app:layout_constraintBottom_toTopOf="@+id/button2"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/button"
@@ -71,35 +71,35 @@
 
     <Button
         android:id="@+id/button"
-        android:layout_width="394dp"
+        android:layout_width="380dp"
         android:layout_height="59dp"
         android:layout_marginTop="52dp"
         android:text="Login"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.941"
+        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/textInputLayout2" />
 
     <Button
         android:id="@+id/button2"
-        android:layout_width="394dp"
+        android:layout_width="380dp"
         android:layout_height="59dp"
         android:layout_marginBottom="16dp"
         android:text="Login with Facebook"
         app:layout_constraintBottom_toTopOf="@+id/button3"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.47"
+        app:layout_constraintHorizontal_bias="0.50"
         app:layout_constraintStart_toStartOf="parent" />
 
     <Button
         android:id="@+id/button3"
-        android:layout_width="394dp"
+        android:layout_width="380dp"
         android:layout_height="59dp"
         android:layout_marginBottom="96dp"
         android:text="Login with Google"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.352"
+        app:layout_constraintHorizontal_bias="0.500"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -133,6 +133,7 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginEnd="16dp"
         android:text="Forgot password? click here"
         app:layout_constraintBottom_toTopOf="@+id/button"
         app:layout_constraintEnd_toEndOf="parent"

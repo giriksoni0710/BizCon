@@ -18,16 +18,16 @@
         <activity android:name=".ui.Forms.Business_page1"></activity>
 
         <activity android:name=".ui.Login.Email_login">
-
-        </activity>
-
-        <activity android:name=".ui.Slider.IntroSlider" />
-        <activity android:name=".ui.splashscreen.SplashScreen">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+
+        <activity android:name=".ui.Slider.IntroSlider" />
+        <activity android:name=".ui.splashscreen.SplashScreen">
+
         </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
