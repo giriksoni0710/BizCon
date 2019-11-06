@@ -30,7 +30,9 @@ public class NotificationsFragment extends Fragment {
         recyclerView = root.findViewById(R.id.rv);
 
         recyclerAdapter = new RecyclerAdapter();
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+//        recyclerView.setLayoutManager(new LinearLayoutManager(getContext()));
+        recyclerView.setLayoutManager(new LinearLayoutManager(root.getContext()));
+//        recyclerView.setNestedScrollingEnabled(false);
         recyclerView.setAdapter(recyclerAdapter);
 
         return root;
