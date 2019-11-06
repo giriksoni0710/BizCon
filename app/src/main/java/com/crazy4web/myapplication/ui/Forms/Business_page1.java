@@ -1,5 +1,6 @@
 package com.crazy4web.myapplication.ui.Forms;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
@@ -34,6 +35,8 @@ public class Business_page1 extends AppCompatActivity {
         category = findViewById(R.id.category);
         company_name = findViewById(R.id.company_name);
         website_url = findViewById(R.id.url);
+
+
 
 
         first_button = findViewById(R.id.first_btn);
