@@ -20,6 +20,7 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.cardDetail.DetailActivityFragment;
+import com.crazy4web.myapplication.ui.categoryview.category_page;
 import com.synnapps.carouselview.CarouselView;
 import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
@@ -28,14 +29,15 @@ import static android.content.Context.INPUT_METHOD_SERVICE;
 
 public class HomeFragment extends Fragment {
 
+    ImageView categoryImage;
     private HomeViewModel homeViewModel;
 
     CardView cardView;
     Intent i;
+    Intent intent;
 
     private int[] images = new int[]{
             R.drawable.ic_notifications_black_24dp,R.drawable.ic_dashboard_black_24dp, R.drawable.ic_launcher_background, R.drawable.ic_launcher_foreground};
-
 
 
     public View onCreateView(@NonNull LayoutInflater inflater,
@@ -53,6 +55,17 @@ public class HomeFragment extends Fragment {
             i = new Intent(getContext(), DetailActivityFragment.class);
 
             startActivity(i);
+
+            }
+        });
+        categoryImage = root.findViewById(R.id.categoryImage);
+        categoryImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                intent = new Intent(getContext(), category_page.class);
+
+                startActivity(intent);
 
             }
         });

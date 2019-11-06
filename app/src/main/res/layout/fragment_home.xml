@@ -84,9 +84,10 @@
 
 
     <ImageView
-    android:layout_width="67.33dp"
-    android:layout_height="67.33dp"
-    android:src="@drawable/artartistcalligraphy57690"
+        android:id="@+id/categoryImage"
+        android:layout_width="67.33dp"
+        android:layout_height="67.33dp"
+        android:src="@drawable/artartistcalligraphy57690"
     >
 
 
