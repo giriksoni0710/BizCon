@@ -6,12 +6,27 @@
     android:layout_height="match_parent"
     tools:context=".ui.chat.chat_screen">
 
+    <com.google.android.material.appbar.AppBarLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintRight_toRightOf="parent"
+        app:layout_constraintLeft_toLeftOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+
+        >
+        <androidx.appcompat.widget.Toolbar
+            android:layout_width="match_parent"
+            android:id="@+id/toolbar"
+            android:layout_height="?attr/actionBarSize"
+            android:background="?attr/colorPrimary"></androidx.appcompat.widget.Toolbar>
+
+    </com.google.android.material.appbar.AppBarLayout>
 
     <TextView
         android:id="@+id/textView9"
         android:layout_width="wrap_content"
         android:layout_height="40dp"
-        android:layout_marginTop="55dp"
+        android:layout_marginTop="80dp"
         android:background="#D4D4D8"
         android:paddingLeft="5dp"
         android:paddingTop="10dp"
@@ -19,7 +34,7 @@
         android:text="Hi! How are you? "
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.075"
+        app:layout_constraintHorizontal_bias="0.08"
         app:layout_constraintStart_toEndOf="@+id/sender_image"
         app:layout_constraintTop_toTopOf="parent"></TextView>
 
@@ -28,12 +43,12 @@
         android:layout_width="50dp"
         android:layout_height="50dp"
 
-        android:layout_marginStart="16dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="80dp"
         android:src="@drawable/artartistcalligraphy57690"
-        app:layout_constraintBottom_toTopOf="@+id/type_message"
+        app:layout_constraintRight_toLeftOf="@+id/textView9"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.091"></ImageView>
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <TextView
         android:layout_width="wrap_content"
@@ -46,44 +61,44 @@
         android:text="I am fine!"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.626"
+        app:layout_constraintHorizontal_bias="0.856"
         app:layout_constraintStart_toEndOf="@+id/sender_image"
         app:layout_constraintTop_toTopOf="parent"></TextView>
-
-    <ImageView
-        android:id="@+id/reciever_image"
-        android:layout_width="50dp"
-        android:layout_height="50dp"
-
-        android:layout_marginStart="328dp"
-        android:layout_marginTop="140dp"
-        android:src="@drawable/carpentercarpentrycloseup1249611"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.515"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"></ImageView>
 
     <EditText
         android:id="@+id/type_message"
         style="@style/Widget.AppCompat.EditText"
-        android:layout_width="371dp"
+        android:layout_width="340dp"
         android:layout_height="wrap_content"
         android:layout_marginLeft="20dp"
         android:layout_marginRight="20dp"
-        android:paddingRight="5dp"
-        android:paddingTop="6dp"
-        android:paddingBottom="6dp"
         android:layout_marginBottom="40dp"
         android:background="@drawable/edittextbackground"
-        android:maxHeight="80dp"
         android:enabled="true"
+        android:maxHeight="80dp"
         android:paddingLeft="15dp"
+        android:paddingTop="6dp"
+        android:paddingRight="5dp"
+        android:paddingBottom="6dp"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintRight_toLeftOf="@+id/send_img"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent">
 
     </EditText>
 
+    <ImageView
+        android:id="@+id/send_img"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginBottom="44dp"
+        android:minWidth="40dp"
+        android:minHeight="30dp"
+        android:src="@drawable/send"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintLeft_toRightOf="@+id/type_message"
+        app:layout_constraintRight_toRightOf="parent"></ImageView>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>
+
