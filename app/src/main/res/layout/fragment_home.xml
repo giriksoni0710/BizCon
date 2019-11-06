@@ -65,7 +65,7 @@
 
     </LinearLayout>
 
-<ScrollView
+<HorizontalScrollView
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
@@ -77,7 +77,7 @@
         app:layout_constraintLeft_toRightOf="parent"
         app:layout_constraintRight_toLeftOf="parent"
         android:layout_marginTop="20dp"
-        android:paddingLeft="20dp"
+        android:paddingLeft="30dp"
         android:orientation="horizontal"
         >
 
@@ -162,7 +162,7 @@
 
     </LinearLayout>
 
-    </ScrollView>
+    </HorizontalScrollView>
 
 
 
