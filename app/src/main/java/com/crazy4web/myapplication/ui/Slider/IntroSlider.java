@@ -7,6 +7,7 @@ import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
@@ -25,7 +26,7 @@ public class IntroSlider extends AppCompatActivity {
     private  SliderAdaptor sliderAdaptor;
     private TextView[] mdots;
 
-    private Button btnnext, btnprev;
+    private Button btnnext;
 
     // to see what page we are on
     private int currentPage;
@@ -46,7 +47,6 @@ public class IntroSlider extends AppCompatActivity {
         sliderAdaptor = new SliderAdaptor(this);
 
         btnnext = findViewById(R.id.nextbtn);
-        btnprev = findViewById(R.id.prvsbtn);
 
         viewPager.setAdapter(sliderAdaptor);
 
@@ -60,31 +60,10 @@ public class IntroSlider extends AppCompatActivity {
 
                 viewPager.setCurrentItem(currentPage + 1);
 
-                if(currentPage==2){
-
-                    btnnext.setOnClickListener(new View.OnClickListener() {
-                        @Override
-                        public void onClick(View view) {
-
-                            Intent newactivity = new Intent(getApplicationContext(), MainActivity.class);
-                            startActivity(newactivity);
-
-
-                        }
-                    });
-
-
-                }
 
             }
         });
 
-        btnprev.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                viewPager.setCurrentItem(currentPage - 1);
-            }
-        });
 
 
     }
@@ -135,6 +114,25 @@ public class IntroSlider extends AppCompatActivity {
         @Override
         public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
 
+            Log.d("pos", ""+position);
+
+            if(position==2){
+
+                btnnext.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+
+                        Intent newactivity = new Intent(getApplicationContext(), MainActivity.class);
+                        startActivity(newactivity);
+
+
+                    }
+                });
+
+
+            }
+
+
         }
 
         @Override
@@ -146,31 +144,23 @@ public class IntroSlider extends AppCompatActivity {
             if(position == 0){
 
                 btnnext.setEnabled(true);
-                btnprev.setEnabled(false);
-                btnprev.setVisibility(View.INVISIBLE);
 
                 btnnext.setText("Next");
-                btnprev.setText("");
+
             }
 
             else if(position == mdots.length-1) {
 
                 btnnext.setEnabled(true);
-                btnprev.setEnabled(true);
-                btnprev.setVisibility(View.VISIBLE);
-
                 btnnext.setText("Finish");
-                btnprev.setText("Back");
+
 
             }
             else {
 
                 btnnext.setEnabled(true);
-                btnprev.setEnabled(true);
-                btnprev.setVisibility(View.VISIBLE);
 
                 btnnext.setText("Next");
-                btnprev.setText("Back");
 
             }
         }
