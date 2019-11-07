@@ -13,6 +13,8 @@ import com.crazy4web.myapplication.R;
 public class SignUpOptions extends AppCompatActivity {
 
     Button email_signup;
+    Button fb_signup;
+    Button google_signup;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -22,13 +24,32 @@ public class SignUpOptions extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 finish();
             }
         });
+
+        fb_signup = findViewById(R.id.fb_signup);
+        google_signup = findViewById(R.id.google_signup);
+
+        fb_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), Oauth_webLogin.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
+        google_signup.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(view.getContext(), Oauth_webLogin.class);
+                view.getContext().startActivity(intent);
+            }
+        });
+
 
         email_signup = findViewById(R.id.email_signup);
         email_signup.setOnClickListener(new View.OnClickListener() {
