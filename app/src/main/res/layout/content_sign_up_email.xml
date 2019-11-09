@@ -22,7 +22,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:inputType="text"
-            android:hint="First name" />
+            android:hint="First name"
+            android:id="@+id/fname"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -38,7 +39,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Last Name"
-            android:inputType="text" />
+            android:inputType="text"
+            android:id="@+id/lname"/>
     </com.google.android.material.textfield.TextInputLayout>
 
 
@@ -55,7 +57,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Email"
-            android:inputType="textEmailAddress" />
+            android:inputType="textEmailAddress"
+            android:id="@+id/email"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -71,7 +74,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:id="@+id/password"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -88,7 +92,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Confirm password"
-            android:inputType="textPassword" />
+            android:inputType="textPassword"
+            android:id="@+id/cpassword"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <com.google.android.material.textfield.TextInputLayout
@@ -105,7 +110,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:hint="Phone No"
-            android:inputType="number" />
+            android:inputType="number"
+            android:id="@+id/phno"/>
     </com.google.android.material.textfield.TextInputLayout>
 
     <Button
