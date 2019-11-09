@@ -12,11 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
         <activity android:name=".ui.oauth.Oauth_webLogin">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.categoryview.category_page"></activity>
         <activity android:name=".ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions" />
@@ -28,7 +24,14 @@
         <activity android:name=".ui.Forms.Business_page1" />
         <activity android:name=".ui.Login.Email_login" />
         <activity android:name=".ui.Slider.IntroSlider" />
-        <activity android:name=".ui.splashscreen.SplashScreen" />
+        <activity android:name=".ui.splashscreen.SplashScreen" >
+
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:label="@string/title_activity_detail_fragment"

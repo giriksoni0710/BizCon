@@ -14,6 +14,7 @@ import com.crazy4web.myapplication.R;
 
 public class SignUpEmail extends AppCompatActivity {
 
+    String firstName, lastName, email, password;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,6 +29,9 @@ public class SignUpEmail extends AppCompatActivity {
                 finish();
             }
         });
+
+
+
     }
 
 }

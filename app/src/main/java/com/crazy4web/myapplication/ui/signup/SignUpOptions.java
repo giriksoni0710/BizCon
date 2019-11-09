@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.oauth.Oauth_webLogin;
 
 public class SignUpOptions extends AppCompatActivity {
 
@@ -37,8 +38,11 @@ public class SignUpOptions extends AppCompatActivity {
         fb_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
+
                 Intent intent = new Intent(view.getContext(), Oauth_webLogin.class);
                 view.getContext().startActivity(intent);
+
             }
         });
 

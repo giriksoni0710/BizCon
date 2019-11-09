@@ -23,6 +23,7 @@ public class Email_login extends AppCompatActivity {
         general_signup.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+
                 Intent i = new Intent(getApplicationContext(), SignUpOptions.class);
 //                i.putExtra("signUp","singup");
                 startActivity(i);

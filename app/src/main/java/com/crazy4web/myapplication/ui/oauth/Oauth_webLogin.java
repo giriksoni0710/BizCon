@@ -23,7 +23,10 @@ public class Oauth_webLogin extends AppCompatActivity {
 
         webView.setWebViewClient(new WebViewClient());
 
-        webView.loadUrl("");
+        webView.loadUrl("https://girik.operatoroverload.com/facebook/");
+
+
+
 
 
     }
