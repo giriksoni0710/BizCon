@@ -2,9 +2,12 @@ package com.crazy4web.myapplication.ui.signup;
 
 import android.os.Bundle;
 
+import com.google.android.gms.tasks.OnFailureListener;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -18,6 +21,8 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.database.DatabaseReference;
 import com.google.firebase.database.FirebaseDatabase;
+import com.google.firebase.firestore.DocumentReference;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 import org.json.JSONObject;
 
@@ -31,11 +36,7 @@ public class SignUpEmail extends AppCompatActivity {
     TextInputEditText firstName, lastName, email, password, phone;
     Button btn;
     Map signup_obj;
-    FirebaseDatabase database;
-
-
-
-
+    FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,9 +46,7 @@ public class SignUpEmail extends AppCompatActivity {
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
-        database = FirebaseDatabase.getInstance();
-
-
+        database = FirebaseFirestore.getInstance();
 
         btn = findViewById(R.id.email_signup);
 
@@ -78,11 +77,22 @@ public class SignUpEmail extends AppCompatActivity {
                 signup_obj.put("password", upassword);
                 signup_obj.put("phone", uphone);
 
-                DatabaseReference myRef = database.getReference("user").child("user_details");
-                myRef.setValue(signup_obj);
+                database.collection("users")
+                        .add(signup_obj)
+                        .addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                            @Override
+                            public void onSuccess(DocumentReference documentReference) {
+                                Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                            }
+                        })
+                        .addOnFailureListener(new OnFailureListener() {
+                            @Override
+                            public void onFailure(@NonNull Exception e) {
+                                Log.w(TAG, "Error adding document", e);
+                            }
+                        });
 
-                Log.d("details",""+fname+lname+uemail+upassword+uphone);
-            }
+                 }
         });
 
 
