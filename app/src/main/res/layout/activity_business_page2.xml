@@ -32,6 +32,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/tagline"
             android:hint="Tagline" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -49,6 +50,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="100dp"
+            android:id="@+id/biz_desc"
             android:hint="Business Description" />
     </com.google.android.material.textfield.TextInputLayout>
 
@@ -68,6 +70,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:id="@+id/services"
             android:hint="Services" />
     </com.google.android.material.textfield.TextInputLayout>
 
