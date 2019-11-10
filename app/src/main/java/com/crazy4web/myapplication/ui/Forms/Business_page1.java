@@ -46,20 +46,21 @@ public class Business_page1 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-//                Log.d("values",category.getEditText().getText().toString()+
-//                        ""+company_name.getEditText().getText().toString()+""+website_url.getEditText().getText().toString());
-
-                Intent i = new Intent(getApplicationContext(),Business_page2.class);
-                i.setAction("message");
+                Log.d("values",category.getEditText().getText().toString()+
+                        ""+company_name.getEditText().getText().toString()+""+website_url.getEditText().getText().toString());
 
 
-                i.putExtra("category",category.getEditText().getText().toString());
-                i.putExtra("company_name",company_name.getEditText().getText().toString());
-                i.putExtra("url",website_url.getEditText().getText().toString());
-
-
-
-                startActivity(i);
+//                Intent i = new Intent(getApplicationContext(),Business_page2.class);
+//                i.setAction("message");
+//
+//
+//                i.putExtra("category",category.getEditText().getText().toString());
+//                i.putExtra("company_name",company_name.getEditText().getText().toString());
+//                i.putExtra("url",website_url.getEditText().getText().toString());
+//
+//
+//
+//                startActivity(i);
 
 
             }

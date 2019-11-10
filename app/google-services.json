@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "961359602873",
+    "firebase_url": "https://bizcon-17781.firebaseio.com",
+    "project_id": "bizcon-17781",
+    "storage_bucket": "bizcon-17781.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:961359602873:android:889b3b838181fba443a768",
+        "android_client_info": {
+          "package_name": "com.crazy4web.myapplication"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "961359602873-gpkegnhprlguqhe116n1tfa8kvedl782.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.crazy4web.myapplication",
+            "certificate_hash": "80a2682d7a687e802d12853defbcaed4a87b1a71"
+          }
+        },
+        {
+          "client_id": "961359602873-9tkg6ntr375rsunmfo4u6cjj3eq5m5n8.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyC4h82rZbV7iV07wyCureLMk3_5y6mYXhA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "961359602873-9tkg6ntr375rsunmfo4u6cjj3eq5m5n8.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
