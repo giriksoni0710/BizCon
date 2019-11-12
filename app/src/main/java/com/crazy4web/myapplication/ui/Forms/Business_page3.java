@@ -40,6 +40,8 @@ public class Business_page3 extends AppCompatActivity {
 
     String website_url, category, company_name;
     Button button, choose_img;
+
+
     HashMap hashMap = new HashMap();
     ImageView embedded_image;
     Intent intent;
@@ -50,6 +52,7 @@ public class Business_page3 extends AppCompatActivity {
     FirebaseFirestore database;
     HashMap business1 = new HashMap();
 
+
     Uri uri;
 
     @Override
@@ -57,19 +60,30 @@ public class Business_page3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_page3);
 
+        // This is the shared preference file where user form data is progressively saved to be sent
+        // to the server later
+
         final String pref_file = "com.crazy4web.myapplication.userdata";
 
+        // getting the instance of the storage
         mStorageRef = FirebaseStorage.getInstance().getReference();
+
         button = findViewById(R.id.third_button);
         v_url = findViewById(R.id.image_url);
 
+        // the upload image button
         choose_img = findViewById(R.id.choose_img);
 
+        // the image being shown next to the button when it is selected by the user
         embedded_image = findViewById(R.id.imageView5);
 
+        // here we are having a reference to store images in the images folder of the firebase storage
         mStorageRef = FirebaseStorage.getInstance().getReference("Images");
+
+        // get the database instance
         database = FirebaseFirestore.getInstance();
 
+        // saving all the user input data into preference file recieved from the previous pages
         SharedPreferences sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
 
         String tagline = sp.getString("tagline", "Default");
@@ -88,7 +102,7 @@ public class Business_page3 extends AppCompatActivity {
         hashMap.put("category",category);
 
 
-        String company_name = sp.getString("company_name", "Default");
+        company_name = sp.getString("company_name", "Default");
         hashMap.put("company_name",company_name);
 
 
@@ -99,10 +113,12 @@ public class Business_page3 extends AppCompatActivity {
 
 
 
+
         choose_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 
+                // calling openFilechooser to let the user select the image
                 openFileChooser();
             }
         });
@@ -114,11 +130,13 @@ public class Business_page3 extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                uploader();
 
+                uploader();
 
                 String video_url= v_url.getEditText().getText().toString();
                 hashMap.put("video_url",video_url);
+
+
 
 
 
@@ -139,6 +157,7 @@ public class Business_page3 extends AppCompatActivity {
                         });
 
 
+
 //                intent = new Intent(getApplicationContext(), MainActivity.class);
 //                startActivity(intent);
 
@@ -157,9 +176,18 @@ public class Business_page3 extends AppCompatActivity {
 
     }
 
+    //this is where we will upload the image to firebase database
     private void uploader() {
 
-        StorageReference reference = mStorageRef.child(System.currentTimeMillis()+"."+getExtention(uri));
+        // as each company name will be unique, we will be storing the image name as the company name
+        StorageReference reference = mStorageRef.child(company_name+"."+getExtention(uri));
+
+
+        // I am also inserting the image_path for easier retrieval
+        // this is where firebase stores the image in the
+
+        String image_path= "gs://bizcon-17781.appspot.com/Images/"+company_name+"."+getExtention(uri);
+        hashMap.put("image_path",image_path);
 
         reference.putFile(uri)
                 .addOnSuccessListener(new OnSuccessListener<UploadTask.TaskSnapshot>() {
@@ -181,6 +209,7 @@ public class Business_page3 extends AppCompatActivity {
 
     }
 
+    // opening the file chooser
     private void openFileChooser() {
 
         Intent i = new Intent();
@@ -190,6 +219,7 @@ public class Business_page3 extends AppCompatActivity {
         startActivityForResult(i, 1);
     }
 
+    // here we get the data and embedd the image once the file has been successfully choosen
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
