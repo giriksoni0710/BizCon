@@ -24,12 +24,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
-        android:text="Ankur kaul"
+        android:focusable="false"
+        android:focusableInTouchMode="false"
+        android:text="firstname lastname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7"
-        android:focusable="false"
-        android:focusableInTouchMode="false" />
+        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
 
     <ListView
         android:id="@+id/listViewDashboard"

@@ -1,6 +1,10 @@
 package com.crazy4web.myapplication.ui.dashboard;
 
+import android.content.BroadcastReceiver;
+import android.content.Context;
 import android.content.Intent;
+import android.content.IntentFilter;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -17,6 +21,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
+import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -37,7 +42,10 @@ public class DashboardFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
     Intent intent;
-
+    SharedPreferences sp;
+//    BroadcastReceiver mBroadcastReceiver;
+    TextView textView12;
+    private static final String TAG = "DashboardFragment";
     private DashboardViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
@@ -46,6 +54,14 @@ public class DashboardFragment extends Fragment {
                 View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         listViewDashboard = root.findViewById(R.id.listViewDashboard);
 //        recyclerView = root.findViewById(R.id.dashboardRecyclerItems);
+
+        textView12 = root.findViewById(R.id.textView12);
+
+        sp = getActivity().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+        String name = sp.getString("fullName","Default");
+//        Log.d(TAG, "name: "+name);
+
+        textView12.setText(name);
 
         menuItems.add("Account");
         menuItems.add("Favourites");
@@ -77,4 +93,5 @@ public class DashboardFragment extends Fragment {
         });
         return root;
     }
+
 }
