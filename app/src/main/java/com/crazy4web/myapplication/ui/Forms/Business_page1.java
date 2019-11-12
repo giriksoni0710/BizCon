@@ -75,14 +75,6 @@ public class Business_page1 extends AppCompatActivity {
         });
 
 
-
-//                i.putExtra("category",category.getEditText().getText().toString());
-//                i.putExtra("company_name",company_name.getEditText().getText().toString());
-//                i.putExtra("url",website_url.getEditText().getText().toString());
-
-
-
-
     }
 
 }
