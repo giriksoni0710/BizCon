@@ -1,7 +1,9 @@
 package com.crazy4web.myapplication.ui.signup;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.crazy4web.myapplication.ui.Login.Email_login;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
@@ -83,6 +85,9 @@ public class SignUpEmail extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+                                Intent intent = new Intent(getApplicationContext(), Email_login.class);
+                                startActivity(intent);
+
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

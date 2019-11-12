@@ -58,14 +58,23 @@ public class DashboardFragment extends Fragment {
         textView12 = root.findViewById(R.id.textView12);
 
         sp = getActivity().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
-        String name = sp.getString("fullName","Default");
-//        Log.d(TAG, "name: "+name);
+        String facebookName = sp.getString("fullName","Default");
+        String emailName = sp.getString("emailName", "Default");
+        Log.d(TAG, "name: "+emailName);
+        Log.d(TAG, "fb name: "+facebookName);
 
-        textView12.setText(name);
+        if(facebookName != "Default"){
+            textView12.setText(facebookName);
+//            sp.edit().putString("emailName","").apply();
+        }else if(emailName != null){
+            textView12.setText(emailName);
+            sp.edit().putString("fullName","").apply();
+        }
 
         menuItems.add("Account");
         menuItems.add("Favourites");
         menuItems.add("Notifications");
+        menuItems.add("Start a business..!!");
         menuItems.add("Support");
         menuItems.add("Terms of Serivice");
         menuItems.add("Logout");
