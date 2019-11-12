@@ -12,18 +12,13 @@
     android:orientation="vertical">
 
 
-    <androidx.appcompat.widget.SearchView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-</androidx.appcompat.widget.SearchView>
-
 
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselview"
         android:layout_width="match_parent"
         android:layout_height="200dp"
         android:layout_marginBottom="48dp"
+        android:layout_marginTop="48dp"
         app:fillColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

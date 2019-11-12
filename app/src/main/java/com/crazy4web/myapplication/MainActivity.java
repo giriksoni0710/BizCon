@@ -34,6 +34,7 @@ public class MainActivity extends AppCompatActivity {
     GoogleSignInClient mGoogleSignInClient;
     private static final String TAG = "MainActivity";
     ImageView speechtotext;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -41,6 +42,31 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
 
         speechtotext = findViewById(R.id.sppechtotext);
+
+        speechtotext.setVisibility(View.INVISIBLE);
+
+        searchView = findViewById(R.id.searchView);
+
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                speechtotext.setVisibility(View.VISIBLE);
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                speechtotext.setVisibility(View.INVISIBLE);
+
+                return false;
+            }
+        });
+
+
+
 
 
         GoogleSignInOptions gso = new GoogleSignInOptions
@@ -106,9 +132,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        SearchView searchView;
 
-        searchView = findViewById(R.id.searchView);
+
 
 
         switch (requestCode) {
