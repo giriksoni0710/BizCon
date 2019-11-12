@@ -3,28 +3,29 @@ package com.crazy4web.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.net.Uri;
 import android.os.Bundle;
+import android.speech.RecognizerIntent;
 import android.util.Log;
+import android.view.View;
+import android.widget.ImageView;
+import android.widget.SearchView;
+import android.widget.Toast;
 
-import com.crazy4web.myapplication.ui.dashboard.DashboardFragment;
-import com.crazy4web.myapplication.ui.home.HomeFragment;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
-import com.google.android.gms.common.Scopes;
-import com.google.android.gms.common.api.Scope;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
-import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
 import androidx.navigation.ui.NavigationUI;
+
+import java.util.ArrayList;
+import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -32,11 +33,41 @@ public class MainActivity extends AppCompatActivity {
     String name;
     final String prefFile = "com.crazy4web.myapplication.userdata";
     private static final String TAG = "MainActivity";
+    ImageView speechtotext;
+    SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+
+        speechtotext = findViewById(R.id.sppechtotext);
+
+        speechtotext.setVisibility(View.INVISIBLE);
+
+        searchView = findViewById(R.id.searchView);
+
+
+        searchView.setOnSearchClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                speechtotext.setVisibility(View.VISIBLE);
+            }
+        });
+
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+
+                speechtotext.setVisibility(View.INVISIBLE);
+
+                return false;
+            }
+        });
+
+
+
+
 
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
@@ -55,6 +86,7 @@ public class MainActivity extends AppCompatActivity {
                 R.id.navigation_home, R.id.navigation_dashboard, R.id.navigation_notifications, R.id.navigation_Chat)
                 .build();
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
+
 
         // I commented it to avoid nullpoint exception as I was changing the theme to Noactionbar
         // please uncomment if you would like to use actionbar
@@ -81,7 +113,7 @@ public class MainActivity extends AppCompatActivity {
             Log.d(TAG, "onCreate: "+name);
 
             SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
-            sharedPreferences.edit().putString("fullName", name).commit();
+            sharedPreferences.edit().putString("fullName", name).apply();
 //            Bundle bundle = new Bundle();
 //            bundle.putString("params", name);
 //            DashboardFragment myObj = new DashboardFragment();
@@ -91,4 +123,55 @@ public class MainActivity extends AppCompatActivity {
 
     }
 
-}
+    public void SpeachToText(View view) {
+
+
+        Intent intent = new Intent(RecognizerIntent.ACTION_RECOGNIZE_SPEECH);
+
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, RecognizerIntent.LANGUAGE_MODEL_FREE_FORM);
+
+        intent.putExtra(RecognizerIntent.EXTRA_LANGUAGE_MODEL, Locale.getDefault());
+
+
+
+        if(intent.resolveActivity(getPackageManager())!=null){
+
+            startActivityForResult(intent, 10);
+
+
+        }
+
+        else {
+
+            Toast.makeText(getApplicationContext(),"Your Device deosn't Support Speech Recognition", Toast.LENGTH_LONG).show();
+
+        }
+
+
+
+    };
+
+    @Override
+    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
+        super.onActivityResult(requestCode, resultCode, data);
+
+
+
+
+        switch (requestCode) {
+
+            case 10:
+                if (resultCode == RESULT_OK && data != null) {
+
+                    ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
+
+                    Log.d("Result", result.get(0));
+                    searchView.setQuery(result.get(0), false);
+
+                }
+
+                break;
+        }
+        }
+
+    }

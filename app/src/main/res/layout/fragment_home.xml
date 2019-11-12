@@ -12,12 +12,6 @@
     android:orientation="vertical">
 
 
-    <androidx.appcompat.widget.SearchView
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content">
-
-</androidx.appcompat.widget.SearchView>
-
 
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselview"
