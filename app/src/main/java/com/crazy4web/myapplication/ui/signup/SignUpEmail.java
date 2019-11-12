@@ -1,7 +1,9 @@
 package com.crazy4web.myapplication.ui.signup;
 
+import android.content.Intent;
 import android.os.Bundle;
 
+import com.crazy4web.myapplication.ui.Login.Email_login;
 import com.google.android.gms.common.api.Api;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
@@ -101,6 +103,10 @@ public class SignUpEmail extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
                                             Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
+
+                                            Intent i = new Intent(getApplicationContext(), Email_login.class);
+                                            Toast.makeText(getApplicationContext(), "please login to continue", Toast.LENGTH_LONG).show();
+                                            startActivity(i);
                                         }
                                     })
                                     .addOnFailureListener(new OnFailureListener() {

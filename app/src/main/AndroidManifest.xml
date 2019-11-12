@@ -2,8 +2,6 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.crazy4web.myapplication">
 
-    <uses-permission android:name="android.permission.INTERNET"></uses-permission>
-
     <application
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
@@ -11,70 +9,67 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.Design.Light.NoActionBar">
-        <activity android:name=".ui.oauth.Oauth_webLogin">
-
-        </activity>
-        <activity android:name=".ui.categoryview.category_page"></activity>
-        <activity android:name=".ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions" />
-        <activity
-            android:name=".ui.chat.chat_screen"
-            android:windowSoftInputMode="stateVisible|adjustResize" />
-        <activity android:name=".ui.Forms.Business_page3" />
-        <activity android:name=".ui.Forms.Business_page2" />
-        <activity android:name=".ui.Forms.Business_page1" >
-
-        </activity>
-        <activity android:name=".ui.Login.Email_login" />
-        <activity android:name=".ui.Slider.IntroSlider" />
-        <activity android:name=".ui.splashscreen.SplashScreen" >
-
-        </activity>
-        <activity
-            android:name=".ui.cardDetail.DetailActivityFragment"
-            android:label="@string/title_activity_detail_fragment"
-            android:theme="@style/NoActionBar" />
-        <activity
-            android:name=".ui.signup.SignUpEmail"
-            android:label="@string/title_activity_sign_up_email" >
-
-        </activity>
-        <activity
-            android:name=".ui.signup.SignUpOptions"
-            android:label="@string/title_activity_sign_up_email" >
+        <activity android:name=".ui.UserType.DecideUserType">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.oauth.Oauth_webLogin"></activity>
+        <activity android:name=".ui.categoryview.category_page" />
+        <activity android:name=".ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions" />
+        <activity
+            android:name=".ui.chat.chat_screen"
+            android:windowSoftInputMode="stateVisible|adjustResize" />
+        <activity android:name=".ui.Forms.Business_page3" />
+        <activity android:name=".ui.Forms.Business_page2" />
+        <activity android:name=".ui.Forms.Business_page1"></activity>
+        <activity android:name=".ui.Login.Email_login" />
+        <activity android:name=".ui.Slider.IntroSlider" />
+        <activity android:name=".ui.splashscreen.SplashScreen"></activity>
+        <activity
+            android:name=".ui.cardDetail.DetailActivityFragment"
+            android:label="@string/title_activity_detail_fragment"
+            android:theme="@style/NoActionBar" />
+        <activity
+            android:name=".ui.signup.SignUpEmail"
+            android:label="@string/title_activity_sign_up_email"></activity>
+        <activity
+            android:name=".ui.signup.SignUpOptions"
+            android:label="@string/title_activity_sign_up_email">
+        </activity>
         <activity
             android:name=".ui.chat.ChatFragment"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.home.HomeFragment"></activity>
+        <activity android:name=".ui.home.HomeFragment" />
         <activity
             android:name=".MainActivity"
             android:label="@string/app_name"
-            android:windowSoftInputMode="adjustPan">
-        </activity>
+            android:windowSoftInputMode="adjustPan"></activity>
 
-        <meta-data android:name="com.facebook.sdk.ApplicationId"
-            android:value="@string/facebook_app_id"/>
-
-        <activity android:name="com.facebook.FacebookActivity"
-            android:configChanges=
-                "keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+        <activity
+            android:name="com.facebook.FacebookActivity"
+            android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
             android:label="@string/app_name" />
+
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.VIEW" />
+
                 <category android:name="android.intent.category.DEFAULT" />
                 <category android:name="android.intent.category.BROWSABLE" />
+
                 <data android:scheme="@string/fb_login_protocol_scheme" />
             </intent-filter>
         </activity>
-
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
     </application>
+
+    <uses-permission android:name="android.permission.INTERNET" />
 
 </manifest>
