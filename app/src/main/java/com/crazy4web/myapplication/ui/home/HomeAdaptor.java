@@ -31,6 +31,8 @@ import java.net.URL;
 import java.util.ArrayList;
 import java.util.Map;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> {
 
     private Context mcon;
@@ -99,7 +101,7 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
 
                 Log.d("uri",uri+"");
 
-
+                Glide.with(getApplicationContext()).load(uri).into(holder.imageView);
 
             }
         });
