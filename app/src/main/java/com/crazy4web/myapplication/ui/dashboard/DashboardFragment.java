@@ -30,20 +30,25 @@ import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.Login.Email_login;
 import com.crazy4web.myapplication.ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions;
+import com.facebook.login.LoginManager;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInClient;
+import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
 
-//    private static final String TAG = "DashboardFragment";
+    GoogleSignInClient mGoogleSignInClient;
     ListView listViewDashboard;
     List<String> menuItems = new ArrayList<>();
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
     Intent intent;
     SharedPreferences sp;
-//    BroadcastReceiver mBroadcastReceiver;
     TextView textView12;
     private static final String TAG = "DashboardFragment";
     private DashboardViewModel dashboardViewModel;
@@ -58,17 +63,36 @@ public class DashboardFragment extends Fragment {
         textView12 = root.findViewById(R.id.textView12);
 
         sp = getActivity().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
-        String facebookName = sp.getString("fullName","Default");
+
+        GoogleSignInOptions gso = new GoogleSignInOptions
+                .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
+//                .requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
+//                .requestServerAuthCode(getString(R.string.server_client_id))
+//                .requestIdToken(getString(R.string.server_client_id))
+                .requestEmail()
+                .build();
+
+        mGoogleSignInClient = GoogleSignIn.getClient(root.getContext(), gso);
+
+        String facebookName = sp.getString("fbName","Default");
+        String googleName = sp.getString("googleName","Default");
         String emailName = sp.getString("emailName", "Default");
         Log.d(TAG, "name: "+emailName);
         Log.d(TAG, "fb name: "+facebookName);
+        Log.d(TAG, "google name: "+googleName);
 
         if(facebookName != "Default"){
             textView12.setText(facebookName);
-//            sp.edit().putString("emailName","").apply();
-        }else if(emailName != null){
+        }else if(emailName != "Default"){
             textView12.setText(emailName);
-            sp.edit().putString("fullName","").apply();
+            sp.edit().putString("fbName","Default").apply();
+            sp.edit().putString("googleName","Default").apply();
+        }else if(googleName != "Default"){
+            textView12.setText(googleName);
+            sp.edit().putString("emailName","Default").apply();
+            sp.edit().putString("fbName","Default").apply();
+        }else{
+            textView12.setText("");
         }
 
         menuItems.add("Account");
@@ -94,13 +118,64 @@ public class DashboardFragment extends Fragment {
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
 //                Log.d(TAG, "tapped"+i);
 //                Toast.makeText(getContext(), "clicked item: "+i, Toast.LENGTH_LONG).show();
-                if(i == 2){
-                    intent = new Intent(getContext(), dashboardNotificationOptions.class);
-                    startActivity(intent);
+//                if(i == 2){
+//
+//                }
+                switch (i) {
+
+                    case 2:
+                        intent = new Intent(getContext(), dashboardNotificationOptions.class);
+                        startActivity(intent);
+                        break;
+
+                    case 6:
+
+                        if(googleName != "Default" && facebookName == "Default" && emailName == "Default"){
+                            signOut();
+                            revokeAccess();
+                            Log.d(TAG, "Logged out from google");
+                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_LONG).show();
+
+                        }else if(googleName == "Default" && facebookName != "Default" && emailName == "Default"){
+                            LoginManager.getInstance().logOut();
+                            Log.d(TAG, "Logged out from facebook");
+
+                        }else if(googleName == "Default" && facebookName == "Default" && emailName != "Default"){
+                            Log.d(TAG, "logged out from email");
+                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_LONG).show();
+                        }
+
+                        sp.edit().putString("emailName","Default").apply();
+                        sp.edit().putString("googleName","Default").apply();
+                        sp.edit().putString("fbName","Default").apply();
+                        Intent in = new Intent(getContext(), Email_login.class);
+                        startActivity(in);
+                        break;
+
                 }
             }
         });
         return root;
+    }
+
+    private void signOut() {
+        mGoogleSignInClient.signOut().addOnCompleteListener(new OnCompleteListener<Void>() {
+
+            @Override
+            public void onComplete(@NonNull Task<Void> task) {
+                Log.d(TAG, "Completed logout");
+            }
+        });
+    }
+
+    private void revokeAccess() {
+        mGoogleSignInClient.revokeAccess()
+                .addOnCompleteListener(new OnCompleteListener<Void>() {
+                    @Override
+                    public void onComplete(@NonNull Task<Void> task) {
+                        Log.d(TAG, "Access revoked");
+                    }
+                });
     }
 
 }

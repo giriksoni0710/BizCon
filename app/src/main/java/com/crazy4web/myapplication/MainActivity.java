@@ -40,6 +40,7 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
+        SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
         speechtotext = findViewById(R.id.sppechtotext);
 
@@ -100,24 +101,20 @@ public class MainActivity extends AppCompatActivity {
             String personEmail = acct.getEmail();
             String personId = acct.getId();
 //            Uri personPhoto = acct.getPhotoUrl();
-            Log.d(TAG, "on success: "+personName);
+//            Log.d(TAG, "on success: "+personName.toUpperCase().charAt(0)+personName.substring(1,personName.length()));
 //            finish();
+            String googleName = personName.toUpperCase().charAt(0)+personName.substring(1,personName.length());
+//            Log.d(TAG, "gogole name:: "+googleName);
+            sharedPreferences.edit().putString("googleName", googleName).apply();
         }
 
-//        FragmentManager manager = getSupportFragmentManager();
-//        FragmentTransaction t = manager.beginTransaction();
 
         Intent intent = getIntent();
         if(intent != null){
-            name = intent.getStringExtra("name");
-            Log.d(TAG, "onCreate: "+name);
 
-            SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
-            sharedPreferences.edit().putString("fullName", name).apply();
-//            Bundle bundle = new Bundle();
-//            bundle.putString("params", name);
-//            DashboardFragment myObj = new DashboardFragment();
-//            myObj.setArguments(bundle);
+            name = intent.getStringExtra("name");
+            Log.d(TAG, "onCreate: fbname"+name);
+            sharedPreferences.edit().putString("fbName", name).apply();
 
         }
 
