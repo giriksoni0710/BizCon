@@ -371,51 +371,12 @@
         android:layout_marginTop="10dp"
         android:layout_gravity="center_horizontal"
         >
-
-    <androidx.cardview.widget.CardView
-        android:layout_width="350dp"
+    <androidx.recyclerview.widget.RecyclerView
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="55dp"
-        android:layout_marginRight="15dp"
-        app:cardBackgroundColor="#ffffff"
-        app:cardCornerRadius="3dp"
-        app:cardElevation="10dp"
-        android:id="@+id/business_card"
-        app:cardUseCompatPadding="false"
-        android:layout_marginBottom="20dp"
-        >
+        android:id="@+id/recycler_view_newlyadded">
 
-        <ImageView
-            android:layout_width="300dp"
-            android:layout_height="200dp"
-            android:src="@drawable/categorypage1">
-
-        </ImageView>
-
-        <TextView
-            android:layout_width="match_parent"
-            android:layout_height="20dp"
-            android:layout_marginTop="210dp"
-            android:layout_marginLeft="40dp"
-            android:text="Rebel Electronics">
-
-        </TextView>
-
-        <RatingBar
-            android:id="@+id/rating"
-            style="?android:attr/ratingBarStyleSmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="40dp"
-            android:layout_marginTop="230dp"
-            android:isIndicator="true"
-            android:numStars="5"
-            android:stepSize="0.1"
-            android:rating="4"
-            android:paddingBottom="20dp"></RatingBar>
-
-    </androidx.cardview.widget.CardView>
-
+    </androidx.recyclerview.widget.RecyclerView>
 
 
 
