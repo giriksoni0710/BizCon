@@ -29,7 +29,7 @@
         android:text="firstname lastname"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/imageView7" />
+        app:layout_constraintTop_toBottomOf="@+id/pic" />
 
     <ListView
         android:id="@+id/listViewDashboard"
@@ -43,7 +43,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
     <ImageView
-        android:id="@+id/imageView7"
+        android:id="@+id/pic"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"

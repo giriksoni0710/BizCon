@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -26,6 +27,7 @@ import androidx.recyclerview.widget.DividerItemDecoration;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.Login.Email_login;
@@ -50,6 +52,7 @@ public class DashboardFragment extends Fragment {
     Intent intent;
     SharedPreferences sp;
     TextView textView12;
+    ImageView pic;
     private static final String TAG = "DashboardFragment";
     private DashboardViewModel dashboardViewModel;
 
@@ -61,6 +64,7 @@ public class DashboardFragment extends Fragment {
 //        recyclerView = root.findViewById(R.id.dashboardRecyclerItems);
 
         textView12 = root.findViewById(R.id.textView12);
+        pic = root.findViewById(R.id.pic);
 
         sp = getActivity().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
@@ -83,14 +87,16 @@ public class DashboardFragment extends Fragment {
 
         if(facebookName != "Default"){
             textView12.setText(facebookName);
+            Glide.with(getContext()).load(String.valueOf(sp.getString("fbImage","Default"))).into(pic);
         }else if(emailName != "Default"){
             textView12.setText(emailName);
-            sp.edit().putString("fbName","Default").apply();
-            sp.edit().putString("googleName","Default").apply();
+//            sp.edit().putString("fbName","Default").apply();
+//            sp.edit().putString("googleName","Default").apply();
         }else if(googleName != "Default"){
             textView12.setText(googleName);
-            sp.edit().putString("emailName","Default").apply();
-            sp.edit().putString("fbName","Default").apply();
+            Glide.with(getContext()).load(String.valueOf(sp.getString("googlePic","Default"))).into(pic);
+//            sp.edit().putString("emailName","Default").apply();
+//            sp.edit().putString("fbName","Default").apply();
         }else{
             textView12.setText("");
         }

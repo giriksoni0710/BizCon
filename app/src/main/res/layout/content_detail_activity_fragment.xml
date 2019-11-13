@@ -12,6 +12,7 @@
         android:id="@+id/img"
         android:layout_width="match_parent"
         android:layout_height="100dp"
+        android:layout_marginTop="15dp"
         android:src="@drawable/ic_launcher_background"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -29,7 +30,7 @@
         app:layout_constraintTop_toBottomOf="@+id/img" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/companyName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"

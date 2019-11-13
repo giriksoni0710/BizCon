@@ -5,9 +5,7 @@
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_sign_up_email">SignUpEmail</string>
     <string name="title_activity_detail_fragment">DetailActivityFragment</string>
-    <string name="about_tab">About Tab</string>
-    <string name="services_tab">Home wiring</string>
-    <string name="server_client_id">340532093742-ibmqrkchaj78hr3aa3290s5gthvj2pnp.apps.googleusercontent.com</string>
+    <string name="about_tab">What we do</string>
     <!--    <string name="facebook_app_id">2470490759907098</string>-->
     <!--    <string name="fb_login_protocol_scheme">fb2470490759907098</string>-->
     <string name="facebook_app_id">2470490759907098</string>

@@ -101,8 +101,6 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
 
 
 
-
-
             }
         });
 

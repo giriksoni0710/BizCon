@@ -3,6 +3,7 @@ package com.crazy4web.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
 import android.util.Log;
@@ -11,6 +12,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
+import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -30,7 +32,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
-    String name;
+    String name, fbImage;
     final String prefFile = "com.crazy4web.myapplication.userdata";
     private static final String TAG = "MainActivity";
     ImageView speechtotext;
@@ -100,12 +102,14 @@ public class MainActivity extends AppCompatActivity {
             String personName = acct.getDisplayName();
             String personEmail = acct.getEmail();
             String personId = acct.getId();
-//            Uri personPhoto = acct.getPhotoUrl();
+            Uri personPhoto = acct.getPhotoUrl();
 //            Log.d(TAG, "on success: "+personName.toUpperCase().charAt(0)+personName.substring(1,personName.length()));
 //            finish();
             String googleName = personName.toUpperCase().charAt(0)+personName.substring(1,personName.length());
 //            Log.d(TAG, "gogole name:: "+googleName);
             sharedPreferences.edit().putString("googleName", googleName).apply();
+            sharedPreferences.edit().putString("googlePic", String.valueOf(personPhoto)).apply();
+
         }
 
 
@@ -113,8 +117,11 @@ public class MainActivity extends AppCompatActivity {
         if(intent != null){
 
             name = intent.getStringExtra("name");
+            fbImage = intent.getStringExtra("fbImage");
             Log.d(TAG, "onCreate: fbname"+name);
+            Log.d(TAG, "onCreate: "+fbImage);
             sharedPreferences.edit().putString("fbName", name).apply();
+            sharedPreferences.edit().putString("fbImage", fbImage).apply();
 
         }
 
