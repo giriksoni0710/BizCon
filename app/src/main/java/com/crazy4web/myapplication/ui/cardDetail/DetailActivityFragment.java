@@ -4,7 +4,11 @@ import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.Registry;
+import com.bumptech.glide.module.AppGlideModule;
 import com.crazy4web.myapplication.MainActivity;
+import com.firebase.ui.storage.images.FirebaseImageLoader;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.android.material.snackbar.Snackbar;
 
@@ -17,6 +21,7 @@ import androidx.viewpager.widget.ViewPager;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -28,7 +33,10 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.storage.FirebaseStorage;
+import com.google.firebase.storage.StorageReference;
 
+import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -43,6 +51,8 @@ public class DetailActivityFragment extends AppCompatActivity {
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
     TextView businessDesc, companyName, company_desc;
+    ImageView img;
+    FirebaseStorage firebaseStorage;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,6 +75,7 @@ public class DetailActivityFragment extends AppCompatActivity {
         companyName = findViewById(R.id.companyName);
         company_desc = findViewById(R.id.company_desc);
         businessDesc = findViewById(R.id.businessDesc1);
+        img = findViewById(R.id.img);
 
         database = FirebaseFirestore.getInstance();
         SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
@@ -150,12 +161,28 @@ public class DetailActivityFragment extends AppCompatActivity {
 //        viewPager.setAdapter(swipeAdapter);
 //        viewPager.setCurrentItem(0);//the first fragment
 //        viewPager.setCurrentItem(0);
+        firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/Bizcon.jpg");
+        storageReference.getDownloadUrl().addOnSuccessListener(url ->{
+            Glide.with(getApplicationContext()).load(url).into(img);
+        });
     }
 
     private void updatePageWithData(ArrayList<String> arr){
         companyName.setText(arr.get(4));
         company_desc.setText(arr.get(5));
 
+    }
+
+    public class MyAppGlideModule extends AppGlideModule {
+        public MyAppGlideModule() {
+            super();
+        }
+        @Override
+        public void registerComponents(Context context, Glide glide, Registry registry) {
+            // Register FirebaseImageLoader to handle StorageReference
+            registry.append(StorageReference.class, InputStream.class,new FirebaseImageLoader.Factory());
+        }
     }
 
 }
