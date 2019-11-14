@@ -90,7 +90,7 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
 
 
 
-        holder.company_name.setText(image.get(position).toString());
+        holder.company_name.setText(image.get(position).toString().replaceAll("\"",""));
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
         StorageReference storageRef = storage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/Bizcon.jpg");

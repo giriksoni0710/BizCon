@@ -9,7 +9,7 @@
 
     <androidx.cardview.widget.CardView
         android:layout_width="300dp"
-        android:layout_height="280dp"
+        android:layout_height="wrap_content"
         android:layout_marginStart="10dp"
         android:id="@+id/business_card_list"
         android:layout_marginTop="80dp"
@@ -31,7 +31,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="15dp"
-            android:layout_marginTop="240dp"
+            android:layout_marginTop="250dp"
             android:numStars="5"
             android:paddingBottom="20dp"
             android:rating="4"
@@ -40,11 +40,24 @@
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
+            android:textSize="18dp"
+            android:id="@+id/companyName"
             android:layout_marginLeft="15dp"
             android:layout_marginTop="220dp"
             android:text="Rebel Electronics">
 
         </TextView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="270dp"
+            android:text="tagline starts here"
+            android:layout_marginLeft="15dp"
+            android:id="@+id/tagline_category"
+            android:layout_marginBottom="40dp"
+
+            ></TextView>
 
     </androidx.cardview.widget.CardView>
 

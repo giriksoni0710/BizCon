@@ -74,6 +74,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         recyclerView.setHasFixedSize(false);
         recyclerView.setLayoutManager(layoutManager);
 
+        // handling multiple category clicks in one method
         linearLayout_technology = root.findViewById(R.id.technology_category);
         linearLayout_technology.setOnClickListener(this);
         linearLayout_art = root.findViewById(R.id.art_category);
@@ -171,6 +172,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     }
 
+    // handling all the button clicks in here to identify different cateories
     @Override
     public void onClick(View view) {
 

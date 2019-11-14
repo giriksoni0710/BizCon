@@ -5,6 +5,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.cardview.widget.CardView;
@@ -14,15 +15,23 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.chat.MyAdaptor;
 
+import java.util.ArrayList;
 
-    public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.MyViewHolder> {
+
+public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.MyViewHolder> {
 
         private Context mcon;
+        ArrayList company_name, tagline;
+
 
 
         public static class MyViewHolder extends RecyclerView.ViewHolder {
 
             public CardView cardView;
+            public TextView companyname_view;
+
+            public TextView tagline_view;
+
 
 
             public MyViewHolder(View v) {
@@ -30,14 +39,20 @@ import com.crazy4web.myapplication.ui.chat.MyAdaptor;
                 super(v);
 
                 cardView = v.findViewById(R.id.business_card_list);
+                companyname_view = v.findViewById(R.id.companyName);
+                tagline_view = v.findViewById(R.id.tagline_category);
             }
         }
 
 
-        public CategoryAdaptor(Context con ) {
+        public CategoryAdaptor(Context con, ArrayList biz_name, ArrayList tagline) {
 
 
             mcon = con;
+            this.tagline = tagline;
+
+            this.company_name = biz_name;
+
 
         }
 
@@ -64,6 +79,8 @@ import com.crazy4web.myapplication.ui.chat.MyAdaptor;
 
 
 
+            holder.tagline_view.setText(tagline.get(position).toString().replaceAll("\"",""));
+            holder.companyname_view.setText(company_name.get(position).toString().replaceAll("\"", ""));
 
             holder.cardView.setOnClickListener(new View.OnClickListener() {
                 @Override
@@ -87,7 +104,7 @@ import com.crazy4web.myapplication.ui.chat.MyAdaptor;
 
         public int getItemCount() {
 
-            return 10;
+            return company_name.size();
 
         }}
 

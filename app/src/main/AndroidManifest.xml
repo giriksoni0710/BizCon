@@ -22,6 +22,7 @@
         <activity android:name=".ui.Forms.Business_page3" />
         <activity android:name=".ui.Forms.Business_page2" />
         <activity android:name=".ui.Forms.Business_page1" >
+
         </activity>
         <activity android:name=".ui.Login.Email_login" >
 
@@ -56,6 +57,7 @@
                 <action android:name="android.intent.action.MAIN" />
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+
         </activity>
 
         <activity
