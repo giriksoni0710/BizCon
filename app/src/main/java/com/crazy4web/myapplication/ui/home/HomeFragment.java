@@ -129,7 +129,7 @@ public class HomeFragment extends Fragment {
 
 
 
-        categoryImage = root.findViewById(R.id.categoryImage);
+        categoryImage = root.findViewById(R.id.design);
         categoryImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

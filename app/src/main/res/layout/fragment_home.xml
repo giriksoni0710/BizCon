@@ -76,17 +76,67 @@
         >
 
 
+    <LinearLayout
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
 
     <ImageView
-        android:id="@+id/categoryImage"
+        android:id="@+id/design"
         android:layout_width="67.33dp"
         android:layout_height="67.33dp"
         android:src="@drawable/artartistcalligraphy57690"
     >
+    </ImageView>
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Design"
+        android:layout_marginLeft="15dp"
+        android:layout_marginTop="5dp"
+        android:layout_marginBottom="5dp"
+        ></TextView>
+
+
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:id="@+id/household"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="14dp"
+            >
 
 
 
-</ImageView>
+        </ImageView>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Household"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            ></TextView>
+
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+
+        android:layout_gravity="center_horizontal">
 
         <ImageView
             android:layout_width="67.33dp"
@@ -99,6 +149,52 @@
 
         </ImageView>
 
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Music"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            ></TextView>
+
+
+      </LinearLayout>
+
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+        <ImageView
+            android:layout_width="67.33dp"
+            android:layout_height="67.33dp"
+            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:layout_marginLeft="15dp"
+            >
+
+        </ImageView>
+
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Technology"
+
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                ></TextView>
+
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
         <ImageView
             android:layout_width="67.33dp"
@@ -108,8 +204,27 @@
             >
 
 
-
         </ImageView>
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Fashion"
+
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                ></TextView>
+
+
+        </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+
+        android:orientation="vertical">
 
         <ImageView
             android:layout_width="67.33dp"
@@ -118,42 +233,52 @@
             android:layout_marginLeft="15dp"
             >
 
-
-
         </ImageView>
 
-        <ImageView
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Art"
+
+            android:layout_gravity="center_horizontal"
+
+            android:layout_marginTop="5dp"
+            android:layout_marginBottom="5dp"
+            ></TextView>
+
+
+    </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:layout_marginRight="15dp">
+
+            <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="15dp"
             >
 
-
-
         </ImageView>
 
-        <ImageView
-            android:layout_width="67.33dp"
-            android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
-            android:layout_marginLeft="15dp"
-            >
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Advertising"
+
+                android:layout_gravity="center_horizontal"
+                android:layout_marginLeft="8dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="5dp"
+                ></TextView>
 
 
+            </LinearLayout>
 
-        </ImageView>
-
-        <ImageView
-            android:layout_width="67.33dp"
-            android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
-            android:layout_marginLeft="15dp"
-            >
-
-
-
-        </ImageView>
 
     </LinearLayout>
 
