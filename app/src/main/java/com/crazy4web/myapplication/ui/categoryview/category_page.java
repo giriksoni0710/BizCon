@@ -82,18 +82,24 @@ public class category_page extends AppCompatActivity {
         biz_name = new ArrayList();
         tagline = new ArrayList();
 
+
         database.collection("business").whereEqualTo("category", category).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
+
+
+
+
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+
 
 
                     Map data = new HashMap();
 
                     data = documentSnapshot.getData();
 
-//                    Log.d("data",data.toString());
+                    Log.d("data", documentSnapshot.getData().toString());
 
                     JsonObject jsonObject = new JsonObject();
 

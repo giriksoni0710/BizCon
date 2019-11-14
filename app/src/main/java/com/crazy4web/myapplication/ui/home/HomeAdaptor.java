@@ -98,8 +98,9 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
         holder.company_name.setText(image.get(position).toString().replaceAll("\"",""));
 
         FirebaseStorage storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/Bizcon.jpg");
+        StorageReference storageRef = storage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/"+companyname.get(position).toString().replaceAll("\"","").trim()+".jpg");
 
+        Log.d("companyname",companyname.get(position).toString().trim());
         storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
             @Override
             public void onSuccess(Uri uri) {
