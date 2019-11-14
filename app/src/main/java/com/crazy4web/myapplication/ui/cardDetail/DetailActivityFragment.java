@@ -103,6 +103,7 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("tagline",arr.get(5)).apply();
                 sp.edit().putString("service",arr.get(6)).apply();
                 sp.edit().putString("category",arr.get(7)).apply();
+                Log.d(TAG, "onCreate: "+arr.get(3));
                 updatePageWithData(arr);
             }
         });
@@ -168,16 +169,20 @@ public class DetailActivityFragment extends AppCompatActivity {
 //        viewPager.setAdapter(swipeAdapter);
 //        viewPager.setCurrentItem(0);//the first fragment
 //        viewPager.setCurrentItem(0);
-        firebaseStorage = FirebaseStorage.getInstance();
-        StorageReference storageReference = firebaseStorage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/Bizcon.jpg");
-        storageReference.getDownloadUrl().addOnSuccessListener(url ->{
-            Glide.with(getApplicationContext()).load(url).into(img);
-        });
     }
 
     private void updatePageWithData(ArrayList<String> arr){
+
+        firebaseStorage = FirebaseStorage.getInstance();
+        StorageReference storageReference = firebaseStorage.getReferenceFromUrl(arr.get(3));
+        storageReference.getDownloadUrl().addOnSuccessListener(url ->{
+            Glide.with(getApplicationContext()).load(url).into(img);
+//            Log.d(TAG, ""+url);
+        });
+
         companyName.setText(arr.get(4));
         company_desc.setText(arr.get(5));
+
 
     }
 
