@@ -1,6 +1,7 @@
 package com.crazy4web.myapplication.ui.home;
 
 import android.content.Context;
+import android.content.Intent;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.net.Uri;
@@ -18,6 +19,7 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.cardDetail.DetailActivityFragment;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FileDownloadTask;
@@ -29,6 +31,7 @@ import java.io.IOException;
 import java.net.URI;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Map;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -37,6 +40,7 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
 
     private Context mcon;
     ArrayList companyname, image;
+    List<String> docIds;
 
 
     public static class MyViewHolder extends RecyclerView.ViewHolder {
@@ -57,12 +61,13 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
     }
 
 
-    public HomeAdaptor(Context con,ArrayList company_name, ArrayList company_image) {
+    public HomeAdaptor(Context con,ArrayList company_name, ArrayList company_image ,List<String> docIds) {
 
 
         mcon = con;
         companyname = company_name;
         image = company_image;
+        this.docIds = docIds;
 
     }
 
@@ -110,8 +115,10 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
             @Override
             public void onClick(View view) {
 
-                Log.d("click","works");
-
+//                Log.d("click","works");
+                Intent i = new Intent(getApplicationContext(), DetailActivityFragment.class);
+                i.putExtra("docId",docIds.get(position));
+                mcon.startActivity(i);
             }
         });
 

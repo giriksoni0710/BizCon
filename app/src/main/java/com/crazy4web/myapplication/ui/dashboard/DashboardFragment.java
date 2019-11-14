@@ -78,21 +78,21 @@ public class DashboardFragment extends Fragment {
 
         mGoogleSignInClient = GoogleSignIn.getClient(root.getContext(), gso);
 
-        String facebookName = sp.getString("fbName","Default");
-        String googleName = sp.getString("googleName","Default");
-        String emailName = sp.getString("emailName", "Default");
+        String facebookName = sp.getString("fbName","");
+        String googleName = sp.getString("googleName","");
+        String emailName = sp.getString("emailName", "");
         Log.d(TAG, "name: "+emailName);
         Log.d(TAG, "fb name: "+facebookName);
         Log.d(TAG, "google name: "+googleName);
 
-        if(facebookName != "Default"){
+        if(facebookName != ""){
             textView12.setText(facebookName);
             Glide.with(getContext()).load(String.valueOf(sp.getString("fbImage","Default"))).into(pic);
-        }else if(emailName != "Default"){
+        }else if(emailName != ""){
             textView12.setText(emailName);
 //            sp.edit().putString("fbName","Default").apply();
 //            sp.edit().putString("googleName","Default").apply();
-        }else if(googleName != "Default"){
+        }else if(googleName != ""){
             textView12.setText(googleName);
             Glide.with(getContext()).load(String.valueOf(sp.getString("googlePic","Default"))).into(pic);
 //            sp.edit().putString("emailName","Default").apply();
@@ -136,24 +136,24 @@ public class DashboardFragment extends Fragment {
 
                     case 6:
 
-                        if(googleName != "Default" && facebookName == "Default" && emailName == "Default"){
+                        if(googleName != "" && facebookName == "" && emailName == ""){
                             signOut();
                             revokeAccess();
                             Log.d(TAG, "Logged out from google");
                             Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_LONG).show();
 
-                        }else if(googleName == "Default" && facebookName != "Default" && emailName == "Default"){
+                        }else if(googleName == "" && facebookName != "" && emailName == ""){
                             LoginManager.getInstance().logOut();
                             Log.d(TAG, "Logged out from facebook");
 
-                        }else if(googleName == "Default" && facebookName == "Default" && emailName != "Default"){
+                        }else if(googleName == "" && facebookName == "" && emailName != ""){
                             Log.d(TAG, "logged out from email");
                             Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_LONG).show();
                         }
 
-                        sp.edit().putString("emailName","Default").apply();
-                        sp.edit().putString("googleName","Default").apply();
-                        sp.edit().putString("fbName","Default").apply();
+                        sp.edit().putString("emailName","").apply();
+                        sp.edit().putString("googleName","").apply();
+                        sp.edit().putString("fbName","").apply();
                         Intent in = new Intent(getContext(), Email_login.class);
                         startActivity(in);
                         break;

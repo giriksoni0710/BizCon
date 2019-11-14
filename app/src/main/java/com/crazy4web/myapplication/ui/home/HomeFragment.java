@@ -34,6 +34,7 @@ import com.synnapps.carouselview.ImageClickListener;
 import com.synnapps.carouselview.ImageListener;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 
@@ -52,6 +53,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     RecyclerView.LayoutManager layoutManager;
     public LinearLayout linearLayout_technology, linearLayout_music, linearLayout_art,
             linearLayout_advertising, linearLayout_designing, linearLayout_household, linearLayout_fashion;
+    private static final String TAG = "HomeFragment";
 
 
     Integer count=0;
@@ -96,6 +98,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
             ArrayList biz_name = new ArrayList<>();
         ArrayList biz_img = new ArrayList<>();
+        List<String> docIds = new ArrayList<>();
 
 
         database.collection("business").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -111,15 +114,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     Map data = new HashMap();
 
                     data = documentSnapshot.getData();
+                    String data2 = documentSnapshot.getId();
+//                    Log.d(TAG, ""+documentSnapshot.getId());
 
-//                    Log.d("data",data.toString());
+                    docIds.add(data2);
 
                     JsonObject jsonObject = new JsonObject();
 
                     data.forEach((key, value) -> {
 
                        jsonObject.addProperty(key.toString(),value.toString());
-
 
                     });
 
@@ -130,9 +134,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
 
                 }
-
-
-                recycleradaptor = new HomeAdaptor(getContext(), biz_name, biz_name);
+                recycleradaptor = new HomeAdaptor(getContext(), biz_name, biz_name, docIds);
 
                 recyclerView.setAdapter(recycleradaptor);
 
@@ -141,7 +143,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         });
 
 
-        // search
+
+
 
 
 

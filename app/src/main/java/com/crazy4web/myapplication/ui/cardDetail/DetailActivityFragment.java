@@ -1,6 +1,7 @@
 package com.crazy4web.myapplication.ui.cardDetail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 
@@ -46,7 +47,7 @@ public class DetailActivityFragment extends AppCompatActivity {
 
     FirebaseFirestore database;
     private String prefFile = "com.crazy4web.myapplication.userdata";
-    private String id = "ntLNA7ooPoKL1eOenBBx";
+    private String id;
     private static final String TAG = "DetailActivityFragment";
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
@@ -71,6 +72,12 @@ public class DetailActivityFragment extends AppCompatActivity {
                 finish();
             }
         });
+
+        Intent i = getIntent();
+        if(i != null)
+        {
+            id = i.getStringExtra("docId");
+        }
 
         companyName = findViewById(R.id.companyName);
         company_desc = findViewById(R.id.company_desc);

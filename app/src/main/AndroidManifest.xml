@@ -28,7 +28,9 @@
 
         </activity>
         <activity android:name=".ui.Slider.IntroSlider" />
-        <activity android:name=".ui.splashscreen.SplashScreen"></activity>
+        <activity android:name=".ui.splashscreen.SplashScreen">
+
+        </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:label="@string/title_activity_detail_fragment"
