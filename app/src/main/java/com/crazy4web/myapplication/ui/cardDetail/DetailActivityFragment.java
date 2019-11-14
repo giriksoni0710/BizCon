@@ -174,15 +174,5 @@ public class DetailActivityFragment extends AppCompatActivity {
 
     }
 
-    public class MyAppGlideModule extends AppGlideModule {
-        public MyAppGlideModule() {
-            super();
-        }
-        @Override
-        public void registerComponents(Context context, Glide glide, Registry registry) {
-            // Register FirebaseImageLoader to handle StorageReference
-            registry.append(StorageReference.class, InputStream.class,new FirebaseImageLoader.Factory());
-        }
-    }
 
 }

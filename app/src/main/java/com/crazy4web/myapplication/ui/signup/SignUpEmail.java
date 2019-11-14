@@ -57,6 +57,7 @@ public class SignUpEmail extends AppCompatActivity {
 
 
 
+        // submit button to send the form
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
