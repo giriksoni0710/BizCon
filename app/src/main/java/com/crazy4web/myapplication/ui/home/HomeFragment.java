@@ -39,6 +39,7 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 import static android.content.Context.INPUT_METHOD_SERVICE;
@@ -56,6 +57,7 @@ public class HomeFragment extends Fragment {
     RecyclerView recyclerView;
     RecyclerView.Adapter recycleradaptor;
     RecyclerView.LayoutManager layoutManager;
+    private static final String TAG = "HomeFragment";
 
 
     Integer count=0;
@@ -82,6 +84,7 @@ public class HomeFragment extends Fragment {
 
         ArrayList biz_name = new ArrayList<>();
         ArrayList biz_img = new ArrayList<>();
+        List<String> docIds = new ArrayList<>();
 
 
         database.collection("business").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
@@ -97,8 +100,10 @@ public class HomeFragment extends Fragment {
                     Map data = new HashMap();
 
                     data = documentSnapshot.getData();
+                    String data2 = documentSnapshot.getId();
+//                    Log.d(TAG, ""+documentSnapshot.getId());
 
-//                    Log.d("data",data.toString());
+                    docIds.add(data2);
 
                     JsonObject jsonObject = new JsonObject();
 
@@ -106,10 +111,9 @@ public class HomeFragment extends Fragment {
 
                        jsonObject.addProperty(key.toString(),value.toString());
 
-
                     });
 
-                    Log.d("data", jsonObject.get("company_name").toString());
+//                    Log.d(TAG, ""+jsonObject.getAsString());
 
                     biz_name.add(jsonObject.get("company_name").toString());
 
@@ -117,15 +121,14 @@ public class HomeFragment extends Fragment {
 
 
                 }
-
-
-                recycleradaptor = new HomeAdaptor(getContext(), biz_name, biz_name);
+                recycleradaptor = new HomeAdaptor(getContext(), biz_name, biz_name, docIds);
 
                 recyclerView.setAdapter(recycleradaptor);
 
 
             }
         });
+
 
 
 
