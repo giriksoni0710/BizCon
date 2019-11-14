@@ -6,15 +6,22 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 
 import com.crazy4web.myapplication.R;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.Collection;
 
 public class category_page extends AppCompatActivity {
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager mlayoutmanager;
     RecyclerView.Adapter madaptor;
+    String Category_id;
+
+    FirebaseFirestore database;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,6 +48,15 @@ public class category_page extends AppCompatActivity {
 
         mlayoutmanager = new LinearLayoutManager(getApplicationContext());
 
+        Bundle bundle = getIntent().getExtras();
+
+        Category_id = bundle.getString("category-name");
+
+        Log.d("name", Category_id+"");
+
+
+//        fetchdata(Category_id);
+
         recyclerView.setLayoutManager(mlayoutmanager);
 
         recyclerView.setAdapter(madaptor);
@@ -50,4 +66,15 @@ public class category_page extends AppCompatActivity {
 
 
     }
+//
+//
+//    public void fetchdata(String category){
+//
+//
+////        String categoryname =
+//
+//
+////        database.collection("business").whereEqualTo("category", )
+//
+//    }
 }
