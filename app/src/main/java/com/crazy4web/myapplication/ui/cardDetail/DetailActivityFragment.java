@@ -146,7 +146,7 @@ public class DetailActivityFragment extends AppCompatActivity {
                     case 1:
                         Log.d(TAG, ""+tab.getPosition());
 //                        Log.d(TAG, "1"+business_desc);
-                        businessDesc.setText(business_desc);
+//                        businessDesc.setText(business_desc);
 //                        Log.d(TAG, "2"+businessDesc.getText().toString());
                         break;
                 }
