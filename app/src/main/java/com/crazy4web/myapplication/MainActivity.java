@@ -12,7 +12,7 @@ import android.widget.ImageView;
 import android.widget.SearchView;
 import android.widget.Toast;
 
-import com.bumptech.glide.Glide;
+import com.crazy4web.myapplication.ui.SearchResults.Searchoperation;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
@@ -63,6 +63,25 @@ public class MainActivity extends AppCompatActivity {
             public boolean onClose() {
 
                 speechtotext.setVisibility(View.INVISIBLE);
+
+                return false;
+            }
+        });
+
+
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+        //the search submit is handled here.
+            public boolean onQueryTextSubmit(String s) {
+
+                Intent intent = new Intent(getApplicationContext(), Searchoperation.class);
+                intent.putExtra("searchvalue", s);
+                startActivity(intent);
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String s) {
 
                 return false;
             }
@@ -170,7 +189,29 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
                     Log.d("Result", result.get(0));
-                    searchView.setQuery(result.get(0), false);
+                    searchView.setQuery(result.get(0), true);
+
+                    searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                        @Override
+                        public boolean onQueryTextSubmit(String s) {
+
+
+
+                            Intent intent = new Intent(getApplicationContext(), Searchoperation.class);
+                            intent.putExtra("searchvalue", s);
+                            startActivity(intent);
+                            return false;
+
+                        }
+
+                        @Override
+                        public boolean onQueryTextChange(String s) {
+
+                            return false;
+                        }
+                    });
+
+
 
                 }
 
