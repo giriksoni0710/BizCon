@@ -81,7 +81,6 @@ public class DetailActivityFragment extends AppCompatActivity {
 
         companyName = findViewById(R.id.companyName);
         company_desc = findViewById(R.id.company_desc);
-        businessDesc = findViewById(R.id.businessDesc1);
         img = findViewById(R.id.img);
 
         database = FirebaseFirestore.getInstance();
@@ -103,7 +102,7 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("tagline",arr.get(5)).apply();
                 sp.edit().putString("service",arr.get(6)).apply();
                 sp.edit().putString("category",arr.get(7)).apply();
-                Log.d(TAG, "onCreate: "+arr.get(3));
+//                Log.d(TAG, "onCreate: "+arr.get(3));
                 updatePageWithData(arr);
             }
         });
@@ -128,12 +127,8 @@ public class DetailActivityFragment extends AppCompatActivity {
             @Override
             public void onTabSelected(TabLayout.Tab tab) {
                 viewPager.setCurrentItem(tab.getPosition());
+                Log.d(TAG, "onTabSelected: "+tab.getPosition());
 
-//                if(tab.getPosition() == 1)
-//                {
-//                    Log.d(TAG, "honTabSelected: "+business_desc);
-//                    businessDesc.setText("abcd");
-//                }
                 switch (tab.getPosition()){
 
                     case 0:
@@ -146,8 +141,9 @@ public class DetailActivityFragment extends AppCompatActivity {
 
                     case 1:
                         Log.d(TAG, ""+tab.getPosition());
+                        businessDesc = findViewById(R.id.businessDesc1);
 //                        Log.d(TAG, "1"+business_desc);
-//                        businessDesc.setText(business_desc);
+                        businessDesc.setText(business_desc);
 //                        Log.d(TAG, "2"+businessDesc.getText().toString());
                         break;
                 }
