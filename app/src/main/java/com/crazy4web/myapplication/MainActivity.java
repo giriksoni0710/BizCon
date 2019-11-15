@@ -170,7 +170,8 @@ public class MainActivity extends AppCompatActivity {
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
                     Log.d("Result", result.get(0));
-                    searchView.setQuery(result.get(0), false);
+                    searchView.setQuery(result.get(0), true);
+
 
                 }
 
