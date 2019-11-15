@@ -30,6 +30,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.Forms.Business_page1;
 import com.crazy4web.myapplication.ui.Login.Email_login;
 import com.crazy4web.myapplication.ui.dashboard.dashboardNotificationOptions.dashboardNotificationOptions;
 import com.facebook.login.LoginManager;
@@ -131,6 +132,11 @@ public class DashboardFragment extends Fragment {
 
                     case 2:
                         intent = new Intent(getContext(), dashboardNotificationOptions.class);
+                        startActivity(intent);
+                        break;
+
+                    case 3:
+                        intent = new Intent(getContext(), Business_page1.class);
                         startActivity(intent);
                         break;
 

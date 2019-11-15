@@ -147,6 +147,8 @@ public class Business_page3 extends AppCompatActivity {
                             @Override
                             public void onSuccess(DocumentReference documentReference) {
                                 Log.d("success", "DocumentSnapshot added with ID: " + documentReference.getId());
+                                intent = new Intent(getApplicationContext(), MainActivity.class);
+                                startActivity(intent);
                             }
                         })
                         .addOnFailureListener(new OnFailureListener() {

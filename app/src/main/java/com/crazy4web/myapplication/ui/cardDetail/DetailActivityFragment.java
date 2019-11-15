@@ -56,7 +56,7 @@ public class DetailActivityFragment extends AppCompatActivity {
     TextView businessDesc, companyName, company_desc;
     ImageView img;
     FirebaseStorage firebaseStorage;
-    String cat;
+//    String cat;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -176,68 +176,49 @@ public class DetailActivityFragment extends AppCompatActivity {
 //        String abcd = "I need a designing company";
 //        String abcd = "technical designing advert";
 //        String abcd = "always on the move";
-        String abcd = "youtube.com";
-        String[] list = abcd.split("\\s+");
+//        String abcd = "youtube.com";
+//        String[] list = abcd.split("\\s+");
 
 //for(int i=0;i<list.length;i++){
 //    Log.d(TAG, "array: "list);
 //
 
-        ArrayList<String> details = new ArrayList<>();
+//        ArrayList<String> details = new ArrayList<>();
 //        details.add("services");
 //        details.add("company_name");
 //        details.add("tagline");
 //        details.add("category");
 
-        ArrayList<String> categories = new ArrayList<>();
-        categories.add("Design");
-        categories.add("Technology");
-        categories.add("Advertising");
-        categories.add("Art");
-        categories.add("Fashion");
-        categories.add("Household");
-        categories.add("Music");
-
-        categories.forEach(category->{
-
-//            Pattern pat = Pattern.compile(category,Pattern.CASE_INSENSITIVE);
-            for(int i=0;i<list.length;i++) {
-                boolean b = Pattern.matches("(?i)"+category, list[i]);
-                if(b){
-//                    Log.d(TAG, ""+category+s);
-                    cat = category;
-                }
-//                Matcher matcher = pat.matcher(s);
-//                Log.d(TAG, ""+s);
-//                if(s.equalsIgnoreCase("Design") && category == "Design"){
-//                    Log.d(TAG, "same: ");
-//                Log.d(TAG, "b-> "+b);
+//        ArrayList<String> categories = new ArrayList<>();
+//        categories.add("Design");
+//        categories.add("Technology");
+//        categories.add("Advertising");
+//        categories.add("Art");
+//        categories.add("Fashion");
+//        categories.add("Household");
+//        categories.add("Music");
+//
+//        categories.forEach(category->{
+//
+////            Pattern pat = Pattern.compile(category,Pattern.CASE_INSENSITIVE);
+//            for(int i=0;i<list.length;i++) {
+//                boolean b = Pattern.matches("(?i)"+category, list[i]);
+//                if(b){
+////                    Log.d(TAG, ""+category+s);
+//                    cat = category;
 //                }
-//                Log.d(TAG, ""+matcher);
-            }
-//            Log.d(TAG, "matched value: "+matcher);
+//
+//            }
+//
+//        });
 
-        });
 
-
-//        firebaseStorage = FirebaseStorage.getInstance();
-//        details.forEach(detail -> {
-
-//            for (String st : list) {
-//                database.collection("business").orderBy(detail).startAt(st.trim()).endAt(st.trim()+"\uf8ff").get().addOnCompleteListener(task->{
+        firebaseStorage = FirebaseStorage.getInstance();
+//        database.collection("business").orderBy("category").startAt(cat).endAt(cat+"\uf8ff").get().addOnCompleteListener(task->{
 //                    if(task.isSuccessful() && task.getResult().size() > 0) {
 //                        Log.d(TAG, ""+task.getResult().getDocuments());
 //                    }
-//                });
-//            }
 //        });
-
-        firebaseStorage = FirebaseStorage.getInstance();
-        database.collection("business").orderBy("category").startAt(cat).endAt(cat+"\uf8ff").get().addOnCompleteListener(task->{
-                    if(task.isSuccessful() && task.getResult().size() > 0) {
-                        Log.d(TAG, ""+task.getResult().getDocuments());
-                    }
-        });
 
 
 
