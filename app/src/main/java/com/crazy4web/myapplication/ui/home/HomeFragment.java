@@ -96,7 +96,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         // one over-rided click listener for all
 
 
-            ArrayList biz_name = new ArrayList<>();
+        ArrayList biz_name = new ArrayList<>();
         ArrayList biz_img = new ArrayList<>();
         List<String> docIds = new ArrayList<>();
 
