@@ -14,6 +14,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.cardview.widget.CardView;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -48,6 +49,7 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
         public LinearLayout linearLayout;
         public TextView company_name;
         public ImageView imageView;
+        CardView business_card;
 
 
         public MyViewHolder(View v) {
@@ -57,6 +59,7 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
             linearLayout = v.findViewById(R.id.newly_added_linearlayout);
             company_name = v.findViewById(R.id.business_name);
             imageView = v.findViewById(R.id.biz_img);
+            business_card = v.findViewById(R.id.business_card);
         }
     }
 
@@ -122,6 +125,16 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
                 mcon.startActivity(i);
             }
         });
+//            holder.business_card.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+////                Log.d("click","works");
+//                Intent i = new Intent(getApplicationContext(), DetailActivityFragment.class);
+//                i.putExtra("docId",docIds.get(position));
+//                mcon.startActivity(i);
+//            }
+//        });
 
 
 

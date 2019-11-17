@@ -11,14 +11,17 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.crazy4web.myapplication.R;
+import com.google.firebase.firestore.FirebaseFirestore;
 
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerAdapter";
-    String service;
+    String service,id;
+    FirebaseFirestore database;
 
-    public RecyclerAdapter(String service) {
-        this.service = service;
+    public RecyclerAdapter(String id) {
+//        this.service = service;
+        this.id = id;
     }
 
     @NonNull
@@ -35,8 +38,24 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        holder.serviceRow.setText(service);
-        Log.d(TAG, "serv: "+service);
+        database = FirebaseFirestore.getInstance();
+        database.collection("business").document(id).get().addOnCompleteListener(task ->{
+            if(task.isSuccessful()){
+                Log.d(TAG, ""+task.getResult().getData());
+                task.getResult().getData().forEach((key, value)->{
+//                    Log.d(TAG, key+" -> "+value);
+//                    arr.add(value.toString());
+                    if(key.contains("services")){
+//                        Log.d(TAG, value.toString());
+                        holder.serviceRow.setText(value.toString());
+                    }
+                });
+            }
+        });
+
+//        holder.serviceRow.setText(service);
+//        Log.d(TAG, "from recycler adapter after service.setText is done to: "+service);
+//        Log.d(TAG, "serv: "+service);
     }
 
     @Override

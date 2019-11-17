@@ -2,6 +2,7 @@ package com.crazy4web.myapplication.ui.cardDetail;
 
 import android.os.Bundle;
 import android.text.Html;
+import android.util.Log;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
@@ -25,14 +26,17 @@ public class SwipeAdapter extends FragmentStatePagerAdapter {
         switch (position){
             case 0:
                 ServicesTab servicesTab = new ServicesTab();
+                Log.d("from swipe adapter: Position: ", ""+position);
                 return servicesTab;
 
             case 1:
                 AboutTab aboutTab = new AboutTab();
+                Log.d("from swipe adapter: Position: ", ""+position);
                 return aboutTab;
 
             case 2:
                 ReviewsTab reviewsTab = new ReviewsTab();
+                Log.d("from swipe adapter: Position: ", ""+position);
                 return reviewsTab;
 
             default:

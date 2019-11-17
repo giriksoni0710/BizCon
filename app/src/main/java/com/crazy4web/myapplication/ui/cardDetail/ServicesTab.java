@@ -36,12 +36,15 @@ public class ServicesTab extends Fragment {
 
         SharedPreferences sp = getApplicationContext().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
+        String bid = sp.getString("bid","");
 //        Log.d(TAG, "Service: "+sp.getString("service","def"));
 
         recyclerView = root.findViewById(R.id.recyclerView);
-        recyclerAdapter = new RecyclerAdapter(sp.getString("service","def"));
+//        recyclerAdapter = new RecyclerAdapter(sp.getString("service","def"));
+        recyclerAdapter = new RecyclerAdapter(bid);
         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
         recyclerView.setAdapter(recyclerAdapter);
+        Log.d(TAG, "from service tab after recycler view loaded");
 
         return root;
 
