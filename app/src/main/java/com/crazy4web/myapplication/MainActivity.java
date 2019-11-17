@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -188,7 +189,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                    Log.d("Result", result.get(0));
+//                    Log.d("Result", result.get(0));
                     searchView.setQuery(result.get(0), true);
 
                     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

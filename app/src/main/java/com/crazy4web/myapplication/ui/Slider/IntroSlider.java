@@ -75,10 +75,10 @@ public class IntroSlider extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if(preferences.getBoolean("firstrun", true)) {
+        if(preferences.getBoolean("firstrun", false)) {
 
 
-            preferences.edit().putBoolean("firstrun", false).commit();
+            preferences.edit().putBoolean("firstrun", true).commit();
 
             Intent intent = new Intent(getApplicationContext(),MainActivity.class);
             startActivity(intent);

@@ -9,6 +9,7 @@ import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.home.HomeAdaptor;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
+import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.Query;
@@ -30,6 +31,7 @@ public class Searchoperation extends AppCompatActivity {
     String cat;
     ArrayList<String> categories = new ArrayList<>();
     private static final String TAG = "Searchoperation";
+    JsonObject jsonObject;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,31 +47,86 @@ public class Searchoperation extends AppCompatActivity {
 
         String[] list = searchedtext.split("\\s+");
 
-        categories.add("Design");
-        categories.add("Technology");
-        categories.add("Advertising");
-        categories.add("Art");
-        categories.add("Fashion");
-        categories.add("Household");
-        categories.add("Music");
+        String[] db_keys = new String[2];
 
-        categories.forEach(category->{
-
-            for(int i=0;i<list.length;i++) {
-                boolean b = Pattern.matches("(?i)"+category, list[i]);
-                if(b){
-//                    Log.d(TAG, ""+category+s);
-                    cat = category;
-                }
-            }
-        });
+        db_keys[0] = "services";
+        db_keys[1] = "category";
 
         firebaseStorage = FirebaseStorage.getInstance();
-        database.collection("business").orderBy("category").startAt(cat).endAt(cat+"\uf8ff").get().addOnCompleteListener(task->{
-            if(task.isSuccessful() && task.getResult().size() > 0) {
-                Log.d(TAG, ""+task.getResult().getDocuments());
-            }
-        });
+
+
+        for (String value: db_keys) {
+
+        for(int i=0;i<list.length;i++) {
+
+
+
+                if(list[i].length()>3){
+
+
+
+            database.collection("business").orderBy(value).startAt(list[i].toLowerCase()).endAt(list[i].toLowerCase() + "\uf8ff").get()
+                    .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                        @Override
+                        public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+
+                            for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+
+
+                                Map data = new HashMap();
+
+                                data = documentSnapshot.getData();
+
+                                jsonObject = new JsonObject();
+
+                                data.forEach((key, value) -> {
+
+                                    jsonObject.addProperty(key.toString(), value.toString());
+
+                                });
+                                Log.d("data", jsonObject.toString());
+
+                            }
+
+
+                             }
+                    });
+            }}
+        }
+
+
+        // Ankurs code
+
+//        categories.add("Design");
+//        categories.add("Technology");
+//        categories.add("Advertising");
+//        categories.add("Art");
+//        categories.add("Fashion");
+//        categories.add("Household");
+//        categories.add("Music");
+//
+//        categories.forEach(category->{
+//
+//            for(int i=0;i<list.length;i++) {
+//                boolean b = Pattern.matches("(?i)"+category, list[i]);
+//                if(b){
+////                    Log.d(TAG, ""+category+s);
+//                    cat = category;
+//                }
+//            }
+//        });
+//
+//        firebaseStorage = FirebaseStorage.getInstance();
+//        database.collection("business").orderBy("category").startAt(cat).endAt(cat+"\uf8ff").get().addOnCompleteListener(task->{
+//            if(task.isSuccessful() && task.getResult().size() > 0) {
+//                Log.d(TAG, ""+task.getResult().getDocuments());
+//
+//
+//
+//
+//            }
+//        });
 
     }
 }
