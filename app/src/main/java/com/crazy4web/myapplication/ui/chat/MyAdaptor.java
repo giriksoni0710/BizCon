@@ -84,9 +84,10 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
             public void onClick(View view) {
 
                // here I have to call the individual chats of the user on click
-                // I will leave it like this for now
-                Log.d("click","works");
-//               Intent i = new Intent(mcon, MainActivity.class);
+
+               Intent i = new Intent(mcon, chat_screen.class);
+               i.putExtra("businessname",biz_name.get(position));
+               mcon.startActivity(i);
 
 
 

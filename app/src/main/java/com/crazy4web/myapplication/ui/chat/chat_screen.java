@@ -36,6 +36,8 @@ public class chat_screen extends AppCompatActivity {
     Context context;
     String token, companyname, emailname;
     private String prefFile = "com.crazy4web.myapplication.userdata";
+    Bundle bundle;
+    String bizname;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
@@ -47,6 +49,12 @@ public class chat_screen extends AppCompatActivity {
         send_img = findViewById(R.id.send_img);
         message = findViewById(R.id.type_message);
         setSupportActionBar(toolbar);
+
+        bundle = getIntent().getExtras();
+
+        bizname = bundle.getString("businessname").replaceAll("\"","");
+
+        Log.d("biz",bizname);
 
         SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
@@ -103,7 +111,7 @@ public class chat_screen extends AppCompatActivity {
     private void getmessages() {
 
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).get().addOnSuccessListener(
+        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).whereEqualTo("messageUser",bizname).get().addOnSuccessListener(
                 new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
