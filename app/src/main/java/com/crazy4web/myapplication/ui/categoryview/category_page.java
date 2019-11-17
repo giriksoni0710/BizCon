@@ -89,8 +89,6 @@ public class category_page extends AppCompatActivity {
 
 
 
-
-
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
 
 

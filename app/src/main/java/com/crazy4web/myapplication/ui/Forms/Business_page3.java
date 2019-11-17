@@ -28,6 +28,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -47,6 +48,10 @@ public class Business_page3 extends AppCompatActivity {
     Intent intent;
     TextInputLayout  disable_textinput, v_url;
     StorageReference mStorageRef;
+    String token;
+    SharedPreferences sp;
+
+    final String pref_file = "com.crazy4web.myapplication.userdata";
 
 
     FirebaseFirestore database;
@@ -60,10 +65,21 @@ public class Business_page3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_page3);
 
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task ->{
+
+            if (!task.isSuccessful()){
+                Log.d("error","instance id not found");
+            }
+
+            token = task.getResult().getToken();
+            Log.d("token1", token);
+
+        });
+
+
         // This is the shared preference file where user form data is progressively saved to be sent
         // to the server later
 
-        final String pref_file = "com.crazy4web.myapplication.userdata";
 
         // getting the instance of the storage
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -84,7 +100,7 @@ public class Business_page3 extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
 
         // saving all the user input data into preference file recieved from the previous pages
-        SharedPreferences sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
+       sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
 
         String tagline = sp.getString("tagline", "Default");
         hashMap.put("tagline",tagline.toLowerCase());
@@ -114,6 +130,7 @@ public class Business_page3 extends AppCompatActivity {
 
 
 
+
         choose_img.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -135,11 +152,6 @@ public class Business_page3 extends AppCompatActivity {
 
                 String video_url= v_url.getEditText().getText().toString();
                 hashMap.put("video_url",video_url.toLowerCase());
-
-
-
-
-
 
                 database.collection("business")
                         .add(hashMap)
