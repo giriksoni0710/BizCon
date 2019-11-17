@@ -17,6 +17,8 @@ import android.widget.Toast;
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.signup.SignUpOptions;
+import com.google.android.gms.auth.api.signin.GoogleSignIn;
+import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.android.material.textfield.TextInputLayout;
@@ -52,6 +54,13 @@ public class Email_login extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_login);
+
+        GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
+        if(account != null){
+            Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
+            startActivity(intent2);
+        }
+
         database = FirebaseFirestore.getInstance();
         textInputLayout = findViewById(R.id.textInputLayout);
         textInputLayout2 = findViewById(R.id.textInputLayout2);
