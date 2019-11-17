@@ -87,27 +87,27 @@ public class Business_page3 extends AppCompatActivity {
         SharedPreferences sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
 
         String tagline = sp.getString("tagline", "Default");
-        hashMap.put("tagline",tagline);
+        hashMap.put("tagline",tagline.toLowerCase());
 
 
         String business = sp.getString("business_desc", "Default");
-        hashMap.put("business_desc",business);
+        hashMap.put("business_desc",business.toLowerCase());
 
 
         String services = sp.getString("services", "Default");
-        hashMap.put("services",services);
+        hashMap.put("services",services.toLowerCase());
 
 
         String category = sp.getString("category", "Default");
-        hashMap.put("category",category);
+        hashMap.put("category",category.toLowerCase());
 
 
         company_name = sp.getString("company_name", "Default");
-        hashMap.put("company_name",company_name);
+        hashMap.put("company_name",company_name.toLowerCase());
 
 
         String website_url = sp.getString("website_url", "Default");
-        hashMap.put("website_url",website_url);
+        hashMap.put("website_url",website_url.toLowerCase());
 
 
 
@@ -134,7 +134,7 @@ public class Business_page3 extends AppCompatActivity {
                 uploader();
 
                 String video_url= v_url.getEditText().getText().toString();
-                hashMap.put("video_url",video_url);
+                hashMap.put("video_url",video_url.toLowerCase());
 
 
 
@@ -182,13 +182,13 @@ public class Business_page3 extends AppCompatActivity {
     private void uploader() {
 
         // as each company name will be unique, we will be storing the image name as the company name
-        StorageReference reference = mStorageRef.child(company_name+"."+getExtention(uri));
+        StorageReference reference = mStorageRef.child(company_name.toLowerCase().trim()+"."+getExtention(uri));
 
 
         // I am also inserting the image_path for easier retrieval
         // this is where firebase stores the image in the
 
-        String image_path= "gs://bizcon-17781.appspot.com/Images/"+company_name+"."+getExtention(uri);
+        String image_path= "gs://bizcon-17781.appspot.com/Images/"+company_name.toLowerCase().trim()+"."+getExtention(uri);
         hashMap.put("image_path",image_path);
 
         reference.putFile(uri)

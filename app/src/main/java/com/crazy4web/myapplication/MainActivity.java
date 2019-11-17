@@ -18,6 +18,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.iid.FirebaseInstanceId;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -43,6 +44,18 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         BottomNavigationView navView = findViewById(R.id.nav_view);
         SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+
+        //firebase messaging token
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task ->{
+
+            if (!task.isSuccessful()){
+                Log.d("error","instance id not found");
+            }
+
+            String token = task.getResult().getToken();
+            Log.d("token", token);
+
+        });
 
         speechtotext = findViewById(R.id.sppechtotext);
 
@@ -188,7 +201,7 @@ public class MainActivity extends AppCompatActivity {
 
                     ArrayList<String> result = data.getStringArrayListExtra(RecognizerIntent.EXTRA_RESULTS);
 
-                    Log.d("Result", result.get(0));
+//                    Log.d("Result", result.get(0));
                     searchView.setQuery(result.get(0), true);
 
                     searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {

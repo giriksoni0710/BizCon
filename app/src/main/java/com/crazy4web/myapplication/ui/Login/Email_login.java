@@ -53,6 +53,11 @@ public class Email_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_login);
         database = FirebaseFirestore.getInstance();
+        textInputLayout = findViewById(R.id.textInputLayout);
+        textInputLayout2 = findViewById(R.id.textInputLayout2);
+
+
+        textInputLayout2.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
 
         general_signup = findViewById(R.id.general_signup);
         general_signup.setOnClickListener(new View.OnClickListener() {
@@ -70,14 +75,11 @@ public class Email_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                textInputLayout = findViewById(R.id.textInputLayout);
-                textInputLayout2 = findViewById(R.id.textInputLayout2);
 
                 String email = textInputLayout.getEditText().getText().toString();
                 String password = textInputLayout2.getEditText().getText().toString();
 
-                textInputLayout2.getEditText().setInputType(InputType.TYPE_CLASS_TEXT | InputType.TYPE_TEXT_VARIATION_PASSWORD);
-//                Log.d(TAG, "onClick: "+email+password);
+//                  Log.d(TAG, "onClick: "+email+password);
                 SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
                 ArrayList<String> arr = new ArrayList<>();
                 database.collection("users").whereEqualTo("email",email).whereEqualTo("password",password).get()

@@ -83,7 +83,7 @@ public class category_page extends AppCompatActivity {
         tagline = new ArrayList();
 
 
-        database.collection("business").whereEqualTo("category", category).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+        database.collection("business").whereEqualTo("category", category.toLowerCase()).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
             @Override
             public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 

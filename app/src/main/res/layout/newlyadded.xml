@@ -24,8 +24,7 @@
         <ImageView
             android:layout_width="300dp"
             android:layout_height="200dp"
-            android:id="@+id/biz_img"
-            android:src="@drawable/categorypage1">
+            android:id="@+id/biz_img">
 
         </ImageView>
 
