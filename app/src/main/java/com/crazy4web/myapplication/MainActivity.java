@@ -42,6 +42,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
+
         BottomNavigationView navView = findViewById(R.id.nav_view);
         SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
@@ -219,5 +220,8 @@ public class MainActivity extends AppCompatActivity {
                 break;
         }
         }
+
+        @Override
+        public void onBackPressed() {}
 
     }
