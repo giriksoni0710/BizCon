@@ -43,9 +43,10 @@ public class ChatFragment extends Fragment {
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
     String emailname;
 
-    String last_message;
-    ArrayList<String> biz_name = new ArrayList<>();
-    int count = 0;
+    ArrayList<String> biz_name= new ArrayList<>();
+
+    ArrayList<String> last_message= new ArrayList<>();
+
     JsonObject jsonObject;
 
 
@@ -70,7 +71,6 @@ public class ChatFragment extends Fragment {
         getmessages();
 
 
-
         return root;
     }
 
@@ -83,40 +83,28 @@ public class ChatFragment extends Fragment {
 
                         for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
 
-
-//                            Log.d("docs", document.getData() + "");
-
                             Map data = new HashMap();
-
                             data = document.getData();
-
                             jsonObject = new JsonObject();
-
                             data.forEach((key, value) -> {
 
                                 jsonObject.addProperty(key.toString(),value.toString());
 
                             });
 
-
-                          Log.d("jsonovject", jsonObject+"");
-
-
                             biz_name.add(jsonObject.get("messageUser").toString());
-                            last_message = jsonObject.get("messageText").toString();
+                            last_message.add(jsonObject.get("messageText").toString());
+
+
+                            Log.d("jsonovject", jsonObject+"");
                         }
 
+                        mAdaptor = new MyAdaptor(getContext(), biz_name, last_message);
+                        recyclerView.setLayoutManager(layoutManager);
+                        recyclerView.setAdapter(mAdaptor);
 
-
-                        while(count==0) {
-
-                            count = 1;
-                            mAdaptor = new MyAdaptor(getContext(), biz_name, last_message);
-                            recyclerView.setLayoutManager(layoutManager);
-                            recyclerView.setAdapter(mAdaptor);
-
-                        }
                     }
+
 
 
                 });

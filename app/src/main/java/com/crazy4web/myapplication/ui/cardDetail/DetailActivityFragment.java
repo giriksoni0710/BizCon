@@ -107,12 +107,14 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("category",arr.get(7)).apply();
 //                Log.d(TAG, "onCreate: "+arr.get(3));
                 updatePageWithData(arr);
+
+                sp.edit().putString("bizname", arr.get(4));
+
             }
         });
 
 //        String business_desc = sp.getString("businessDesc","Default");
         sp.edit().putString("bid",id).apply();
-
 
         final ViewPager viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);

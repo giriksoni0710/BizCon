@@ -30,6 +30,7 @@ public class ServicesTab extends Fragment {
     private String prefFile = "com.crazy4web.myapplication.userdata";
     private static final String TAG = "ServicesTab";
     FloatingActionButton fab;
+    String bizname;
 
 
     @Nullable
@@ -41,6 +42,7 @@ public class ServicesTab extends Fragment {
         SharedPreferences sp = getApplicationContext().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
         String bid = sp.getString("bid","");
+        bizname = sp.getString("bizname","Default");
 //        Log.d(TAG, "Service: "+sp.getString("service","def"));
 
         recyclerView = root.findViewById(R.id.recyclerView);
@@ -58,6 +60,7 @@ public class ServicesTab extends Fragment {
             public void onClick(View view) {
 
                 Intent i = new Intent(getApplicationContext(), chat_screen.class);
+                i.putExtra("businessname", bizname);
                 startActivity(i);
 
             }
