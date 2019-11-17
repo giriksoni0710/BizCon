@@ -45,18 +45,6 @@ public class MainActivity extends AppCompatActivity {
         BottomNavigationView navView = findViewById(R.id.nav_view);
         SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
-        //firebase messaging token
-        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task ->{
-
-            if (!task.isSuccessful()){
-                Log.d("error","instance id not found");
-            }
-
-            String token = task.getResult().getToken();
-            Log.d("token", token);
-
-        });
-
         speechtotext = findViewById(R.id.sppechtotext);
 
         speechtotext.setVisibility(View.INVISIBLE);

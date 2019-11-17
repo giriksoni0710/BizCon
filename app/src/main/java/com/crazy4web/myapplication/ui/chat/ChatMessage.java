@@ -6,11 +6,22 @@ public class ChatMessage {
 
     private String messageText;
     private String messageUser;
+
+    public String getMessageuserID() {
+        return messageuserID;
+    }
+
+    public void setMessageuserID(String messageuserID) {
+        this.messageuserID = messageuserID;
+    }
+
+    private String messageuserID;
     private long messageTime;
 
-    public ChatMessage(String messageText, String messageUser) {
+    public ChatMessage(String messageText, String messageUser, String messageUserID) {
         this.messageText = messageText;
         this.messageUser = messageUser;
+        this.messageuserID = messageUserID;
 
         // Initialize to current time
         messageTime = new Date().getTime();
