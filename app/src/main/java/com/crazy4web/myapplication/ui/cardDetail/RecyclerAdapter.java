@@ -1,5 +1,6 @@
 package com.crazy4web.myapplication.ui.cardDetail;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -35,11 +36,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
         holder.serviceRow.setText(service);
+        Log.d(TAG, "serv: "+service);
     }
 
     @Override
     public int getItemCount() {
-        return 5;
+        return 2;
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
