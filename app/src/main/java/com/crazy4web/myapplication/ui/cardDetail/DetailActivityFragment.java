@@ -49,7 +49,7 @@ public class DetailActivityFragment extends AppCompatActivity {
 
     FirebaseFirestore database;
     private String prefFile = "com.crazy4web.myapplication.userdata";
-    private String id;
+    String id;
     private static final String TAG = "DetailActivityFragment";
     RecyclerView recyclerView;
     RecyclerAdapter recyclerAdapter;
@@ -110,9 +110,10 @@ public class DetailActivityFragment extends AppCompatActivity {
             }
         });
 
-        String business_desc = sp.getString("businessDesc","Default");
+//        String business_desc = sp.getString("businessDesc","Default");
+        sp.edit().putString("bid",id).apply();
 
-        FloatingActionButton fab = findViewById(R.id.fab);
+
         final ViewPager viewPager = findViewById(R.id.viewPager);
         TabLayout tabLayout = findViewById(R.id.tab_layout);
         tabLayout.addTab(tabLayout.newTab().setText("Services"));
@@ -136,18 +137,32 @@ public class DetailActivityFragment extends AppCompatActivity {
 
                     case 0:
                         recyclerView = findViewById(R.id.recyclerView);
-                        recyclerAdapter = new RecyclerAdapter(arr.get(6));
+                        recyclerAdapter = new RecyclerAdapter(id);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         recyclerView.setAdapter(recyclerAdapter);
-                        Log.d(TAG, "onTabSelected: "+arr.get(6));
+                        Log.d(TAG, "from Detail activity fragment: "+arr.get(6));
+
                         break;
 
                     case 1:
-                        Log.d(TAG, ""+tab.getPosition());
+//                        Log.d(TAG, ""+tab.getPosition());
                         businessDesc = findViewById(R.id.businessDesc1);
-//                        Log.d(TAG, "1"+business_desc);
-                        businessDesc.setText(business_desc);
+//                        Log.d(TAG, "from detail activity fragment"+business_desc);
+//                        if(!businessDesc.getText().toString().matches("")){
+//                            businessDesc.setText("");
+//                            businessDesc.setText(business_desc);
+                        businessDesc.setText(sp.getString("businessDesc", ""));
+//                        }else {
+//                            businessDesc.setText(business_desc);
+//                        }
 //                        Log.d(TAG, "2"+businessDesc.getText().toString());
+                        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                businessDesc.setText("");
+                                finish();
+                            }
+                        });
                         break;
                 }
 
@@ -172,60 +187,11 @@ public class DetailActivityFragment extends AppCompatActivity {
 
     private void updatePageWithData(ArrayList<String> arr){
 
-//        String abcd= "I need desi for my website";
-//        String abcd = "I need a designing company";
-//        String abcd = "technical designing advert";
-//        String abcd = "always on the move";
-//        String abcd = "youtube.com";
-//        String[] list = abcd.split("\\s+");
-
-//for(int i=0;i<list.length;i++){
-//    Log.d(TAG, "array: "list);
-//
-
-//        ArrayList<String> details = new ArrayList<>();
-//        details.add("services");
-//        details.add("company_name");
-//        details.add("tagline");
-//        details.add("category");
-
-//        ArrayList<String> categories = new ArrayList<>();
-//        categories.add("Design");
-//        categories.add("Technology");
-//        categories.add("Advertising");
-//        categories.add("Art");
-//        categories.add("Fashion");
-//        categories.add("Household");
-//        categories.add("Music");
-//
-//        categories.forEach(category->{
-//
-////            Pattern pat = Pattern.compile(category,Pattern.CASE_INSENSITIVE);
-//            for(int i=0;i<list.length;i++) {
-//                boolean b = Pattern.matches("(?i)"+category, list[i]);
-//                if(b){
-////                    Log.d(TAG, ""+category+s);
-//                    cat = category;
-//                }
-//
-//            }
-//
-//        });
-
-
         firebaseStorage = FirebaseStorage.getInstance();
-//        database.collection("business").orderBy("category").startAt(cat).endAt(cat+"\uf8ff").get().addOnCompleteListener(task->{
-//                    if(task.isSuccessful() && task.getResult().size() > 0) {
-//                        Log.d(TAG, ""+task.getResult().getDocuments());
-//                    }
-//        });
-
-
 
         StorageReference storageReference = firebaseStorage.getReferenceFromUrl(arr.get(3));
         storageReference.getDownloadUrl().addOnSuccessListener(url ->{
             Glide.with(getApplicationContext()).load(url).into(img);
-//            Log.d(TAG, ""+url);
         });
 
         companyName.setText(arr.get(4));

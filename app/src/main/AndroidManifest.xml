@@ -25,7 +25,14 @@
         <activity android:name=".ui.Forms.Business_page1" >
 
         </activity>
-        <activity android:name=".ui.Login.Email_login"></activity>
+        <activity android:name=".ui.Login.Email_login">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+
         <activity android:name=".ui.Slider.IntroSlider" />
         <activity android:name=".ui.splashscreen.SplashScreen">
 
@@ -34,6 +41,8 @@
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:label="@string/title_activity_detail_fragment"
             android:theme="@style/AppTheme.NoActionBar"></activity>
+
+
         <activity
             android:name=".ui.signup.SignUpEmail"
             android:label="@string/title_activity_sign_up_email" />
@@ -48,11 +57,6 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"

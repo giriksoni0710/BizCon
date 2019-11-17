@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.content.res.AssetManager;
 import android.graphics.drawable.Drawable;
 import android.os.Bundle;
@@ -33,8 +34,8 @@ public class chat_screen extends AppCompatActivity {
     EditText message;
     Drawable drawable;
     Context context;
-    String token;
-
+    String token, companyname, emailname;
+    private String prefFile = "com.crazy4web.myapplication.userdata";
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
@@ -47,7 +48,11 @@ public class chat_screen extends AppCompatActivity {
         message = findViewById(R.id.type_message);
         setSupportActionBar(toolbar);
 
+        SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
+              companyname = sp.getString("companyName","Default");
+
+                emailname = sp.getString("emailName","Default");
 
         getmessages();
 
@@ -75,7 +80,7 @@ public class chat_screen extends AppCompatActivity {
 
 
                 firebaseFirestore.collection("messages").add(new ChatMessage(message.getText().toString()
-                        ,token,"othertoken")).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
+                        ,emailname,companyname)).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
 
@@ -98,12 +103,10 @@ public class chat_screen extends AppCompatActivity {
     private void getmessages() {
 
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID","othertoken").get().addOnSuccessListener(
+        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).get().addOnSuccessListener(
                 new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
-
-
 
                             for (DocumentSnapshot document: queryDocumentSnapshots.getDocuments()) {
 
