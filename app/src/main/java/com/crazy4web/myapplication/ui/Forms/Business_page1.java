@@ -33,7 +33,7 @@ public class Business_page1 extends AppCompatActivity {
 
     FirebaseFirestore database;
     HashMap business1 = new HashMap();
-
+    final String prefFile = "com.crazy4web.myapplication.userdata";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,7 +47,10 @@ public class Business_page1 extends AppCompatActivity {
         website_url = findViewById(R.id.url);
 
         database = FirebaseFirestore.getInstance();
-
+        SharedPreferences sp2 = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+        String googleEmailId = sp2.getString("googleEmailId","");
+        String fbEmailId= sp2.getString("fbEmailId","");
+        String emailId = sp2.getString("emailId", "");
 
         first_button = findViewById(R.id.first_btn);
 
@@ -68,6 +71,9 @@ public class Business_page1 extends AppCompatActivity {
 
                 Intent i = new Intent(getApplicationContext(), Business_page2.class);
                 i.setAction("message");
+                i.putExtra("googleEmailId",googleEmailId);
+                i.putExtra("fbEmailId",fbEmailId);
+                i.putExtra("emailId",emailId);
                 startActivity(i);
 
 

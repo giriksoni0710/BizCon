@@ -28,6 +28,7 @@ import com.google.android.material.textfield.TextInputEditText;
 import com.google.android.material.textfield.TextInputLayout;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 import com.google.firebase.storage.UploadTask;
@@ -47,6 +48,13 @@ public class Business_page3 extends AppCompatActivity {
     Intent intent;
     TextInputLayout  disable_textinput, v_url;
     StorageReference mStorageRef;
+    String token;
+    SharedPreferences sp;
+    private static final String TAG = "Business_page3";
+
+    final String pref_file = "com.crazy4web.myapplication.userdata";
+//    final String prefFile = "com.crazy4web.myapplication.userdata";
+//    SharedPreferences sp1;
 
 
     FirebaseFirestore database;
@@ -60,10 +68,21 @@ public class Business_page3 extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_business_page3);
 
+        FirebaseInstanceId.getInstance().getInstanceId().addOnCompleteListener(task ->{
+
+            if (!task.isSuccessful()){
+                Log.d("error","instance id not found");
+            }
+
+            token = task.getResult().getToken();
+            Log.d("token1", token);
+
+        });
+
+
         // This is the shared preference file where user form data is progressively saved to be sent
         // to the server later
 
-        final String pref_file = "com.crazy4web.myapplication.userdata";
 
         // getting the instance of the storage
         mStorageRef = FirebaseStorage.getInstance().getReference();
@@ -84,7 +103,8 @@ public class Business_page3 extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
 
         // saving all the user input data into preference file recieved from the previous pages
-        SharedPreferences sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
+        sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
+//        sp1 = getSharedPreferences(prefFile ,Context.MODE_PRIVATE);
 
         String tagline = sp.getString("tagline", "Default");
         hashMap.put("tagline",tagline.toLowerCase());
@@ -108,6 +128,33 @@ public class Business_page3 extends AppCompatActivity {
 
         String website_url = sp.getString("website_url", "Default");
         hashMap.put("website_url",website_url.toLowerCase());
+
+        Intent intent1 = getIntent();
+        String googleEmailId = intent1.getStringExtra("googleEmailId");
+        String fbEmailId = intent1.getStringExtra("fbEmailId");
+        String emailId = intent1.getStringExtra("emailId");
+
+        Log.d(TAG, "fb-> "+fbEmailId);
+        Log.d(TAG, "google-> "+googleEmailId);
+        Log.d(TAG, "Email-> "+emailId);
+
+//        String googleEmailId = sp1.getString("googleEmailId","");
+//        String fbEmailId= sp1.getString("fbEmailId","");
+//        String emailId = sp1.getString("emailId", "");
+//        Log.d(TAG, "emild:" +emailId);
+//        Log.d(TAG, "fbid:" +fbEmailId);
+//        Log.d(TAG, "googleid:" +googleEmailId);
+
+        if(googleEmailId != null && !googleEmailId.contains(""))
+        {
+            hashMap.put("email", googleEmailId);
+        }else if(fbEmailId != null && !fbEmailId.contains("")){
+            hashMap.put("email", fbEmailId);
+        }else if(emailId != null && emailId.contains("")){
+            hashMap.put("email", emailId);
+        }
+
+
 
 
 
@@ -135,11 +182,6 @@ public class Business_page3 extends AppCompatActivity {
 
                 String video_url= v_url.getEditText().getText().toString();
                 hashMap.put("video_url",video_url.toLowerCase());
-
-
-
-
-
 
                 database.collection("business")
                         .add(hashMap)

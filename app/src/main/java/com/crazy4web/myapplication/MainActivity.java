@@ -33,7 +33,7 @@ import java.util.Locale;
 public class MainActivity extends AppCompatActivity {
 
     GoogleSignInClient mGoogleSignInClient;
-    String name, fbImage;
+    String name, fbImage, fbEmailId;
     final String prefFile = "com.crazy4web.myapplication.userdata";
     private static final String TAG = "MainActivity";
     ImageView speechtotext;
@@ -130,6 +130,7 @@ public class MainActivity extends AppCompatActivity {
 //            Log.d(TAG, "gogole name:: "+googleName);
             sharedPreferences.edit().putString("googleName", googleName).apply();
             sharedPreferences.edit().putString("googlePic", String.valueOf(personPhoto)).apply();
+            sharedPreferences.edit().putString("googleEmailId", personEmail).apply();
 
         }
 
@@ -139,10 +140,12 @@ public class MainActivity extends AppCompatActivity {
 
             name = intent.getStringExtra("name");
             fbImage = intent.getStringExtra("fbImage");
+            fbEmailId = intent.getStringExtra("fbEmailId");
             Log.d(TAG, "onCreate: fbname"+name);
             Log.d(TAG, "onCreate: "+fbImage);
             sharedPreferences.edit().putString("fbName", name).apply();
             sharedPreferences.edit().putString("fbImage", fbImage).apply();
+            sharedPreferences.edit().putString("fbEmailId", fbEmailId).apply();
 
         }
 

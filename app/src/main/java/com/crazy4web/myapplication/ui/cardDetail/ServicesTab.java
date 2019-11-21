@@ -1,6 +1,7 @@
 package com.crazy4web.myapplication.ui.cardDetail;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
@@ -16,6 +17,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.chat.chat_screen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
@@ -27,6 +29,9 @@ public class ServicesTab extends Fragment {
     LinearLayoutManager lm;
     private String prefFile = "com.crazy4web.myapplication.userdata";
     private static final String TAG = "ServicesTab";
+    FloatingActionButton fab;
+    String bizname;
+
 
     @Nullable
     @Override
@@ -37,6 +42,7 @@ public class ServicesTab extends Fragment {
         SharedPreferences sp = getApplicationContext().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
         String bid = sp.getString("bid","");
+        bizname = sp.getString("bizname","Default");
 //        Log.d(TAG, "Service: "+sp.getString("service","def"));
 
         recyclerView = root.findViewById(R.id.recyclerView);
@@ -46,6 +52,19 @@ public class ServicesTab extends Fragment {
         recyclerView.setAdapter(recyclerAdapter);
         Log.d(TAG, "from service tab after recycler view loaded");
 
+
+        fab = root.findViewById(R.id.fab);
+
+        fab.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                Intent i = new Intent(getApplicationContext(), chat_screen.class);
+                i.putExtra("businessname", bizname);
+                startActivity(i);
+
+            }
+        });
         return root;
 
     }

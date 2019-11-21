@@ -222,15 +222,13 @@ public class SignUpOptions extends AppCompatActivity {
                     String lastName = object.getString("last_name");
                     String id = object.getString("id");
                     String image_url = "https://graph.facebook.com/"+id+"/picture?type=normal";
-//                    String email = object.getString("email");
+                    String email = object.getString("email");
 //                    String id= object.getString("id");
 //                    Log.i(TAG, "response: "+ response.toString());
-//                    Log.d(TAG, "onCompleted: "+object.getString("last_name"));
-//                    Log.d(TAG, "onCompleted: "+"first name: "+firstName+lastName);
-                    Log.d(TAG, "onCompleted: "+image_url);
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     i.putExtra("name",firstName+" "+lastName);
                     i.putExtra("fbImage",image_url);
+                    i.putExtra("fbEmailId", email);
                     startActivity(i);
 
                 } catch (JSONException e) {

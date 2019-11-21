@@ -122,6 +122,9 @@ public class Email_login extends AppCompatActivity {
                                     });
                                 }
 //                                Log.d(TAG, "onClick: "+arr.get(0)+arr.get(1));
+//                                Log.d(TAG, "emailId: "+email);
+                                sp.edit().putString("emailId", email).apply();
+                                Log.d(TAG, "emailId: "+sp.getString("emailId",""));
                                 sp.edit().putString("emailName", arr.get(0)+" "+arr.get(1)).apply();
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);

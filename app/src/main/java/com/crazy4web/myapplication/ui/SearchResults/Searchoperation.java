@@ -61,7 +61,7 @@ public class Searchoperation extends AppCompatActivity {
 
 
 
-                if(list[i].length()>3){
+                if(list[i].length()>4){
 
 
 
