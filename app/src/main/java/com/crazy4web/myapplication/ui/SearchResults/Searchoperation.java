@@ -1,11 +1,14 @@
 package com.crazy4web.myapplication.ui.SearchResults;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
 
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.categoryview.CategoryAdaptor;
 import com.crazy4web.myapplication.ui.home.HomeAdaptor;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.CollectionReference;
@@ -25,18 +28,26 @@ import java.util.regex.Pattern;
 public class Searchoperation extends AppCompatActivity {
 
     String searchedtext;
-
     FirebaseFirestore database;
     FirebaseStorage firebaseStorage;
     String cat;
-    ArrayList<String> categories = new ArrayList<>();
+    ArrayList<String> categories, biz_name, tagline = new ArrayList<>();
     private static final String TAG = "Searchoperation";
     JsonObject jsonObject;
+
+    RecyclerView recyclerView;
+    RecyclerView.LayoutManager mlayoutmanager;
+    RecyclerView.Adapter madaptor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_searchoperation);
+
+        recyclerView = findViewById(R.id.recycler_view_category);
+
+        mlayoutmanager = new LinearLayoutManager(getApplicationContext());
+
 
         database = FirebaseFirestore.getInstance();
 
@@ -52,7 +63,11 @@ public class Searchoperation extends AppCompatActivity {
         db_keys[0] = "services";
         db_keys[1] = "category";
 
+        biz_name = new ArrayList();
+        tagline = new ArrayList();
+
         firebaseStorage = FirebaseStorage.getInstance();
+
 
 
         for (String value: db_keys) {
@@ -71,6 +86,7 @@ public class Searchoperation extends AppCompatActivity {
                         public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
 
+
                             for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
 
 
@@ -85,13 +101,23 @@ public class Searchoperation extends AppCompatActivity {
                                     jsonObject.addProperty(key.toString(), value.toString());
 
                                 });
-                                Log.d("data", jsonObject.toString());
+
+                                biz_name.add(jsonObject.get("company_name").toString());
+
+                                tagline.add(jsonObject.get("tagline").toString());
+
+                                madaptor = new SearchAdaptor(getApplicationContext(), biz_name, tagline);
+                                recyclerView.setLayoutManager(mlayoutmanager);
+
+                                recyclerView.setAdapter(madaptor);
+
 
                             }
 
-
                              }
+
                     });
+
             }}
         }
 

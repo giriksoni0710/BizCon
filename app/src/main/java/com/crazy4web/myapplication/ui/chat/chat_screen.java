@@ -178,30 +178,30 @@ public class chat_screen extends AppCompatActivity {
 
                                 Log.d("docs", document.getData()+"");
 
-                                last_message = new ArrayList<>();
-
-                                Map data = new HashMap();
-                                data = document.getData();
-                                jsonObject = new JsonObject();
-                                data.forEach((key, value) -> {
-
-                                    jsonObject.addProperty(key.toString(),value.toString());
-
-                                    last_message.add(jsonObject.get("messageText").toString());
-
-                                });
-
-
-
-//                                Log.d("I received", last_message+"");
-
-
-                                Log.d("messages","my message is "+my_message+" The last message is"+last_message);
-
-
-                                mAdaptor = new ChatinnerAdaptor(getApplicationContext(), my_message, last_message);
-                                recyclerView.setLayoutManager(layoutManager);
-                                recyclerView.setAdapter(mAdaptor);
+////                                last_message = new ArrayList<>();
+////
+////                                Map data = new HashMap();
+////                                data = document.getData();
+////                                jsonObject = new JsonObject();
+////                                data.forEach((key, value) -> {
+////
+////                                    jsonObject.addProperty(key.toString(),value.toString());
+////
+////                                    last_message.add(jsonObject.get("messageText").toString());
+////
+////                                });
+//
+//
+//
+////                                Log.d("I received", last_message+"");
+//
+//
+//                                Log.d("messages","my message is "+my_message+" The last message is"+last_message);
+//
+//
+//                                mAdaptor = new ChatinnerAdaptor(getApplicationContext(), my_message, last_message);
+//                                recyclerView.setLayoutManager(layoutManager);
+//                                recyclerView.setAdapter(mAdaptor);
 
                             }
 
