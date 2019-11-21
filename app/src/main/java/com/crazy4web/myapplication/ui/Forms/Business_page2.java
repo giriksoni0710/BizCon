@@ -50,11 +50,17 @@ public class Business_page2 extends AppCompatActivity {
                 sp.edit().putString("business_desc",description.getText().toString()).commit();
                 sp.edit().putString("services",services.getText().toString()).commit();
 
+                Intent intent = getIntent();
+                String googleEmailId = intent.getStringExtra("googleEmailId");
+                String fbEmailId = intent.getStringExtra("fbEmailId");
+                String emailId = intent.getStringExtra("emailId");
 
 
 
                 Intent i = new Intent(getApplicationContext(), Business_page3.class);
-
+                i.putExtra("googleEmailId", googleEmailId);
+                i.putExtra("fbEmailId", fbEmailId);
+                i.putExtra("emailId", emailId);
                 startActivity(i);
 
 

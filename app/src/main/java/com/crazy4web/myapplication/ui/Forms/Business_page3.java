@@ -50,8 +50,11 @@ public class Business_page3 extends AppCompatActivity {
     StorageReference mStorageRef;
     String token;
     SharedPreferences sp;
+    private static final String TAG = "Business_page3";
 
     final String pref_file = "com.crazy4web.myapplication.userdata";
+//    final String prefFile = "com.crazy4web.myapplication.userdata";
+//    SharedPreferences sp1;
 
 
     FirebaseFirestore database;
@@ -100,7 +103,8 @@ public class Business_page3 extends AppCompatActivity {
         database = FirebaseFirestore.getInstance();
 
         // saving all the user input data into preference file recieved from the previous pages
-       sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
+        sp = getSharedPreferences(pref_file ,Context.MODE_PRIVATE);
+//        sp1 = getSharedPreferences(prefFile ,Context.MODE_PRIVATE);
 
         String tagline = sp.getString("tagline", "Default");
         hashMap.put("tagline",tagline.toLowerCase());
@@ -124,6 +128,32 @@ public class Business_page3 extends AppCompatActivity {
 
         String website_url = sp.getString("website_url", "Default");
         hashMap.put("website_url",website_url.toLowerCase());
+
+        Intent intent1 = getIntent();
+        String googleEmailId = intent1.getStringExtra("googleEmailId");
+        String fbEmailId = intent1.getStringExtra("fbEmailId");
+        String emailId = intent1.getStringExtra("emailId");
+
+        Log.d(TAG, "fb-> "+fbEmailId);
+        Log.d(TAG, "google-> "+googleEmailId);
+        Log.d(TAG, "Email-> "+emailId);
+
+//        String googleEmailId = sp1.getString("googleEmailId","");
+//        String fbEmailId= sp1.getString("fbEmailId","");
+//        String emailId = sp1.getString("emailId", "");
+//        Log.d(TAG, "emild:" +emailId);
+//        Log.d(TAG, "fbid:" +fbEmailId);
+//        Log.d(TAG, "googleid:" +googleEmailId);
+
+        if(googleEmailId != null && !googleEmailId.contains(""))
+        {
+            hashMap.put("email", googleEmailId);
+        }else if(fbEmailId != null && !fbEmailId.contains("")){
+            hashMap.put("email", fbEmailId);
+        }else if(emailId != null && emailId.contains("")){
+            hashMap.put("email", emailId);
+        }
+
 
 
 

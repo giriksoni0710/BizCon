@@ -79,6 +79,15 @@ public class DashboardFragment extends Fragment {
 
         mGoogleSignInClient = GoogleSignIn.getClient(root.getContext(), gso);
 
+        String googleEmailId = sp.getString("googleEmailId","");
+        String fbEmailId= sp.getString("fbEmailId","");
+        String emailId = sp.getString("emailId", "");
+
+        Log.d(TAG, "fbid: "+fbEmailId);
+        Log.d(TAG, "gogoleid: "+googleEmailId);
+        Log.d(TAG, "emailid: "+emailId);
+
+
         String facebookName = sp.getString("fbName","");
         String googleName = sp.getString("googleName","");
         String emailName = sp.getString("emailName", "");
@@ -137,6 +146,7 @@ public class DashboardFragment extends Fragment {
 
                     case 3:
                         intent = new Intent(getContext(), Business_page1.class);
+//                        intent.putExtra("googleEmailId",googleEmailId);
                         startActivity(intent);
                         break;
 
@@ -160,6 +170,9 @@ public class DashboardFragment extends Fragment {
                         sp.edit().putString("emailName","").apply();
                         sp.edit().putString("googleName","").apply();
                         sp.edit().putString("fbName","").apply();
+                        sp.edit().putString("googleEmailId","").apply();
+                        sp.edit().putString("fbEmailId","").apply();
+                        sp.edit().putString("emailId","").apply();
                         Intent in = new Intent(getContext(), Email_login.class);
                         startActivity(in);
                         break;

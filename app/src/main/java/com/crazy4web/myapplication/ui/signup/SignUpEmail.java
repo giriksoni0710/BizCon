@@ -1,6 +1,8 @@
 package com.crazy4web.myapplication.ui.signup;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import com.crazy4web.myapplication.ui.Login.Email_login;
@@ -34,6 +36,8 @@ public class SignUpEmail extends AppCompatActivity {
     Button btn;
     Map signup_obj;
     FirebaseFirestore database;
+    final String prefFile = "com.crazy4web.myapplication.userdata";
+    SharedPreferences sp;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,7 +60,7 @@ public class SignUpEmail extends AppCompatActivity {
 
 
 
-
+        sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
         // submit button to send the form
         btn.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -94,7 +98,6 @@ public class SignUpEmail extends AppCompatActivity {
                                         @Override
                                         public void onSuccess(DocumentReference documentReference) {
                                             Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-
                                             Intent i = new Intent(getApplicationContext(), Email_login.class);
                                             Toast.makeText(getApplicationContext(), "please login to continue", Toast.LENGTH_LONG).show();
                                             startActivity(i);
