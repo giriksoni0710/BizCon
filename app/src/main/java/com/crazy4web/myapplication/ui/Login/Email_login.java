@@ -17,6 +17,7 @@ import android.widget.Toast;
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.signup.SignUpOptions;
+import com.facebook.AccessToken;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.tasks.OnCompleteListener;
@@ -55,6 +56,9 @@ public class Email_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_login);
 
+//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
+//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
+//        Log.d(TAG, ""+isLoggedIn);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null){
             Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
@@ -129,4 +133,6 @@ public class Email_login extends AppCompatActivity {
         });
 
     }
+    @Override
+    public void onBackPressed() {}
 }
