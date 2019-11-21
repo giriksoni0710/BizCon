@@ -145,12 +145,14 @@ public class Business_page3 extends AppCompatActivity {
 //        Log.d(TAG, "fbid:" +fbEmailId);
 //        Log.d(TAG, "googleid:" +googleEmailId);
 
-        if(googleEmailId != null && !googleEmailId.contains(""))
-        {
+        if(!googleEmailId.equals("")) {
             hashMap.put("email", googleEmailId);
-        }else if(fbEmailId != null && !fbEmailId.contains("")){
+            Log.d(TAG, "google-> "+googleEmailId);
+        }else if(!fbEmailId.equals("")){
             hashMap.put("email", fbEmailId);
-        }else if(emailId != null && emailId.contains("")){
+            Log.d(TAG, "fb-> "+fbEmailId);
+        }else if(!emailId.equals("")){
+            Log.d(TAG, "Email-----> "+emailId);
             hashMap.put("email", emailId);
         }
 

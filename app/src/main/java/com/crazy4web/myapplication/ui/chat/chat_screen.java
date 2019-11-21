@@ -85,6 +85,7 @@ public class chat_screen extends AppCompatActivity {
               if(bizname!=null){
                   companyname = bizname;
               }
+              //emailid->email
                 emailname = sp.getString("emailName","Default");
 
                 Log.d("values",bizname+" "+companyname+" "+emailname);
