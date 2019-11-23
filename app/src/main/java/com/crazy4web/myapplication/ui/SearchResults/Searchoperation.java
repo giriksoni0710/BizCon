@@ -75,7 +75,6 @@ public class Searchoperation extends AppCompatActivity {
         for(int i=0;i<list.length;i++) {
 
 
-
                 if(list[i].length()>4){
 
 
@@ -105,16 +104,15 @@ public class Searchoperation extends AppCompatActivity {
                                 biz_name.add(jsonObject.get("company_name").toString());
 
                                 tagline.add(jsonObject.get("tagline").toString());
-
                                 madaptor = new SearchAdaptor(getApplicationContext(), biz_name, tagline);
                                 recyclerView.setLayoutManager(mlayoutmanager);
 
                                 recyclerView.setAdapter(madaptor);
 
-
                             }
 
-                             }
+
+                        }
 
                     });
 

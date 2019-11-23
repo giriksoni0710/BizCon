@@ -2,9 +2,11 @@ package com.crazy4web.myapplication.ui.chat;
 
 import android.content.Context;
 import android.content.Intent;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -14,19 +16,22 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.crazy4web.myapplication.R;
 
 import java.util.ArrayList;
+import java.util.HashSet;
+import java.util.List;
+import java.util.Set;
 
 public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyViewHolder>  {
 
-
         private Context mcon;
+        ArrayList<String> sent_msg, last_msg;
 
-        ArrayList<String> sent_msg, last_msg = new ArrayList<>();
+        private static final String TAG = "ChatinnerAdaptor";
 
-
-        public static class MyViewHolder extends RecyclerView.ViewHolder {
+    public static class MyViewHolder extends RecyclerView.ViewHolder {
 
             public ConstraintLayout constraintLayout;
             public TextView sentmsg,received;
+            public ImageView imageView;
 
 
 
@@ -37,11 +42,12 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
                 constraintLayout = v.findViewById(R.id.constrain_inner_chat);
                 sentmsg = v.findViewById(R.id.sent_msg);
                 received = v.findViewById(R.id.received_msg);
+                imageView = v.findViewById(R.id.business_image_category);
             }
         }
 
 
-        public ChatinnerAdaptor(Context con, ArrayList biz_name, ArrayList last_msg ) {
+        public ChatinnerAdaptor(Context con, ArrayList<String> biz_name, ArrayList<String> last_msg ) {
 
             mcon = con;
             this.sent_msg = biz_name;
@@ -69,23 +75,30 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
         @Override
         public void onBindViewHolder(@NonNull final MyViewHolder holder, final int position) {
 
+        Log.d("sentmsgs"+sent_msg.size(),"rcvd"+last_msg.size());
 
+        if(sent_msg.size()>0)
 
-            if(sent_msg.get(position)!=null && last_msg.get(position)!=null) {
-                holder.sentmsg.setText(sent_msg.get(position).toString().replaceAll("\"", ""));
-                holder.received.setText(last_msg.get(position).toString().replaceAll("\"", ""));
+            holder.sentmsg.setText(sent_msg.get(position).replaceAll("\"", ""));
 
-            }
+            if(last_msg.size()>=1 && last_msg.size()-1 >= position) {
+                  holder.received.setText(last_msg.get(position).replaceAll("\"", ""));
+              }else if(last_msg.size()-1< position){
+                    holder.received.setVisibility(View.INVISIBLE);
 
-
+                }
         }
-
 
         public int getItemCount() {
 
-                return last_msg.size();
+        if (sent_msg.size()>last_msg.size() || sent_msg.size()==last_msg.size())
+            return sent_msg.size();
 
-            }
+        else if(sent_msg.size()< last_msg.size())
+            return last_msg.size();
+
+        else return 0;
+        }
         }
 
 

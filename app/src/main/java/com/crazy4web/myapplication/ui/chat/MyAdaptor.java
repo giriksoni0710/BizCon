@@ -76,7 +76,7 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
 
 
 
-        holder.usrname.setText(biz_name.get(position).toString().replaceAll("\"",""));
+        holder.usrname.setText(biz_name.get(position).toUpperCase().toString().replaceAll("\"",""));
         holder.lstmsg.setText(last_msg.get(position).toString().replaceAll("\"",""));
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
@@ -103,15 +103,6 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
 
     public int getItemCount() {
 
-        if (biz_name.size()%2==0) {
-            return biz_name.size() / 2;
-        }
-        else if (biz_name.size()%2==1){
-            return (biz_name.size()/2)+1;
-        }
-
-        else {
-            return biz_name.size();
-        }
+        return biz_name.size();
     }
 }

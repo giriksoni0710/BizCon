@@ -20,7 +20,9 @@ import com.crazy4web.myapplication.R;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -32,7 +34,11 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Nullable;
 
 public class chat_screen extends AppCompatActivity {
 
@@ -51,9 +57,8 @@ public class chat_screen extends AppCompatActivity {
     Bundle bundle;
     String bizname;
 
-    ArrayList<String> my_message;
-
-    ArrayList<String> last_message;
+    Set<String> mysentmsgs, bizsentmsg;
+    ArrayList<String > rcvd, sent;
 
     JsonObject jsonObject;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
@@ -67,6 +72,7 @@ public class chat_screen extends AppCompatActivity {
         send_img = findViewById(R.id.send_img);
         message = findViewById(R.id.type_message);
         setSupportActionBar(toolbar);
+
 
         recyclerView = findViewById(R.id.recycler_inner_chat);
 
@@ -87,7 +93,7 @@ public class chat_screen extends AppCompatActivity {
               }
                 emailname = sp.getString("emailName","Default");
 
-                Log.d("values",bizname+" "+companyname+" "+emailname);
+//                Log.d("values",bizname+" "+companyname+" "+emailname);
 
         getmessages();
 
@@ -103,7 +109,7 @@ public class chat_screen extends AppCompatActivity {
             }
 
             token = task.getResult().getToken();
-            Log.d("token", token);
+//            Log.d("token", token);
 
         });
 
@@ -118,8 +124,6 @@ public class chat_screen extends AppCompatActivity {
                         ,emailname,companyname)).addOnSuccessListener(new OnSuccessListener<DocumentReference>() {
                     @Override
                     public void onSuccess(DocumentReference documentReference) {
-
-                        Log.d("docssent", documentReference.getId());
 
                         message.setText("");
 
@@ -136,19 +140,16 @@ public class chat_screen extends AppCompatActivity {
     }
 
     private void getmessages() {
+        sent = new ArrayList<>();
+        rcvd = new ArrayList<>();
 
+        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",companyname).whereEqualTo("messageUser",emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",companyname).whereEqualTo("messageUser",emailname).get().addOnSuccessListener(
-                new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+                        mysentmsgs = new HashSet<>();
 
                         for (DocumentSnapshot document: queryDocumentSnapshots.getDocuments()) {
-
-                            Log.d("docs", document.getData()+"");
-
-                            my_message= new ArrayList<>();
-
 
                             Map data = new HashMap();
                             data = document.getData();
@@ -157,56 +158,64 @@ public class chat_screen extends AppCompatActivity {
                             data.forEach((key, value) -> {
 
                                 jsonObject.addProperty(key.toString(),value.toString());
-                                    my_message.add(jsonObject.get("messageText").toString());
 
+                                mysentmsgs.add(jsonObject.get("messageText").toString());
                             });
 
 
-//                            Log.d("I sent", my_message+"");
+                            Log.d("I sent", mysentmsgs+"");
                         }
+                for (String msgs:
+                        mysentmsgs) {
+
+                    sent.add(msgs);
+                }
 
                     }
                 }
         );
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).whereEqualTo("messageUser",companyname).get().addOnSuccessListener(
-                new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).whereEqualTo("messageUser",companyname).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
+                            bizsentmsg = new HashSet<>();
 
                             for (DocumentSnapshot document: queryDocumentSnapshots.getDocuments()) {
 
-                                Log.d("docs", document.getData()+"");
 
-////                                last_message = new ArrayList<>();
-////
-////                                Map data = new HashMap();
-////                                data = document.getData();
-////                                jsonObject = new JsonObject();
-////                                data.forEach((key, value) -> {
-////
-////                                    jsonObject.addProperty(key.toString(),value.toString());
-////
-////                                    last_message.add(jsonObject.get("messageText").toString());
-////
-////                                });
-//
-//
-//
-////                                Log.d("I received", last_message+"");
-//
-//
-//                                Log.d("messages","my message is "+my_message+" The last message is"+last_message);
-//
-//
-//                                mAdaptor = new ChatinnerAdaptor(getApplicationContext(), my_message, last_message);
-//                                recyclerView.setLayoutManager(layoutManager);
-//                                recyclerView.setAdapter(mAdaptor);
+                                Log.d("docs",document.getData().toString());
+
+
+                                Map data = new HashMap();
+                                data = document.getData();
+                                jsonObject = new JsonObject();
+                                data.forEach((key, value) -> {
+
+                                    jsonObject.addProperty(key.toString(),value.toString());
+//                                    Log.d("values", ""+value);
+                                    bizsentmsg.add(jsonObject.get("messageText").toString());
+
+                                });
 
                             }
+                Log.d("I received", bizsentmsg+"");
+
+                for (String msgs:
+                        bizsentmsg) {
+
+                    rcvd.add(msgs);
+                }
 
 
-                    }
+
+                Log.d("The arrays are sent: "+sent,"rcvd: "+rcvd);
+                mAdaptor = new ChatinnerAdaptor(getApplicationContext(), sent, rcvd);
+                recyclerView.setLayoutManager(layoutManager);
+                recyclerView.setAdapter(mAdaptor);
+
+
+
+            }
 
                 }
         );

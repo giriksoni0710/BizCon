@@ -4,7 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.categoryview.category_page">
+    tools:context=".ui.categoryview.category_page"
+    android:paddingBottom="30dp">
 
 
     <com.google.android.material.appbar.AppBarLayout

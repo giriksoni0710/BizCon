@@ -1,7 +1,6 @@
 package com.crazy4web.myapplication.ui.chat;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.view.ViewCompat;
 import androidx.fragment.app.Fragment;
@@ -25,13 +24,19 @@ import com.crazy4web.myapplication.ui.notifications.RecyclerAdapter;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
+import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.FirebaseFirestoreException;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
 import java.util.Map;
+import java.util.Set;
+
+import javax.annotation.Nullable;
 
 public class ChatFragment extends Fragment {
 
@@ -49,6 +54,7 @@ public class ChatFragment extends Fragment {
 
     JsonObject jsonObject;
 
+    Set<String> msg, biz;
 
 
 
@@ -76,10 +82,11 @@ public class ChatFragment extends Fragment {
 
     private void getmessages() {
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).get().addOnSuccessListener(
-                new OnSuccessListener<QuerySnapshot>() {
-                    @Override
-                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+        msg = new HashSet<>();
+        biz = new HashSet<>();
+        firebaseFirestore.collection("messages").whereEqualTo("messageUser",emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
+            @Override
+            public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
                         for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
 
@@ -88,16 +95,27 @@ public class ChatFragment extends Fragment {
                             jsonObject = new JsonObject();
                             data.forEach((key, value) -> {
 
-                                jsonObject.addProperty(key.toString(),value.toString());
+                                jsonObject.addProperty(key.toString(), value.toString());
 
                             });
+                            msg.add(jsonObject.get("messageText").toString());
+                            biz.add(jsonObject.get("messageuserID").toString());
 
-                            biz_name.add(jsonObject.get("messageUser").toString());
-                            last_message.add(jsonObject.get("messageText").toString());
 
-
-                            Log.d("jsonovject", jsonObject+"");
                         }
+
+
+                            for (String msgs: msg) {
+                                last_message.add(msgs);
+                                Log.d("msgs",msgs);
+                            }
+
+
+                            for (String msgs: biz) {
+                                biz_name.add(msgs);
+
+                                Log.d("biz",msgs);
+                            }
 
                         mAdaptor = new MyAdaptor(getContext(), biz_name, last_message);
                         recyclerView.setLayoutManager(layoutManager);
