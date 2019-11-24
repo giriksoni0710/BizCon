@@ -147,12 +147,17 @@ public class Business_page3 extends AppCompatActivity {
 
         if(!googleEmailId.equals("")) {
             hashMap.put("email", googleEmailId);
+//            sp.edit().putString("emailID",googleEmailId).apply();
             Log.d(TAG, "google-> "+googleEmailId);
         }else if(!fbEmailId.equals("")){
             hashMap.put("email", fbEmailId);
+
+//            sp.edit().putString("emailID",fbEmailId).apply();
             Log.d(TAG, "fb-> "+fbEmailId);
         }else if(!emailId.equals("")){
             Log.d(TAG, "Email-----> "+emailId);
+
+//            sp.edit().putString("emailID",emailId).apply();
             hashMap.put("email", emailId);
         }
 

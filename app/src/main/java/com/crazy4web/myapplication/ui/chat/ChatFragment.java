@@ -46,7 +46,8 @@ public class ChatFragment extends Fragment {
     RecyclerView.LayoutManager layoutManager;
     private String prefFile = "com.crazy4web.myapplication.userdata";
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    String emailname;
+    String emailname, userhascompany;
+    String field;
 
     ArrayList<String> biz_name= new ArrayList<>();
 
@@ -72,19 +73,32 @@ public class ChatFragment extends Fragment {
 
         SharedPreferences sp = getContext().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
-        emailname = sp.getString("emailName","Default");
+        userhascompany = sp.getString("userhascompany","").replaceAll("\"","");
+//        field = "messageUser";
+
+//        emailname = sp.getString("emailName","Default");
+
+        if(!userhascompany.equals("")){
+         Log.d("in","in");
+            field="messageuserID";
+            emailname= userhascompany;
+        }else {
+            emailname = sp.getString("emailName","Default");
+            field = "messageUser";
+        }
 
         getmessages();
-
-
         return root;
     }
+
 
     private void getmessages() {
 
         msg = new HashSet<>();
         biz = new HashSet<>();
-        firebaseFirestore.collection("messages").whereEqualTo("messageUser",emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
+
+        Log.d("field: "+field,"emailname: "+emailname);
+        firebaseFirestore.collection("messages").whereEqualTo(field,emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
@@ -99,8 +113,15 @@ public class ChatFragment extends Fragment {
 
                             });
                             msg.add(jsonObject.get("messageText").toString());
-                            biz.add(jsonObject.get("messageuserID").toString());
 
+                            // display username if it is a business
+                            // and business name for users in the chat list
+                            if (!userhascompany.equals("")){
+                                biz.add(jsonObject.get("messageUser").toString());
+
+                            }else {
+                                biz.add(jsonObject.get("messageuserID").toString());
+                            }
 
                         }
 

@@ -55,7 +55,7 @@ public class chat_screen extends AppCompatActivity {
     String token, companyname, emailname;
     private String prefFile = "com.crazy4web.myapplication.userdata";
     Bundle bundle;
-    String bizname;
+    String bizname,userhascompany;
 
     Set<String> mysentmsgs, bizsentmsg;
     ArrayList<String > rcvd, sent;
@@ -91,9 +91,15 @@ public class chat_screen extends AppCompatActivity {
               if(bizname!=null){
                   companyname = bizname;
               }
+                userhascompany= sp.getString("userhascompany","").replaceAll("\"","");
+
               //emailid->email
                 emailname = sp.getString("emailName","Default");
 
+                if(!userhascompany.equals("")){
+                    emailname=userhascompany;
+                    companyname=bizname;
+                }
 //                Log.d("values",bizname+" "+companyname+" "+emailname);
 
         getmessages();
@@ -128,6 +134,7 @@ public class chat_screen extends AppCompatActivity {
 
                         message.setText("");
 
+
                         getmessages();
                     }
                 });
@@ -138,17 +145,20 @@ public class chat_screen extends AppCompatActivity {
         });
 
 
+
     }
 
     private void getmessages() {
         sent = new ArrayList<>();
         rcvd = new ArrayList<>();
 
+
         firebaseFirestore.collection("messages").whereEqualTo("messageuserID",companyname).whereEqualTo("messageUser",emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
                         mysentmsgs = new HashSet<>();
+                        Log.d("companyname:"+companyname,"emailname"+emailname);
 
                         for (DocumentSnapshot document: queryDocumentSnapshots.getDocuments()) {
 

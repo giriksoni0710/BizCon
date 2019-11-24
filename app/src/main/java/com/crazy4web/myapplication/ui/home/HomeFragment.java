@@ -1,6 +1,8 @@
 package com.crazy4web.myapplication.ui.home;
 
+import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -51,6 +53,10 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     RecyclerView recyclerView;
     RecyclerView.Adapter recycleradaptor;
     RecyclerView.LayoutManager layoutManager;
+    private String prefFile = "com.crazy4web.myapplication.userdata";
+    JsonObject jsonObject;
+    SharedPreferences sharedPreferences;
+
     public LinearLayout linearLayout_technology, linearLayout_music, linearLayout_art,
             linearLayout_advertising, linearLayout_designing, linearLayout_household, linearLayout_fashion;
     private static final String TAG = "HomeFragment";
@@ -91,6 +97,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         linearLayout_music.setOnClickListener(this);
         linearLayout_fashion = root.findViewById(R.id.fashion_category);
         linearLayout_fashion.setOnClickListener(this);
+
 
 
         // one over-rided click listener for all
@@ -171,7 +178,46 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
             }
         });
 
+        sharedPreferences = getActivity().getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+
+        String email = sharedPreferences.getString("emailId","Default");
+        validateIfUserIsBusiness(email);
+
+
+
         return root;
+
+    }
+    //validating if the logged in user owns a business
+    private void validateIfUserIsBusiness(String email) {
+
+        database.collection("business").whereEqualTo("email", email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+            @Override
+            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+                Log.d("ifbiz", queryDocumentSnapshots.getDocuments()+"");
+
+                if(queryDocumentSnapshots.getDocuments().size()>=1){
+
+                    for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+
+                        Map data = new HashMap();
+                        data = document.getData();
+                        jsonObject = new JsonObject();
+                        data.forEach((key, value) -> {
+
+                            jsonObject.addProperty(key.toString(), value.toString());
+
+                        });
+                    }
+                        Log.d("company_name",jsonObject.get("company_name").toString());
+
+                        sharedPreferences.edit().putString("userhascompany",jsonObject.get("company_name").toString()).apply();
+
+                    }
+
+            }
+        });
 
     }
 

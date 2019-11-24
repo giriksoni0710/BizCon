@@ -79,11 +79,17 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
 
         if(sent_msg.size()>0)
 
-            holder.sentmsg.setText(sent_msg.get(position).replaceAll("\"", ""));
+
+                if(sent_msg.size()>=1 && sent_msg.size()-1>=position) {
+                    holder.sentmsg.setText(sent_msg.get(position).replaceAll("\"", ""));
+                }
+                else if(sent_msg.size()-1<=position){
+                    holder.sentmsg.setVisibility(View.INVISIBLE);
+                }
 
             if(last_msg.size()>=1 && last_msg.size()-1 >= position) {
                   holder.received.setText(last_msg.get(position).replaceAll("\"", ""));
-              }else if(last_msg.size()-1< position){
+              }else if(last_msg.size()-1<= position){
                     holder.received.setVisibility(View.INVISIBLE);
 
                 }

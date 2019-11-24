@@ -105,6 +105,7 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("tagline",arr.get(5)).apply();
                 sp.edit().putString("service",arr.get(6)).apply();
                 sp.edit().putString("category",arr.get(7)).apply();
+//                sp.edit().putString("bizEmailID",arr.get(8)).apply();
 //                Log.d(TAG, "onCreate: "+arr.get(3));
                 updatePageWithData(arr);
 

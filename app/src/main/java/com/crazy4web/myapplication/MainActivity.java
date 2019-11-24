@@ -149,7 +149,11 @@ public class MainActivity extends AppCompatActivity {
 
         }
 
+
+
+
     }
+
 
     public void SpeachToText(View view) {
 
