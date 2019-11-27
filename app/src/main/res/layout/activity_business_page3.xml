@@ -4,7 +4,9 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.Forms.Business_page1">
+    tools:context=".ui.Forms.Business_page1"
+    android:layout_marginLeft="10dp"
+    android:layout_marginRight="10dp">
 
 
     <ImageView
@@ -23,6 +25,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginLeft="15dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
         android:layout_marginRight="15dp"
         android:layout_marginTop="60dp"
         app:layout_constraintTop_toBottomOf="@+id/imageView3"
@@ -34,6 +37,11 @@
         android:id="@+id/image_url"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+
+        android:layout_marginLeft="15dp"
+        android:layout_marginRight="15dp"
+        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
+
         app:layout_constraintTop_toTopOf="@+id/video_url"
         tools:layout_editor_absoluteX="0dp">
 
@@ -47,9 +55,15 @@
 
     <Button
         android:id="@+id/third_button"
-        android:layout_width="394dp"
-        android:layout_height="59dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
         android:layout_marginBottom="104dp"
+        app:layout_constraintCircleRadius="5dp"
+        android:layout_marginRight="15dp"
+        android:layout_marginLeft="15dp"
+        android:background="#FE9B18"
+        android:letterSpacing="0.2"
+        android:textSize="18dp"
         android:text="Submit"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -60,29 +74,25 @@
         android:id="@+id/choose_img"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="12dp"
-        android:layout_marginTop="20dp"
+        android:padding="10dp"
+        android:layout_marginStart="16dp"
+        android:background="@drawable/imagechooser"
         android:text="Choose Image"
+        app:layout_constraintBottom_toTopOf="@+id/third_button"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText" />
-
-    <com.google.android.material.textfield.TextInputEditText
-        android:id="@+id/textInputEditText"
-
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="44dp"
-        android:hint="Upload Image"
         app:layout_constraintTop_toBottomOf="@+id/image_url"
-        tools:layout_editor_absoluteX="0dp" />
+        app:layout_constraintVertical_bias="0.08" />
 
     <ImageView
         android:id="@+id/imageView5"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginEnd="168dp"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginEnd="190dp"
+        app:layout_constraintBottom_toTopOf="@+id/third_button"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textInputEditText"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toEndOf="@+id/choose_img"
+        app:layout_constraintTop_toBottomOf="@+id/image_url"
+        app:layout_constraintVertical_bias="0.071"
         app:srcCompat="@drawable/artartistcalligraphy57690" />
 </androidx.constraintlayout.widget.ConstraintLayout>

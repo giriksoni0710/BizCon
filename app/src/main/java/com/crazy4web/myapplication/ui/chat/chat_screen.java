@@ -100,7 +100,7 @@ public class chat_screen extends AppCompatActivity {
                     emailname=userhascompany;
                     companyname=bizname;
                 }
-//                Log.d("values",bizname+" "+companyname+" "+emailname);
+                Log.d("values",bizname+" "+companyname+" "+emailname);
 
         getmessages();
 

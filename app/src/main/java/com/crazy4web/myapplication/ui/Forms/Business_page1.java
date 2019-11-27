@@ -46,6 +46,14 @@ public class Business_page1 extends AppCompatActivity {
         company_name = findViewById(R.id.company_name);
         website_url = findViewById(R.id.url);
 
+        category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
         database = FirebaseFirestore.getInstance();
         SharedPreferences sp2 = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
         String googleEmailId = sp2.getString("googleEmailId","");
