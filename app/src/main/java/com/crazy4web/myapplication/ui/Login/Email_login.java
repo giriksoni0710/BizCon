@@ -11,6 +11,7 @@ import android.text.InputType;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -49,11 +50,15 @@ public class Email_login extends AppCompatActivity {
     private static final String TAG = "Email_login";
     FirebaseFirestore database;
     private String prefFile = "com.crazy4web.myapplication.userdata";
+    ProgressBar progressBar;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_login);
+
+        progressBar = findViewById(R.id.progressBar2);
+        progressBar.setVisibility(View.GONE);
 
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null){
@@ -84,7 +89,7 @@ public class Email_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-
+                progressBar.setVisibility(View.VISIBLE);
                 String email = textInputLayout.getEditText().getText().toString();
                 String password = textInputLayout2.getEditText().getText().toString();
 

@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -70,6 +71,7 @@ public class SignUpOptions extends AppCompatActivity {
     private String url = "https://operator.ankurkaul.com/bizcon/authorize?token=";
 //    private String url = "https://operator.ankurkaul.com/bizcon/test?token=";
     Boolean reply;
+    ProgressBar progressBar;
 
 
     private static final String TAG = "SignUpOptions";
@@ -85,6 +87,9 @@ public class SignUpOptions extends AppCompatActivity {
             Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent2);
         }
+
+        progressBar = findViewById(R.id.progressBar);
+        progressBar.setVisibility(View.GONE);
 
         Toolbar toolbar = findViewById(R.id.toolbarSignupOptions);
         setSupportActionBar(toolbar);
@@ -108,6 +113,7 @@ public class SignUpOptions extends AppCompatActivity {
             @Override
             public void onSuccess(LoginResult loginResult) {
 //                Log.d(TAG, "onSuccess: Successfull result"+ loginResult);
+                progressBar.setVisibility(View.VISIBLE);
             }
 
             @Override
@@ -137,6 +143,7 @@ public class SignUpOptions extends AppCompatActivity {
 
                 switch (view.getId()) {
                     case R.id.sign_in_button:
+                        progressBar.setVisibility(View.VISIBLE);
                         signIn();
                         break;
                     // ...
@@ -194,6 +201,7 @@ public class SignUpOptions extends AppCompatActivity {
 //            Intent i = new Intent(this,MainActivity.class);
 //            startActivity(i);
         } catch (ApiException e) {
+            progressBar.setVisibility(View.GONE);
             Log.d(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
     }
@@ -220,6 +228,7 @@ public class SignUpOptions extends AppCompatActivity {
                     String id = object.getString("id");
                     String image_url = "https://graph.facebook.com/"+id+"/picture?type=normal";
                     String email = object.getString("email");
+
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     i.putExtra("name",firstName+" "+lastName);
                     i.putExtra("fbImage",image_url);
@@ -231,6 +240,7 @@ public class SignUpOptions extends AppCompatActivity {
                 }
             }
         });
+//        progressBar.setVisibility(View.GONE);
 
         Bundle parameters = new Bundle();
         parameters.putString("fields","first_name,last_name,email,id");
@@ -251,24 +261,6 @@ public class SignUpOptions extends AppCompatActivity {
                 new Response.Listener<JSONObject>() {
                     @Override
                     public void onResponse(JSONObject response) {
-//                        Gson gson = new Gson();
-//                        JSONArray jsonArray = response.optJSONArray("message");
-//                        Log.d(TAG, jsonArray+"");
-//                        Log.d(TAG, response.optJSONObject("message").toString());
-//                        JSONObject abcd = new JSONObject();
-//                        abcd = response;
-//                        Iterator<String> keys = response.keys();
-//
-//                        while(keys.hasNext()) {
-//                            String key = keys.next();
-//                            try {
-//                                if (response.get(key) instanceof JSONObject) {
-//
-//                                }
-//                            } catch (JSONException e) {
-//                                e.printStackTrace();
-//                            }
-//                        }
 
                         try {
 //                            Log.d(TAG,response.get("message").toString());
@@ -286,6 +278,7 @@ public class SignUpOptions extends AppCompatActivity {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
+                        progressBar.setVisibility(View.GONE);
                         Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
 //                        Log.d(TAG, error.toString());
                         Log.d(TAG, error.toString());
@@ -293,19 +286,9 @@ public class SignUpOptions extends AppCompatActivity {
                     }
                 });
 
-//        StringRequest stringObjectRequest = new StringRequest(Request, url, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//
-//            }
-//
-//
-//        });
-
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsObjRequest);
 
-//        return true;
     }
 
 }
