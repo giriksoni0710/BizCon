@@ -19,6 +19,9 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.chat.chat_screen;
 import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import com.google.firebase.firestore.FirebaseFirestore;
+
+import java.util.ArrayList;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -31,6 +34,8 @@ public class ServicesTab extends Fragment {
     private static final String TAG = "ServicesTab";
     FloatingActionButton fab;
     String bizname;
+    FirebaseFirestore database;
+    ArrayList<String> val = new ArrayList<>();
 
 
     @Nullable
@@ -46,12 +51,7 @@ public class ServicesTab extends Fragment {
 //        Log.d(TAG, "Service: "+sp.getString("service","def"));
 
         recyclerView = root.findViewById(R.id.recyclerView);
-//        recyclerAdapter = new RecyclerAdapter(sp.getString("service","def"));
-        recyclerAdapter = new RecyclerAdapter(bid);
-        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-        recyclerView.setAdapter(recyclerAdapter);
-        Log.d(TAG, "from service tab after recycler view loaded");
-
+        getServices(bid);
 
         fab = root.findViewById(R.id.fab);
 
@@ -67,5 +67,25 @@ public class ServicesTab extends Fragment {
         });
         return root;
 
+    }
+    public ArrayList<String> getServices(String bid){
+        database = FirebaseFirestore.getInstance();
+        database.collection("business").document(bid).get().addOnCompleteListener(task ->{
+            if(task.isSuccessful()){
+                Log.d(TAG, ""+task.getResult().getData());
+                task.getResult().getData().forEach((key, value)->{
+                    if(key.contains("services")){
+                        Log.d(TAG, "onBindViewHolder: ");
+
+                        val = (ArrayList<String>) value;
+                        recyclerAdapter = new RecyclerAdapter(val);
+                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        recyclerView.setAdapter(recyclerAdapter);
+                        Log.d(TAG, "from service tab after recycler view loaded");
+                    }
+                });
+            }
+        });
+        return val;
     }
 }

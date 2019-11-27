@@ -56,6 +56,7 @@ public class DetailActivityFragment extends AppCompatActivity {
     TextView businessDesc, companyName, company_desc;
     ImageView img;
     FirebaseStorage firebaseStorage;
+    ArrayList<String> val = new ArrayList<>();
 //    String cat;
 
     @Override
@@ -95,6 +96,10 @@ public class DetailActivityFragment extends AppCompatActivity {
                 task.getResult().getData().forEach((key, value)->{
 //                    Log.d(TAG, key+" -> "+value);
                     arr.add(value.toString());
+                    if(key.contains("services")){
+
+                        val = (ArrayList<String>) value;
+                    }
                 });
 //                Log.d(TAG, ""+arr.get(0));
                 sp.edit().putString("videoUrl",arr.get(0)).apply();
@@ -103,13 +108,17 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("imagePath",arr.get(3)).apply();
                 sp.edit().putString("companyName",arr.get(4)).apply();
                 sp.edit().putString("tagline",arr.get(5)).apply();
-                sp.edit().putString("service",arr.get(6)).apply();
+//                sp.edit().putString("service",arr.get(6)).apply();
                 sp.edit().putString("category",arr.get(7)).apply();
 //                sp.edit().putString("bizEmailID",arr.get(8)).apply();
 //                Log.d(TAG, "onCreate: "+arr.get(3));
                 updatePageWithData(arr);
 
                 sp.edit().putString("bizname", arr.get(4));
+//                Log.d(TAG, arr.get(6));
+////                ArrayList<String> val = new ArrayList<>();
+//                val = (ArrayList<String>) value;
+//                val = arr.get(6);
 
             }
         });
@@ -140,7 +149,7 @@ public class DetailActivityFragment extends AppCompatActivity {
 
                     case 0:
                         recyclerView = findViewById(R.id.recyclerView);
-                        recyclerAdapter = new RecyclerAdapter(id);
+                        recyclerAdapter = new RecyclerAdapter(val);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         recyclerView.setAdapter(recyclerAdapter);
                         Log.d(TAG, "from Detail activity fragment: "+arr.get(6));
