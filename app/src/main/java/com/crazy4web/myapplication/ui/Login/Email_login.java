@@ -45,7 +45,6 @@ public class Email_login extends AppCompatActivity {
 
     TextView general_signup;
     Button button_login;
-//    private FirebaseAuth mAuth;
     TextInputLayout textInputLayout,textInputLayout2;
     private static final String TAG = "Email_login";
     FirebaseFirestore database;
@@ -56,9 +55,6 @@ public class Email_login extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_email_login);
 
-//        AccessToken accessToken = AccessToken.getCurrentAccessToken();
-//        boolean isLoggedIn = accessToken != null && !accessToken.isExpired();
-//        Log.d(TAG, ""+isLoggedIn);
         GoogleSignInAccount account = GoogleSignIn.getLastSignedInAccount(this);
         if(account != null){
             Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
@@ -92,23 +88,13 @@ public class Email_login extends AppCompatActivity {
                 String email = textInputLayout.getEditText().getText().toString();
                 String password = textInputLayout2.getEditText().getText().toString();
 
-//                  Log.d(TAG, "onClick: "+email+password);
                 SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
                 ArrayList<String> arr = new ArrayList<>();
                 database.collection("users").whereEqualTo("email",email).whereEqualTo("password",password).get()
                         .addOnCompleteListener(task -> {
                             if(task.isSuccessful() && task.getResult().size() > 0) {
 
-//                                Intent i = new Intent(getApplicationContext(), MainActivity.class);
-//                                startActivity(i);
                                 Log.d(TAG, " " + task.getResult().getDocuments());
-//
-//                                QuerySnapshot xyz = task.getResult();
-//
-//                                xyz.getDocuments().forEach(abcd ->{
-//                                    Log.d(TAG, "onClick: "+abcd);
-//                                });
-
 
                                 for (QueryDocumentSnapshot document : task.getResult()) {   // LOOP
                                     Log.d(TAG,""+document.getData());
@@ -121,10 +107,7 @@ public class Email_login extends AppCompatActivity {
                                         arr.add(value.toString());
                                     });
                                 }
-//                                Log.d(TAG, "onClick: "+arr.get(0)+arr.get(1));
-//                                Log.d(TAG, "emailId: "+email);
                                 sp.edit().putString("emailId", email).apply();
-                                Log.d(TAG, "emailId: "+sp.getString("emailId",""));
                                 sp.edit().putString("emailName", arr.get(0)+" "+arr.get(1)).apply();
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);

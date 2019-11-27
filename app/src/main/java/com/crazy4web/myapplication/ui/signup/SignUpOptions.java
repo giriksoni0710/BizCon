@@ -1,5 +1,6 @@
 package com.crazy4web.myapplication.ui.signup;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
@@ -12,6 +13,14 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.oauth.Oauth_webLogin;
@@ -35,12 +44,18 @@ import com.google.android.gms.common.Scopes;
 import com.google.android.gms.common.SignInButton;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.common.api.Scope;
+import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.gson.Gson;
 
+import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.util.Arrays;
+import java.util.HashMap;
+import java.util.Iterator;
+import java.util.Map;
 
 public class SignUpOptions extends AppCompatActivity {
 
@@ -52,6 +67,9 @@ public class SignUpOptions extends AppCompatActivity {
 
     SignInButton google_signup;
     GoogleSignInClient mGoogleSignInClient;
+    private String url = "https://operator.ankurkaul.com/bizcon/authorize?token=";
+//    private String url = "https://operator.ankurkaul.com/bizcon/test?token=";
+    Boolean reply;
 
 
     private static final String TAG = "SignUpOptions";
@@ -79,28 +97,9 @@ public class SignUpOptions extends AppCompatActivity {
             }
         });
 
-//        fb_signup = findViewById(R.id.fb_signup);
 
         callbackManager = CallbackManager.Factory.create();
         fb_signup = findViewById(R.id.login_button);
-
-//        LoginManager.getInstance().registerCallback(callbackManager,
-//                new FacebookCallback<LoginResult>() {
-//                    @Override
-//                    public void onSuccess(LoginResult loginResult) {
-//                        // App code
-//                    }
-//
-//                    @Override
-//                    public void onCancel() {
-//                        // App code
-//                    }
-//
-//                    @Override
-//                    public void onError(FacebookException exception) {
-//                        // App code
-//                    }
-//                });
 
         fb_signup.setPermissions(Arrays.asList("email","public_profile"));
 
@@ -121,19 +120,6 @@ public class SignUpOptions extends AppCompatActivity {
 
             }
         });
-
-//        fb_signup.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//
-//                LoginManager.getInstance().logInWithReadPermissions(view.getContext(), Arrays.asList("public_profile"));
-//
-////                Intent intent = new Intent(view.getContext(), Oauth_webLogin.class);
-////                view.getContext().startActivity(intent);
-//            }
-//        });
-
-
 
         email_signup = findViewById(R.id.email_signup);
         email_signup.setOnClickListener(new View.OnClickListener() {
@@ -160,13 +146,24 @@ public class SignUpOptions extends AppCompatActivity {
 
         GoogleSignInOptions gso = new GoogleSignInOptions
                 .Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
-//                .requestScopes(new Scope(Scopes.DRIVE_APPFOLDER))
-//                .requestServerAuthCode(getString(R.string.server_client_id))
+                .requestIdToken(getString(R.string.server_client_id))
                 .requestEmail()
                 .build();
 
         mGoogleSignInClient = GoogleSignIn.getClient(getApplicationContext(), gso);
+
+//        silent google sign in
+        mGoogleSignInClient.silentSignIn()
+            .addOnCompleteListener(
+            this,
+                new OnCompleteListener<GoogleSignInAccount>() {
+                    @Override
+                    public void onComplete(@NonNull Task<GoogleSignInAccount> task) {
+                        handleSignInResult(task);
+                    }
+                });
     }
+
 
     private void signIn() {
         Intent signInIntent = mGoogleSignInClient.getSignInIntent();
@@ -177,14 +174,10 @@ public class SignUpOptions extends AppCompatActivity {
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
 
         callbackManager.onActivityResult(requestCode, resultCode, data);
-//        Log.d(TAG, "result code"+requestCode);
         super.onActivityResult(requestCode, resultCode, data);
 
-
-        // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
-            // The Task returned from this call is always completed, no need to attach
-            // a listener.
+
             Task<GoogleSignInAccount> task = GoogleSignIn.getSignedInAccountFromIntent(data);
             handleSignInResult(task);
         }
@@ -193,9 +186,13 @@ public class SignUpOptions extends AppCompatActivity {
     private void handleSignInResult(Task<GoogleSignInAccount> completedTask) {
         try {
             GoogleSignInAccount account = completedTask.getResult(ApiException.class);
+            String idToken = account.getIdToken();
+//            Log.d(TAG, idToken);
 
-            Intent i = new Intent(this,MainActivity.class);
-            startActivity(i);
+            authorizeBizcon(idToken);
+
+//            Intent i = new Intent(this,MainActivity.class);
+//            startActivity(i);
         } catch (ApiException e) {
             Log.d(TAG, "signInResult:failed code=" + e.getStatusCode());
         }
@@ -223,8 +220,6 @@ public class SignUpOptions extends AppCompatActivity {
                     String id = object.getString("id");
                     String image_url = "https://graph.facebook.com/"+id+"/picture?type=normal";
                     String email = object.getString("email");
-//                    String id= object.getString("id");
-//                    Log.i(TAG, "response: "+ response.toString());
                     Intent i = new Intent(getApplicationContext(),MainActivity.class);
                     i.putExtra("name",firstName+" "+lastName);
                     i.putExtra("fbImage",image_url);
@@ -241,6 +236,76 @@ public class SignUpOptions extends AppCompatActivity {
         parameters.putString("fields","first_name,last_name,email,id");
         request.setParameters(parameters);
         request.executeAsync();
+    }
+
+    private void authorizeBizcon(String id_token){
+
+//        JSONObject postparams = new JSONObject();
+//        try {
+//            postparams.put("token", id_token);
+//        } catch (JSONException e) {
+//            e.printStackTrace();
+//        }
+
+        JsonObjectRequest jsObjRequest = new JsonObjectRequest(Request.Method.GET, url+id_token,null,
+                new Response.Listener<JSONObject>() {
+                    @Override
+                    public void onResponse(JSONObject response) {
+//                        Gson gson = new Gson();
+//                        JSONArray jsonArray = response.optJSONArray("message");
+//                        Log.d(TAG, jsonArray+"");
+//                        Log.d(TAG, response.optJSONObject("message").toString());
+//                        JSONObject abcd = new JSONObject();
+//                        abcd = response;
+//                        Iterator<String> keys = response.keys();
+//
+//                        while(keys.hasNext()) {
+//                            String key = keys.next();
+//                            try {
+//                                if (response.get(key) instanceof JSONObject) {
+//
+//                                }
+//                            } catch (JSONException e) {
+//                                e.printStackTrace();
+//                            }
+//                        }
+
+                        try {
+//                            Log.d(TAG,response.get("message").toString());
+                            if(response.get("message").toString() == "true"){
+                                Intent i = new Intent(getApplicationContext(),MainActivity.class);
+                                startActivity(i);
+                            }else{
+                                Toast.makeText(getApplicationContext(),"Cannot authorize google user",Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_LONG).show();
+//                        Log.d(TAG, error.toString());
+                        Log.d(TAG, error.toString());
+//                        reply = false;
+                    }
+                });
+
+//        StringRequest stringObjectRequest = new StringRequest(Request, url, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response) {
+//
+//            }
+//
+//
+//        });
+
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsObjRequest);
+
+//        return true;
     }
 
 }

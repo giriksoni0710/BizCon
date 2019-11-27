@@ -6,10 +6,9 @@
     <string name="title_activity_sign_up_email">SignUpEmail</string>
     <string name="title_activity_detail_fragment">DetailActivityFragment</string>
     <string name="about_tab">What we do</string>
-    <!--    <string name="facebook_app_id">2470490759907098</string>-->
-    <!--    <string name="fb_login_protocol_scheme">fb2470490759907098</string>-->
     <string name="facebook_app_id">2470490759907098</string>
     <string name="fb_login_protocol_scheme">fb2470490759907098</string>
-
-
+<!--    <string name="server_client_id">961359602873-c06kmvif23e0lo0on2mu6pcrq4o5rith.apps.googleusercontent.com</string>-->
+<!--    <string name="server_client_id">961359602873-tb2epco1gickl0auj6uo2sdl1a82ft7m.apps.googleusercontent.com</string>-->
+    <string name="server_client_id">961359602873-dluua5fg015iht0qr0ihgkc972hpltq3.apps.googleusercontent.com</string>
 </resources>
