@@ -54,7 +54,7 @@
         <com.google.android.material.textfield.TextInputEditText
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:maxHeight="60dp"
+            android:maxHeight="80dp"
             android:id="@+id/biz_desc"
             android:hint="Business Description" />
     </com.google.android.material.textfield.TextInputLayout>

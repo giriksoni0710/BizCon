@@ -16,8 +16,10 @@
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselview"
         android:layout_width="match_parent"
-        android:layout_height="200dp"
-        android:layout_marginBottom="48dp"
+        android:layout_height="240dp"
+        android:layout_marginBottom="38dp"
+        android:layout_marginRight="30dp"
+        android:layout_marginLeft="30dp"
         app:fillColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -50,7 +52,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="SEE ALL"
+            android:text="@string/seeall"
             android:layout_marginRight="10dp"
             android:textColor="#ffa500"
             android:textSize="16dp">
@@ -144,7 +146,7 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:src="@drawable/music"
             android:layout_marginLeft="15dp"
             >
 
@@ -175,7 +177,7 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:src="@drawable/technology"
             android:layout_marginLeft="15dp"
             >
 
@@ -316,7 +318,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="right"
-            android:text="SEE ALL"
+            android:text="@string/seeall"
             android:layout_marginRight="10dp"
             android:textColor="#ffa500"
             android:textSize="16dp">
@@ -334,8 +336,8 @@
 
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="100dp"
-            android:layout_height="160dp"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
             android:layout_marginLeft="30dp"
             app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="3dp"
@@ -343,10 +345,10 @@
             app:cardUseCompatPadding="false">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
 
-                android:src="@drawable/blackandwhitebooksconnection251225"></ImageView>
+                android:src="@drawable/categorypage1"></ImageView>
 
             <TextView
                 android:layout_width="match_parent"
@@ -373,8 +375,8 @@
     </com.google.android.material.card.MaterialCardView>
 
         <com.google.android.material.card.MaterialCardView
-            android:layout_width="100dp"
-            android:layout_height="160dp"
+            android:layout_width="150dp"
+            android:layout_height="180dp"
             android:layout_marginLeft="30dp"
             app:cardBackgroundColor="#ffffff"
             app:cardCornerRadius="3dp"
@@ -382,48 +384,10 @@
             app:cardUseCompatPadding="false">
 
             <ImageView
-                android:layout_width="match_parent"
+                android:layout_width="150dp"
                 android:layout_height="100dp"
 
-                android:src="@drawable/bucketbuildingcleaner756883"></ImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="100dp"
-                android:text="Heading1"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                >
-
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="120dp"
-                android:text="Description"
-
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"></TextView>
-
-
-        </com.google.android.material.card.MaterialCardView>
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="100dp"
-            android:layout_height="160dp"
-            android:layout_marginLeft="30dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="false">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-
-                android:src="@drawable/blackandwhitebooksconnection251225"></ImageView>
+                android:src="@drawable/categorypage1"></ImageView>
 
             <TextView
                 android:layout_width="match_parent"
@@ -449,44 +413,6 @@
 
         </com.google.android.material.card.MaterialCardView>
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="100dp"
-            android:layout_height="160dp"
-            android:layout_marginLeft="30dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="false">
-
-            <ImageView
-                android:layout_width="match_parent"
-                android:layout_height="100dp"
-
-                android:src="@drawable/carpentercarpentrycloseup1249611"></ImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="100dp"
-                android:text="Heading1"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                >
-
-
-            </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="120dp"
-                android:text="Description"
-
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"></TextView>
-
-
-        </com.google.android.material.card.MaterialCardView>
 
     </LinearLayout>
 

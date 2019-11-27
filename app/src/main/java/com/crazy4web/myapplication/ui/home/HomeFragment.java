@@ -159,6 +159,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
         carouselView.setPageCount(images.length);
 
+
         carouselView.setImageListener(new ImageListener() {
             @Override
             public void setImageForPosition(int position, ImageView imageView) {
