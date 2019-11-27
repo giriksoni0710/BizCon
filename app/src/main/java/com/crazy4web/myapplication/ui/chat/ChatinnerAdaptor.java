@@ -104,7 +104,7 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
             return last_msg.size();
 
         else return 0;
-        }
+            }
         }
 
 

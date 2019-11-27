@@ -3,14 +3,15 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:orientation="vertical" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    >
 
     <ImageView
         android:id="@+id/imageView2"
         android:layout_width="300dp"
         android:layout_height="300dp"
         android:layout_gravity="center"
-        android:layout_marginTop="140dp"
+        android:layout_marginTop="120dp"
         android:src="@drawable/intro_image" />
 
     <TextView
@@ -20,18 +21,19 @@
         android:text="Heading"
         android:textStyle="bold"
         android:textSize="20dp"
-        android:layout_marginTop="20dp"
+        android:layout_marginTop="10dp"
         android:textAlignment="center"/>
 
     <TextView
         android:id="@+id/textView2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:textAlignment="center"
-        android:textSize="16dp"
+        android:layout_marginTop="2dp"
+        android:paddingLeft="80dp"
+        android:paddingRight="80dp"
+        android:maxWidth="50dp"
+        android:lineHeight="25dp"
         android:text="TextView"
-        android:layout_marginTop="20dp"
-        android:layout_margin="10dp"
-        android:padding="10dp"
-        />
+        android:textAlignment="center"
+        android:textSize="16dp" />
 </LinearLayout>

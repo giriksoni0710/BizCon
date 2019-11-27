@@ -5,6 +5,7 @@ import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -46,6 +47,14 @@ public class Business_page1 extends AppCompatActivity {
         company_name = findViewById(R.id.company_name);
         website_url = findViewById(R.id.url);
 
+        category.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+
+            }
+        });
+
         database = FirebaseFirestore.getInstance();
         SharedPreferences sp2 = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
         String googleEmailId = sp2.getString("googleEmailId","");
@@ -74,7 +83,11 @@ public class Business_page1 extends AppCompatActivity {
                 i.putExtra("googleEmailId",googleEmailId);
                 i.putExtra("fbEmailId",fbEmailId);
                 i.putExtra("emailId",emailId);
-                startActivity(i);
+
+                ActivityOptions options =
+                        ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.nav_default_pop_enter_anim, R.anim.nav_default_pop_exit_anim);
+
+                startActivity(i,options.toBundle());
 
 
             }
