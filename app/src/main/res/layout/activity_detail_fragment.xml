@@ -9,14 +9,28 @@
     <com.google.android.material.appbar.AppBarLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:theme="@style/AppBarOverlay">
+        app:elevation="0dp"
+        android:translationZ="0.1dp"
+        android:background="@color/toolbarcolor">
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbarCardDetail"
             android:layout_width="match_parent"
-            android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-             />
+            android:layout_height="wrap_content"
+
+            android:background="@drawable/detailedgradient"
+
+            >
+            <ImageView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:src="@drawable/like"
+                android:layout_marginLeft="370dp"
+                android:elevation="1dp"
+                >
+
+            </ImageView>
+        </androidx.appcompat.widget.Toolbar>
 
 <!--        android:layout_height="?attr/actionBarSize"-->
 

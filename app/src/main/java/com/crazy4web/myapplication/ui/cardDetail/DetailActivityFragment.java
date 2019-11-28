@@ -3,6 +3,7 @@ package com.crazy4web.myapplication.ui.cardDetail;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -65,9 +66,17 @@ public class DetailActivityFragment extends AppCompatActivity {
         setContentView(R.layout.activity_detail_fragment);
         Toolbar toolbar = findViewById(R.id.toolbarCardDetail);
         setSupportActionBar(toolbar);
+
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setElevation(0);
+        //        toolbar.setBackgroundColor(Color.parseColor("#000000"));
+
+
+
         if (getSupportActionBar() != null){
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
+
         }
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {

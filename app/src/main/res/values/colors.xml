@@ -8,5 +8,6 @@
         <color name="colorAccent">#FE9B18</color>
         <color name="dotsColor">#000000</color>
         <color name="appColor">#fe9b18</color>
+        <color name="toolbarcolor">#00ffffff</color>
     </resources>
 <!--</resources>-->
