@@ -57,7 +57,6 @@
             android:name=".MainActivity"
             android:label="@string/app_name"
             android:windowSoftInputMode="adjustPan">
-
         </activity>
         <activity
             android:name="com.facebook.FacebookActivity"

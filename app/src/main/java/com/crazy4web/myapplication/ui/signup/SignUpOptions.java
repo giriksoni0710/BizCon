@@ -66,7 +66,8 @@ public class SignUpOptions extends AppCompatActivity {
     LoginButton fb_signup;
     CallbackManager callbackManager;
 
-    SignInButton google_signup;
+    Button google_signup;
+//    SignInButton google_signup;
     GoogleSignInClient mGoogleSignInClient;
     private String url = "https://operator.ankurkaul.com/bizcon/authorize?token=";
 //    private String url = "https://operator.ankurkaul.com/bizcon/test?token=";
@@ -290,5 +291,19 @@ public class SignUpOptions extends AppCompatActivity {
         requestQueue.add(jsObjRequest);
 
     }
+
+//    protected void setGoogleButtonText(SignInButton signInButton, String buttonText) {
+//        // Find the TextView that is inside of the SignInButton and set its text
+//        for (int i = 0; i < signInButton.getChildCount(); i++) {
+//            View v = signInButton.getChildAt(i);
+//
+//            if (v instanceof TextView) {
+//                TextView tv = (TextView) v;
+//                tv.setText(buttonText);
+//                return;
+//            }
+//        }
+//    }
+
 
 }

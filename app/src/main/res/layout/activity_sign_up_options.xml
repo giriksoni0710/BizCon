@@ -28,7 +28,7 @@
         android:layout_width="200dp"
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
-        android:src="@drawable/ic_home_black_24dp"
+        android:src="@drawable/logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/appBarLayout" />
@@ -44,17 +44,22 @@
 <!--        app:layout_constraintTop_toBottomOf="@+id/bizcon_logo" />-->
 
     <com.facebook.login.widget.LoginButton
+        xmlns:facebook="http://schemas.android.com/apk/res-auto"
         android:id="@+id/login_button"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_gravity="center_horizontal"
-        android:layout_marginTop="30dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="15dp"
+        facebook:com_facebook_login_text="CONTINUE WITH FACEBOOK"
+        android:textSize="15dp"
+        android:layout_marginTop="100dp"
         android:layout_marginBottom="30dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/bizcon_logo" />
 
-    <!--    <Button-->
+        <!--    <Button-->
 <!--        android:id="@+id/google_signup"-->
 <!--        android:layout_width="350dp"-->
 <!--        android:layout_height="50dp"-->
@@ -64,14 +69,28 @@
 <!--        app:layout_constraintStart_toStartOf="parent"-->
 <!--        app:layout_constraintTop_toBottomOf="@+id/fb_signup" />-->
 
-    <com.google.android.gms.common.SignInButton
+<!--    <com.google.android.gms.common.SignInButton-->
+<!--        android:id="@+id/sign_in_button"-->
+<!--        android:layout_width="350dp"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_marginTop="12dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toBottomOf="@+id/login_button" />-->
+
+
+    <Button
         android:id="@+id/sign_in_button"
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
+        android:text="Continue with google"
+        android:letterSpacing="0.1"
+        android:background="#4285f4"
+        android:textColor="#ffffff"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/login_button" />
+        app:layout_constraintTop_toBottomOf="@+id/login_button"/>
 
     <Button
         android:id="@+id/email_signup"
@@ -79,6 +98,9 @@
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
         android:text="SignUp with Email"
+        android:background="#fe9b18"
+        android:textColor="#000000"
+        android:letterSpacing="0.1"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/sign_in_button" />
