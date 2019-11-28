@@ -13,12 +13,16 @@ import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
+import com.bumptech.glide.request.RequestOptions;
 import com.crazy4web.myapplication.R;
 
 import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
+
+import static com.facebook.FacebookSdk.getApplicationContext;
 
 public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyViewHolder>  {
 
@@ -31,7 +35,7 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
 
             public ConstraintLayout constraintLayout;
             public TextView sentmsg,received;
-            public ImageView imageView;
+            public ImageView imageView, senderimage;
 
 
 
@@ -43,6 +47,7 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
                 sentmsg = v.findViewById(R.id.sent_msg);
                 received = v.findViewById(R.id.received_msg);
                 imageView = v.findViewById(R.id.business_image_category);
+                senderimage = v.findViewById(R.id.sender_image);
             }
         }
 
@@ -68,6 +73,7 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
 
 
             MyViewHolder vh = new MyViewHolder(v);
+
             return vh;
 
         }
@@ -77,6 +83,7 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
 
         Log.d("sentmsgs"+sent_msg.size(),"rcvd"+last_msg.size());
 
+
         if(sent_msg.size()>0)
 
 
@@ -84,13 +91,20 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
                     holder.sentmsg.setText(sent_msg.get(position).replaceAll("\"", ""));
                 }
                 else if(sent_msg.size()-1<=position){
-                    holder.sentmsg.setVisibility(View.INVISIBLE);
+                    holder.sentmsg.setVisibility(View.GONE);
                 }
 
             if(last_msg.size()>=1 && last_msg.size()-1 >= position) {
                   holder.received.setText(last_msg.get(position).replaceAll("\"", ""));
-              }else if(last_msg.size()-1<= position){
-                    holder.received.setVisibility(View.INVISIBLE);
+                Glide.with(mcon)
+                        .load(R.drawable.categorypage1)
+                        .apply(RequestOptions.circleCropTransform())
+                        .into(holder.senderimage);
+
+            }else if(last_msg.size()-1<= position){
+                    holder.received.setTextSize(0);
+                holder.received.setPadding(0,0,0,0);
+                holder.senderimage.setImageResource(0);
 
                 }
         }
