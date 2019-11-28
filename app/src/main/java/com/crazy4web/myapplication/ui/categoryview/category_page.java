@@ -19,6 +19,7 @@ import com.google.gson.JsonObject;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 public class category_page extends AppCompatActivity {
@@ -30,6 +31,8 @@ public class category_page extends AppCompatActivity {
 
     FirebaseFirestore database;
     ArrayList biz_name, tagline;
+    List<String> docIds = new ArrayList<>();
+    private static final String TAG = "category_page";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -92,6 +95,8 @@ public class category_page extends AppCompatActivity {
                 for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
 
 
+                    docIds.add(documentSnapshot.getId());
+
 
                     Map data = new HashMap();
 
@@ -117,7 +122,7 @@ public class category_page extends AppCompatActivity {
                     Log.d("Biz", biz_name+""+""+tagline);
 
 
-                    madaptor = new CategoryAdaptor(getApplicationContext(), biz_name, tagline);
+                    madaptor = new CategoryAdaptor(getApplicationContext(), biz_name, tagline, docIds);
                     recyclerView.setLayoutManager(mlayoutmanager);
 
                     recyclerView.setAdapter(madaptor);

@@ -1,6 +1,7 @@
 package com.crazy4web.myapplication.ui.categoryview;
 
 import android.content.Context;
+import android.content.Intent;
 import android.net.Uri;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -16,12 +17,14 @@ import androidx.recyclerview.widget.RecyclerView;
 
 import com.bumptech.glide.Glide;
 import com.crazy4web.myapplication.R;
+import com.crazy4web.myapplication.ui.cardDetail.DetailActivityFragment;
 import com.crazy4web.myapplication.ui.chat.MyAdaptor;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import static com.facebook.FacebookSdk.getApplicationContext;
 
@@ -30,6 +33,7 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.MyView
 
         private Context mcon;
         ArrayList company_name, tagline;
+        List<String> docIds = new ArrayList<>();
 
 
 
@@ -55,21 +59,12 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.MyView
         }
 
 
-        public CategoryAdaptor(Context con, ArrayList biz_name, ArrayList tagline) {
-
-
+        public CategoryAdaptor(Context con, ArrayList biz_name, ArrayList tagline, List<String> docIds) {
             mcon = con;
             this.tagline = tagline;
-
             this.company_name = biz_name;
-
-
+            this.docIds = docIds;
         }
-
-
-
-
-
 
         @Override
         public CategoryAdaptor.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
@@ -113,16 +108,13 @@ public class CategoryAdaptor extends RecyclerView.Adapter<CategoryAdaptor.MyView
 
                     // here I have to call the individual chats of the user on click
                     // I will leave it like this for now
-                    Log.d("click","works");
-//               Intent i = new Intent(mcon, MainActivity.class);
-
-
-
+                    Intent i = new Intent(getApplicationContext(), DetailActivityFragment.class);
+                    i.putExtra("docId",docIds.get(position));
+                    i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    mcon.startActivity(i);
 
                 }
             });
-
-
 
         }
 
