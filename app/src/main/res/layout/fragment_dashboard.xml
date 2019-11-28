@@ -42,19 +42,43 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView12" />
 
-    <ImageView
+
+<!--    <LinearLayout-->
+<!--        android:id="@+id/pic_linear"-->
+<!--        android:layout_width="100dp"-->
+<!--        android:layout_height="100dp"-->
+<!--        android:layout_marginTop="50dp"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintTop_toTopOf="parent"-->
+<!--        android:background="@drawable/layerlist">-->
+
+    <de.hdodenhof.circleimageview.CircleImageView
         android:id="@+id/pic"
-        android:layout_width="100dp"
-        android:layout_height="100dp"
-        android:layout_marginTop="50dp"
-        android:focusable="false"
-        android:background="@drawable/circularimage"
-        android:focusableInTouchMode="false"
+        android:layout_width="130dp"
+        android:layout_height="130dp"
+        app:civ_border_width="0dp"
+        android:layout_marginTop="40dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:srcCompat="@mipmap/ic_launcher_round" />
+        app:layout_constraintTop_toTopOf="parent" />
 
+<!--    app:layout_constraintEnd_toEndOf="parent"-->
+<!--    app:layout_constraintStart_toStartOf="parent"-->
+<!--    app:layout_constraintTop_toTopOf="parent"-->
+
+<!--        <ImageView-->
+<!--            android:id="@+id/pic"-->
+<!--            android:layout_width="100dp"-->
+<!--            android:layout_height="100dp"-->
+<!--            android:layout_marginTop="50dp"-->
+<!--            android:src="@drawable/categorypage1"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintTop_toTopOf="parent"-->
+<!--            />-->
+
+<!--    </LinearLayout>-->
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/dashboardRecyclerItems"-->
 <!--        android:layout_width="match_parent"-->

@@ -5,8 +5,10 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.os.Bundle;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +21,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.annotation.NonNull;
+import androidx.core.content.ContextCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
@@ -52,17 +55,14 @@ public class DashboardFragment extends Fragment {
     RecyclerAdapter recyclerAdapter;
     Intent intent;
     SharedPreferences sp;
-    TextView textView12;
+    TextView textView12, dashboardMenuItems;
     ImageView pic;
     private static final String TAG = "DashboardFragment";
     private DashboardViewModel dashboardViewModel;
 
     public View onCreateView(@NonNull LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-//        dashboardViewModel = ViewModelProviders.of(this).get(DashboardViewModel.class);
-//        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
-                View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
+        View root = inflater.inflate(R.layout.fragment_dashboard, container, false);
         listViewDashboard = root.findViewById(R.id.listViewDashboard);
-//        recyclerView = root.findViewById(R.id.dashboardRecyclerItems);
 
         textView12 = root.findViewById(R.id.textView12);
         pic = root.findViewById(R.id.pic);
@@ -126,17 +126,26 @@ public class DashboardFragment extends Fragment {
 //        recyclerView.addItemDecoration(new DividerItemDecoration(git recyclerView.getContext(), DividerItemDecoration.VERTICAL));
 
 
-        ArrayAdapter listAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1, menuItems);
+        ArrayAdapter listAdapter = new ArrayAdapter(getContext(),android.R.layout.simple_list_item_1, menuItems){
+
+            @NonNull
+            @Override
+            public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
+
+                View view = super.getView(position,convertView,parent);
+                dashboardMenuItems = view.findViewById(android.R.id.text1);
+                dashboardMenuItems.setTextColor(Color.parseColor("#fe9b18"));
+                dashboardMenuItems.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
+
+                return view;
+            }
+        };
         listViewDashboard.setAdapter(listAdapter);
         listViewDashboard.setOnItemClickListener(new AdapterView.OnItemClickListener(){
 
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-//                Log.d(TAG, "tapped"+i);
-//                Toast.makeText(getContext(), "clicked item: "+i, Toast.LENGTH_LONG).show();
-//                if(i == 2){
-//
-//                }
+
                 switch (i) {
 
                     case 2:
