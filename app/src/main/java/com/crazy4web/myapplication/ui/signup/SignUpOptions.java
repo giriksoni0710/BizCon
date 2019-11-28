@@ -1,15 +1,19 @@
 package com.crazy4web.myapplication.ui.signup;
 
 import androidx.annotation.NonNull;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -67,13 +71,13 @@ public class SignUpOptions extends AppCompatActivity {
     CallbackManager callbackManager;
 
     Button google_signup;
-//    SignInButton google_signup;
     GoogleSignInClient mGoogleSignInClient;
     private String url = "https://operator.ankurkaul.com/bizcon/authorize?token=";
 //    private String url = "https://operator.ankurkaul.com/bizcon/test?token=";
     Boolean reply;
     ProgressBar progressBar;
-
+    ImageView bizcon_logo;
+    EditText input;
 
     private static final String TAG = "SignUpOptions";
 
@@ -88,6 +92,49 @@ public class SignUpOptions extends AppCompatActivity {
             Intent intent2 = new Intent(getApplicationContext(), MainActivity.class);
             startActivity(intent2);
         }
+
+
+//        bizcon_logo = findViewById(R.id.bizcon_logo);
+//        bizcon_logo.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
+//                builder.setMessage("How many Cards?");
+//
+//                input = new EditText(getApplicationContext());
+//                builder.setView(input);
+//
+//
+////          Set positive button
+//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        //capture the input here
+//                        String inp = input.getText().toString();
+//                        Toast.makeText(getApplicationContext(),"input is: "+inp, Toast.LENGTH_LONG).show();
+//
+////                        webView.evaluateJavascript("addNode("+inp+")",value->{
+////                            Log.d("WEBVIEW","returned from webview is -> "+value);
+////                        });
+//                    }
+//                });
+//
+////          Set negative button
+//                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
+//                    @Override
+//                    public void onClick(DialogInterface dialog, int which) {
+//                        dialog.dismiss();
+//                    }
+//                });
+//
+////          Create the actual dialog box
+//                AlertDialog box = builder.create();
+//
+//
+////          Alert dialog endss
+//                box.show();
+//            }
+//        });
 
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);

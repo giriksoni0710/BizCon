@@ -97,7 +97,7 @@
         android:layout_width="350dp"
         android:layout_height="50dp"
         android:layout_marginTop="12dp"
-        android:text="SignUp with Email"
+        android:text="Sign Up with Email"
         android:background="#fe9b18"
         android:textColor="#000000"
         android:letterSpacing="0.1"

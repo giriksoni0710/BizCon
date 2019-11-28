@@ -27,7 +27,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="@+id/recyclerView"
             app:layout_constraintVertical_bias="0.899"
-            app:srcCompat="@android:drawable/stat_notify_chat" />
+            app:srcCompat="@drawable/ic_chat_black_24dp" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/recyclerView"

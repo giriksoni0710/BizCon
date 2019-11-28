@@ -79,6 +79,17 @@ public class chat_screen extends AppCompatActivity {
         send_img = findViewById(R.id.send_img);
         message = findViewById(R.id.type_message);
         setSupportActionBar(toolbar);
+        if (getSupportActionBar() != null){
+            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+            getSupportActionBar().setDisplayShowHomeEnabled(true);
+        }
+
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         recyclerView = findViewById(R.id.recycler_inner_chat);
