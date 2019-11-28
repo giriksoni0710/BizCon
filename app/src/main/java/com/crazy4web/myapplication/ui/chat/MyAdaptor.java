@@ -76,7 +76,7 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
 
 
 
-        holder.usrname.setText(biz_name.get(position).toUpperCase().toString().replaceAll("\"",""));
+        holder.usrname.setText(biz_name.get(position).toString().replaceAll("\"",""));
         holder.lstmsg.setText(last_msg.get(position).toString().replaceAll("\"",""));
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
