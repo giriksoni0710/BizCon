@@ -48,6 +48,7 @@
         android:layout_height="100dp"
         android:layout_marginTop="50dp"
         android:focusable="false"
+        android:background="@drawable/circularimage"
         android:focusableInTouchMode="false"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

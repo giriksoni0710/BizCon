@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fillViewport="true"
+    android:fillViewport="false"
     xmlns:android="http://schemas.android.com/apk/res/android" >
 <LinearLayout
     android:layout_width="match_parent"
@@ -12,25 +12,24 @@
     android:orientation="vertical">
 
 
-
     <com.synnapps.carouselview.CarouselView
         android:id="@+id/carouselview"
         android:layout_width="match_parent"
-        android:layout_height="240dp"
-        android:layout_marginBottom="38dp"
-        android:layout_marginRight="30dp"
-        android:layout_marginLeft="30dp"
+        android:layout_height="200dp"
+        android:background="@drawable/carouselcorner"
         app:fillColor="#000000"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
-        app:pageColor="#00000000"
-        app:radius="6dp"
+        app:pageColor="#000000"
+        android:layout_marginLeft="30dp"
+        android:layout_marginRight="30dp"
+        app:radius="4dp"
+        android:layout_marginBottom="20dp"
         app:slideInterval="2000"
         app:strokeColor="#000000"
         app:strokeWidth="1dp"></com.synnapps.carouselview.CarouselView>
-
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -44,9 +43,12 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="17dp"
             android:text="Categories"
-            android:layout_marginLeft="10dp"></TextView>
+            android:textColor="#323232"
+            android:letterSpacing="0.05"
+            android:layout_marginLeft="10dp"
+            android:textStyle="bold"></TextView>
 
         <TextView
             android:layout_width="match_parent"
@@ -65,6 +67,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:fillViewport="true"
+    android:scrollbars="none"
     >
     <LinearLayout
         android:layout_width="match_parent"
@@ -310,9 +313,13 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:textSize="16dp"
+            android:textSize="17dp"
             android:text="Recommended for you"
-            android:layout_marginLeft="10dp"></TextView>
+
+            android:textColor="#323232"
+            android:layout_marginLeft="10dp"
+            android:letterSpacing="0.05"
+            android:textStyle="bold"></TextView>
 
         <TextView
             android:layout_width="match_parent"
@@ -332,45 +339,51 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="horizontal"
-        android:layout_marginTop="10dp">
+        android:layout_marginTop="20dp"
+        android:paddingBottom="10dp">
 
 
         <com.google.android.material.card.MaterialCardView
             android:layout_width="150dp"
-            android:layout_height="180dp"
+            android:layout_height="218dp"
             android:layout_marginLeft="30dp"
             app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="8dp"
+            app:cardCornerRadius="6dp"
+            app:cardElevation="12dp"
+            android:layout_marginBottom="15dp"
             app:cardUseCompatPadding="false">
 
             <ImageView
                 android:layout_width="150dp"
-                android:layout_height="100dp"
-
+                android:layout_height="150dp"
+                android:scaleType="fitXY"
+                android:adjustViewBounds="true"
                 android:src="@drawable/categorypage1"></ImageView>
 
             <TextView
                 android:layout_width="match_parent"
                 android:layout_height="20dp"
-                android:layout_marginTop="100dp"
-                android:text="Heading1"
+                android:layout_marginTop="160dp"
+                android:textFontWeight="600"
+                android:textSize="17dp"
+                android:text="Name"
                 android:paddingLeft="8dp"
-                    android:paddingTop="5dp"
                 >
 
 
             </TextView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="120dp"
-                android:text="Description"
-
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"></TextView>
-
+            <RatingBar
+                android:id="@+id/rating"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="6dp"
+                android:layout_marginTop="184dp"
+                android:isIndicator="true"
+                android:numStars="5"
+                android:stepSize="0.1"
+                android:rating="4"
+                android:paddingBottom="20dp"></RatingBar>
 
     </com.google.android.material.card.MaterialCardView>
 
@@ -406,7 +419,6 @@
                 android:layout_height="30dp"
                 android:layout_marginTop="120dp"
                 android:text="Description"
-
                 android:paddingLeft="8dp"
                 android:paddingTop="5dp"></TextView>
 
@@ -420,9 +432,13 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Newly added"
+        android:textColor="#323232"
+        android:letterSpacing="0.05"
         android:layout_marginLeft="30dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="10dp"
+        android:textSize="17dp"
         android:layout_marginBottom="5dp"
+        android:textStyle="bold"
         ></TextView>
 
     <LinearLayout

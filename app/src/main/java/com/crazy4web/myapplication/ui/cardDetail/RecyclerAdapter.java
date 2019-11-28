@@ -49,40 +49,7 @@ public RecyclerAdapter(ArrayList<String> val) {
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-//        database = FirebaseFirestore.getInstance();
-//        database.collection("business").document(id).get().addOnCompleteListener(task ->{
-//            if(task.isSuccessful()){
-//                Log.d(TAG, ""+task.getResult().getData());
-//                task.getResult().getData().forEach((key, value)->{
-////                    Log.d(TAG, key+" -> "+value);
-////                    arr.add(value.toString());
-//                    if(key.contains("services")){
-////                        Log.d(TAG, value.toString());
-//                        Log.d(TAG, "onBindViewHolder: ");
-//
-//                        val = (ArrayList<String>) value;
-//
-//
-////                        String[] stringValues = (String[])value[position];
-////                        JSONArray val = new JSONArray();
-//
-////                        val.put()
-////                        String[] strings = (String[]) ((Object[])value)[position];
-//
-//
-////                        try {
-                            holder.serviceRow.setText((val.get(position)));
-////                        } catch (JSONException e) {
-////                            e.printStackTrace();
-////                        }
-//                    }
-//                });
-//            }
-//        });
-
-//        holder.serviceRow.setText(service);
-//        Log.d(TAG, "from recycler adapter after service.setText is done to: "+service);
-//        Log.d(TAG, "serv: "+service);
+        holder.serviceRow.setText("\u2022 "+val.get(position));
     }
 
     @Override

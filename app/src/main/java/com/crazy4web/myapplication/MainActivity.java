@@ -112,6 +112,7 @@ public class MainActivity extends AppCompatActivity {
         NavController navController = Navigation.findNavController(this, R.id.nav_host_fragment);
 
 
+
         // I commented it to avoid nullpoint exception as I was changing the theme to Noactionbar
         // please uncomment if you would like to use actionbar
 
