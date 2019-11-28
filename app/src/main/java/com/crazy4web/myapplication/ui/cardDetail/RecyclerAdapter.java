@@ -13,15 +13,26 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.crazy4web.myapplication.R;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.ArrayList;
+
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private static final String TAG = "RecyclerAdapter";
     String service,id;
     FirebaseFirestore database;
+    ArrayList<String> val = new ArrayList<>();
 
-    public RecyclerAdapter(String id) {
-//        this.service = service;
-        this.id = id;
+//    public RecyclerAdapter(String id) {
+////        this.service = service;
+//        this.id = id;
+//    }
+public RecyclerAdapter(ArrayList<String> val) {
+        this.val = val;
+//        this.id = id;
     }
 
     @NonNull
@@ -38,20 +49,36 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, final int position) {
-        database = FirebaseFirestore.getInstance();
-        database.collection("business").document(id).get().addOnCompleteListener(task ->{
-            if(task.isSuccessful()){
-                Log.d(TAG, ""+task.getResult().getData());
-                task.getResult().getData().forEach((key, value)->{
-//                    Log.d(TAG, key+" -> "+value);
-//                    arr.add(value.toString());
-                    if(key.contains("services")){
-//                        Log.d(TAG, value.toString());
-                        holder.serviceRow.setText(value.toString());
-                    }
-                });
-            }
-        });
+//        database = FirebaseFirestore.getInstance();
+//        database.collection("business").document(id).get().addOnCompleteListener(task ->{
+//            if(task.isSuccessful()){
+//                Log.d(TAG, ""+task.getResult().getData());
+//                task.getResult().getData().forEach((key, value)->{
+////                    Log.d(TAG, key+" -> "+value);
+////                    arr.add(value.toString());
+//                    if(key.contains("services")){
+////                        Log.d(TAG, value.toString());
+//                        Log.d(TAG, "onBindViewHolder: ");
+//
+//                        val = (ArrayList<String>) value;
+//
+//
+////                        String[] stringValues = (String[])value[position];
+////                        JSONArray val = new JSONArray();
+//
+////                        val.put()
+////                        String[] strings = (String[]) ((Object[])value)[position];
+//
+//
+////                        try {
+                            holder.serviceRow.setText((val.get(position)));
+////                        } catch (JSONException e) {
+////                            e.printStackTrace();
+////                        }
+//                    }
+//                });
+//            }
+//        });
 
 //        holder.serviceRow.setText(service);
 //        Log.d(TAG, "from recycler adapter after service.setText is done to: "+service);
@@ -60,7 +87,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public int getItemCount() {
-        return 2;
+        return val.size();
     }
 
     class ViewHolder extends RecyclerView.ViewHolder{
