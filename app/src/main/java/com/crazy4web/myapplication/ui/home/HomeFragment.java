@@ -50,12 +50,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     Intent intent;
     FirebaseFirestore database;
     TextView businessname;
-    RecyclerView recyclerView;
+    RecyclerView recyclerView, recommendationRecyclerView;
     RecyclerView.Adapter recycleradaptor;
     RecyclerView.LayoutManager layoutManager;
     private String prefFile = "com.crazy4web.myapplication.userdata";
     JsonObject jsonObject;
     SharedPreferences sharedPreferences;
+    CardView recommendationCard;
 
     public LinearLayout linearLayout_technology, linearLayout_music, linearLayout_art,
             linearLayout_advertising, linearLayout_designing, linearLayout_household, linearLayout_fashion;
@@ -74,6 +75,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
         String finaldata;
+
+        //recommendation recycler view
+
+        recommendationRecyclerView = root.findViewById(R.id.recommendationRecyclerView);
+        HomeRecommendationAdapter homeRecommendationAdapter = new HomeRecommendationAdapter();
+        recommendationRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+        recommendationRecyclerView.setAdapter(homeRecommendationAdapter);
 
         businessname = root.findViewById(R.id.business_name);
         database = FirebaseFirestore.getInstance();

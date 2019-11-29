@@ -336,96 +336,101 @@
 
 
     <LinearLayout
+        android:id="@+id/recommendationCardLinearHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="horizontal"
         android:layout_marginTop="20dp"
+        android:orientation="horizontal"
         android:paddingBottom="10dp">
 
 
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="150dp"
-            android:layout_height="218dp"
-            android:layout_marginLeft="30dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="6dp"
-            app:cardElevation="12dp"
-            android:layout_marginBottom="15dp"
-            app:cardUseCompatPadding="false">
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:id="@+id/recommendationCard"-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="218dp"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            android:layout_marginBottom="15dp"-->
+<!--            app:cardBackgroundColor="#ffffff"-->
+<!--            app:cardCornerRadius="6dp"-->
+<!--            app:cardElevation="12dp"-->
+<!--            app:cardUseCompatPadding="false">-->
 
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="150dp"
-                android:scaleType="fitXY"
-                android:adjustViewBounds="true"
-                android:src="@drawable/categorypage1"></ImageView>
+<!--            <ImageView-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="150dp"-->
+<!--                android:adjustViewBounds="true"-->
+<!--                android:scaleType="fitXY"-->
+<!--                android:src="@drawable/categorypage1"></ImageView>-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="160dp"
-                android:textFontWeight="600"
-                android:textSize="17dp"
-                android:text="Name"
-                android:paddingLeft="8dp"
-                >
-
-
-            </TextView>
-            <RatingBar
-                android:id="@+id/rating"
-                style="?android:attr/ratingBarStyleSmall"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="6dp"
-                android:layout_marginTop="184dp"
-                android:isIndicator="true"
-                android:numStars="5"
-                android:stepSize="0.1"
-                android:rating="4"
-                android:paddingBottom="20dp"></RatingBar>
-
-    </com.google.android.material.card.MaterialCardView>
-
-        <com.google.android.material.card.MaterialCardView
-            android:layout_width="150dp"
-            android:layout_height="180dp"
-            android:layout_marginLeft="30dp"
-            app:cardBackgroundColor="#ffffff"
-            app:cardCornerRadius="3dp"
-            app:cardElevation="8dp"
-            app:cardUseCompatPadding="false">
-
-            <ImageView
-                android:layout_width="150dp"
-                android:layout_height="100dp"
-
-                android:src="@drawable/categorypage1"></ImageView>
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="20dp"
-                android:layout_marginTop="100dp"
-                android:text="Heading1"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"
-                >
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginTop="160dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:text="Name"-->
+<!--                android:textFontWeight="600"-->
+<!--                android:textSize="17dp">-->
 
 
-            </TextView>
+<!--            </TextView>-->
 
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="30dp"
-                android:layout_marginTop="120dp"
-                android:text="Description"
-                android:paddingLeft="8dp"
-                android:paddingTop="5dp"></TextView>
+<!--            <RatingBar-->
+<!--                android:id="@+id/rating"-->
+<!--                style="?android:attr/ratingBarStyleSmall"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="6dp"-->
+<!--                android:layout_marginTop="184dp"-->
+<!--                android:isIndicator="true"-->
+<!--                android:numStars="5"-->
+<!--                android:paddingBottom="20dp"-->
+<!--                android:rating="4"-->
+<!--                android:stepSize="0.1"></RatingBar>-->
+
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+<!--        <com.google.android.material.card.MaterialCardView-->
+<!--            android:layout_width="150dp"-->
+<!--            android:layout_height="180dp"-->
+<!--            android:layout_marginLeft="30dp"-->
+<!--            app:cardBackgroundColor="#ffffff"-->
+<!--            app:cardCornerRadius="3dp"-->
+<!--            app:cardElevation="8dp"-->
+<!--            app:cardUseCompatPadding="false">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="150dp"-->
+<!--                android:layout_height="100dp"-->
+
+<!--                android:src="@drawable/categorypage1"></ImageView>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="20dp"-->
+<!--                android:layout_marginTop="100dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:text="Heading1">-->
 
 
-        </com.google.android.material.card.MaterialCardView>
+<!--            </TextView>-->
+
+<!--            <TextView-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="30dp"-->
+<!--                android:layout_marginTop="120dp"-->
+<!--                android:paddingLeft="8dp"-->
+<!--                android:paddingTop="5dp"-->
+<!--                android:text="Description"></TextView>-->
 
 
+<!--        </com.google.android.material.card.MaterialCardView>-->
+
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/recommendationRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
     </LinearLayout>
 
     <TextView
