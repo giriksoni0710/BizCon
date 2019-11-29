@@ -52,13 +52,14 @@ public class DetailActivityFragment extends AppCompatActivity {
     private String prefFile = "com.crazy4web.myapplication.userdata";
     String id;
     private static final String TAG = "DetailActivityFragment";
-    RecyclerView recyclerView;
+    RecyclerView recyclerView,recyclerViewReviews;
     RecyclerAdapter recyclerAdapter;
+    RecyclerAdapterReviews recyclerAdapterReviews;
     TextView businessDesc, companyName, company_desc;
     ImageView img;
     FirebaseStorage firebaseStorage;
     ArrayList<String> val = new ArrayList<>();
-//    String cat;
+    TextView write_a_review;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -184,6 +185,26 @@ public class DetailActivityFragment extends AppCompatActivity {
                                 finish();
                             }
                         });
+                        break;
+
+                    case 2:
+
+
+                        recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
+
+                        //        write a review
+                        write_a_review = findViewById(R.id.write_a_review);
+                        write_a_review.setOnClickListener(new View.OnClickListener() {
+                            @Override
+                            public void onClick(View view) {
+                                Intent intentReview = new Intent(getApplicationContext(), WriteReview.class);
+                                startActivity(intentReview);
+                            }
+                        });
+                        recyclerAdapterReviews = new RecyclerAdapterReviews();
+                        recyclerViewReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        recyclerViewReviews.setAdapter(recyclerAdapterReviews);
+
                         break;
                 }
 
