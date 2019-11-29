@@ -3,6 +3,7 @@ package com.crazy4web.myapplication;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.net.Uri;
 import android.os.Bundle;
 import android.speech.RecognizerIntent;
@@ -74,6 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 speechtotext.setVisibility(View.VISIBLE);
                 backarrow.setVisibility(View.VISIBLE);
                 searchView.onActionViewExpanded();
+
                 homesearchtitle.setVisibility(View.INVISIBLE);
                 ViewCompat.setTranslationZ(backarrow, 1);
 

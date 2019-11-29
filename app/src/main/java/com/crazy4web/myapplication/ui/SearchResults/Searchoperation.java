@@ -1,11 +1,13 @@
 package com.crazy4web.myapplication.ui.SearchResults;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.categoryview.CategoryAdaptor;
@@ -47,6 +49,22 @@ public class Searchoperation extends AppCompatActivity {
         recyclerView = findViewById(R.id.recycler_view_category);
 
         mlayoutmanager = new LinearLayoutManager(getApplicationContext());
+
+        Toolbar toolbar = findViewById(R.id.toolbarCategoryList);
+
+        setSupportActionBar(toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setTitle("Search Results");
+        toolbar.setElevation(0);
+
+        // destroying the current intent on back button press to
+        // go to the place where the intent was issued from
+        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                finish();
+            }
+        });
 
 
         database = FirebaseFirestore.getInstance();

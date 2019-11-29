@@ -84,6 +84,9 @@ public class chat_screen extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
+        getSupportActionBar().setDisplayShowTitleEnabled(false);
+        getSupportActionBar().setElevation(0);
+
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

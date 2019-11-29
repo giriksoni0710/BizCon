@@ -43,6 +43,7 @@ public class category_page extends AppCompatActivity {
 
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        toolbar.setElevation(0);
 
         // destroying the current intent on back button press to
         // go to the place where the intent was issued from
@@ -64,6 +65,8 @@ public class category_page extends AppCompatActivity {
         Bundle bundle = getIntent().getExtras();
 
         Category_name = bundle.getString("category-name");
+
+        getSupportActionBar().setTitle(Category_name);
 
         database = FirebaseFirestore.getInstance();
 
