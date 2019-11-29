@@ -17,12 +17,11 @@
         app:srcCompat="@mipmap/ic_launcher" />
 
     <TextView
-        android:id="@+id/textView"
+        android:id="@+id/uName"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="24dp"
         android:layout_marginTop="22dp"
-        android:text="Rebel electronics"
         android:textAppearance="@style/TextAppearance.AppCompat.Large"
         app:layout_constraintStart_toEndOf="@+id/imageView"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
@@ -35,19 +34,18 @@
         android:layout_marginStart="24dp"
         android:isIndicator="true"
         android:numStars="5"
-        android:rating="4"
         android:stepSize="0.1"
         app:layout_constraintStart_toEndOf="@+id/imageView"
-        app:layout_constraintTop_toBottomOf="@+id/textView" />
+        app:layout_constraintTop_toBottomOf="@+id/uName" />
 
     <TextView
-        android:id="@+id/textView4"
+        android:id="@+id/comment"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginTop="16dp"
-        android:layout_marginBottom="100dp"
-        android:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit. Vivamus a sagittis orci, vel ultrices lorem. Vestibulum vehicula nisl eu augue euismod, eu finibus neque elementum. Vivamus hendrerit nunc rutrum vestibulum fringilla."
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="5dp"
         android:textAppearance="@style/TextAppearance.AppCompat.Small"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/rating"
         app:layout_constraintTop_toBottomOf="@+id/rating" />
 

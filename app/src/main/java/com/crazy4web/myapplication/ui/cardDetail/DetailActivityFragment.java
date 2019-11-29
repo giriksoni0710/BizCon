@@ -35,6 +35,8 @@ import com.google.firebase.firestore.CollectionReference;
 import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.QueryDocumentSnapshot;
+import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.storage.FirebaseStorage;
 import com.google.firebase.storage.StorageReference;
 
@@ -60,6 +62,9 @@ public class DetailActivityFragment extends AppCompatActivity {
     FirebaseStorage firebaseStorage;
     ArrayList<String> val = new ArrayList<>();
     TextView write_a_review;
+    List<Map> ratingsList = new ArrayList<>();
+    int count =0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -102,7 +107,6 @@ public class DetailActivityFragment extends AppCompatActivity {
         ArrayList<String> arr = new ArrayList<>();
         database.collection("business").document(id).get().addOnCompleteListener(task ->{
             if(task.isSuccessful()){
-//                Log.d(TAG, "onCreate: "+task.getResult().getData());
                 task.getResult().getData().forEach((key, value)->{
 //                    Log.d(TAG, key+" -> "+value);
                     arr.add(value.toString());
@@ -111,7 +115,6 @@ public class DetailActivityFragment extends AppCompatActivity {
                         val = (ArrayList<String>) value;
                     }
                 });
-//                Log.d(TAG, ""+arr.get(0));
                 sp.edit().putString("videoUrl",arr.get(0)).apply();
                 sp.edit().putString("websiteUrl",arr.get(1)).apply();
                 sp.edit().putString("businessDesc",arr.get(2)).apply();
@@ -120,20 +123,15 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("tagline",arr.get(5)).apply();
 //                sp.edit().putString("service",arr.get(6)).apply();
                 sp.edit().putString("category",arr.get(7)).apply();
-//                sp.edit().putString("bizEmailID",arr.get(8)).apply();
-//                Log.d(TAG, "onCreate: "+arr.get(3));
                 updatePageWithData(arr);
 
                 sp.edit().putString("bizname", arr.get(4));
-//                Log.d(TAG, arr.get(6));
-////                ArrayList<String> val = new ArrayList<>();
-//                val = (ArrayList<String>) value;
-//                val = arr.get(6);
 
             }
         });
 
-//        String business_desc = sp.getString("businessDesc","Default");
+        getReviews();
+
         sp.edit().putString("bid",id).apply();
 
         final ViewPager viewPager = findViewById(R.id.viewPager);
@@ -169,15 +167,8 @@ public class DetailActivityFragment extends AppCompatActivity {
                     case 1:
 //                        Log.d(TAG, ""+tab.getPosition());
                         businessDesc = findViewById(R.id.businessDesc1);
-//                        Log.d(TAG, "from detail activity fragment"+business_desc);
-//                        if(!businessDesc.getText().toString().matches("")){
-//                            businessDesc.setText("");
-//                            businessDesc.setText(business_desc);
                         businessDesc.setText(sp.getString("businessDesc", ""));
-//                        }else {
-//                            businessDesc.setText(business_desc);
-//                        }
-//                        Log.d(TAG, "2"+businessDesc.getText().toString());
+
                         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                             @Override
                             public void onClick(View view) {
@@ -188,10 +179,8 @@ public class DetailActivityFragment extends AppCompatActivity {
                         break;
 
                     case 2:
-
-
+//                        getReviews(count);
                         recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
-
                         //        write a review
                         write_a_review = findViewById(R.id.write_a_review);
                         write_a_review.setOnClickListener(new View.OnClickListener() {
@@ -201,13 +190,12 @@ public class DetailActivityFragment extends AppCompatActivity {
                                 startActivity(intentReview);
                             }
                         });
-                        recyclerAdapterReviews = new RecyclerAdapterReviews();
+                        recyclerAdapterReviews = new RecyclerAdapterReviews(ratingsList);
                         recyclerViewReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         recyclerViewReviews.setAdapter(recyclerAdapterReviews);
 
                         break;
                 }
-
             }
 
             @Override
@@ -240,6 +228,37 @@ public class DetailActivityFragment extends AppCompatActivity {
         company_desc.setText(arr.get(5));
 
 
+    }
+
+    public void getReviews(){
+//        if(counts == 0){
+            database.collection("reviews").whereEqualTo("bid",id).get()
+                .addOnCompleteListener(task -> {
+                    if(task.isSuccessful()){
+//                                        Log.d(TAG, task.getResult().getDocuments().toString());
+
+                        for (QueryDocumentSnapshot document : task.getResult()) {
+                            ratingsList.add(document.getData());
+                        }
+                    }
+                });
+            count = ratingsList.size();
+//            return true;
+//        }else if(counts > count){
+//            database.collection("reviews").whereEqualTo("bid",id).get()
+//                    .addOnCompleteListener(task -> {
+//                        if(task.isSuccessful()){
+////                                        Log.d(TAG, task.getResult().getDocuments().toString());
+//
+//                            for (QueryDocumentSnapshot document : task.getResult()) {
+//                                ratingsList.add(document.getData());
+//                            }
+//                        }
+//                    });
+//            count = ratingsList.size();
+//            return true;
+//        }
+//        return false;
     }
 
 

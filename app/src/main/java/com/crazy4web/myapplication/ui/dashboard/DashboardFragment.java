@@ -165,15 +165,16 @@ public class DashboardFragment extends Fragment {
                             signOut();
                             revokeAccess();
                             Log.d(TAG, "Logged out from google");
-                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_SHORT).show();
 
                         }else if(googleName == "" && facebookName != "" && emailName == ""){
                             LoginManager.getInstance().logOut();
                             Log.d(TAG, "Logged out from facebook");
+                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_SHORT).show();
 
                         }else if(googleName == "" && facebookName == "" && emailName != ""){
                             Log.d(TAG, "logged out from email");
-                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_LONG).show();
+                            Toast.makeText(getContext(),"User is logged out",Toast.LENGTH_SHORT).show();
                         }
 
                         sp.edit().putString("emailName","").apply();
