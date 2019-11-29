@@ -24,6 +24,7 @@ import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.regex.Pattern;
 
@@ -36,6 +37,7 @@ public class Searchoperation extends AppCompatActivity {
     ArrayList<String> categories, biz_name, tagline = new ArrayList<>();
     private static final String TAG = "Searchoperation";
     JsonObject jsonObject;
+    List<String> docIds;
 
     RecyclerView recyclerView;
     RecyclerView.LayoutManager mlayoutmanager;
@@ -83,6 +85,7 @@ public class Searchoperation extends AppCompatActivity {
 
         biz_name = new ArrayList();
         tagline = new ArrayList();
+        docIds = new ArrayList<>();
 
         firebaseStorage = FirebaseStorage.getInstance();
 
@@ -107,6 +110,7 @@ public class Searchoperation extends AppCompatActivity {
                             for (DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
 
 
+                                docIds.add(documentSnapshot.getId());
                                 Map data = new HashMap();
 
                                 data = documentSnapshot.getData();
@@ -122,7 +126,7 @@ public class Searchoperation extends AppCompatActivity {
                                 biz_name.add(jsonObject.get("company_name").toString());
 
                                 tagline.add(jsonObject.get("tagline").toString());
-                                madaptor = new SearchAdaptor(getApplicationContext(), biz_name, tagline);
+                                madaptor = new SearchAdaptor(getApplicationContext(), biz_name, tagline, docIds);
                                 recyclerView.setLayoutManager(mlayoutmanager);
 
                                 recyclerView.setAdapter(madaptor);
