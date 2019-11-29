@@ -86,7 +86,7 @@
             android:layout_height="match_parent"
             android:maxLength="2000"
             android:maxLines="4"
-            android:hint="Category" />
+            android:hint="Excellent services...." />
 
     </com.google.android.material.textfield.TextInputLayout>
 

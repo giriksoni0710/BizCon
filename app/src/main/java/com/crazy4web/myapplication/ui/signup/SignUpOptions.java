@@ -93,49 +93,6 @@ public class SignUpOptions extends AppCompatActivity {
             startActivity(intent2);
         }
 
-
-//        bizcon_logo = findViewById(R.id.bizcon_logo);
-//        bizcon_logo.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                AlertDialog.Builder builder = new AlertDialog.Builder(getApplicationContext());
-//                builder.setMessage("How many Cards?");
-//
-//                input = new EditText(getApplicationContext());
-//                builder.setView(input);
-//
-//
-////          Set positive button
-//                builder.setPositiveButton("OK", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        //capture the input here
-//                        String inp = input.getText().toString();
-//                        Toast.makeText(getApplicationContext(),"input is: "+inp, Toast.LENGTH_LONG).show();
-//
-////                        webView.evaluateJavascript("addNode("+inp+")",value->{
-////                            Log.d("WEBVIEW","returned from webview is -> "+value);
-////                        });
-//                    }
-//                });
-//
-////          Set negative button
-//                builder.setNegativeButton("cancel", new DialogInterface.OnClickListener() {
-//                    @Override
-//                    public void onClick(DialogInterface dialog, int which) {
-//                        dialog.dismiss();
-//                    }
-//                });
-//
-////          Create the actual dialog box
-//                AlertDialog box = builder.create();
-//
-//
-////          Alert dialog endss
-//                box.show();
-//            }
-//        });
-
         progressBar = findViewById(R.id.progressBar);
         progressBar.setVisibility(View.GONE);
 

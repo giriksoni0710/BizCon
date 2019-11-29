@@ -35,8 +35,6 @@ public class SearchAdaptor extends RecyclerView.Adapter<SearchAdaptor.MyViewHold
     ArrayList company_name, tagline;
     List<String> docIds;
 
-
-
     public static class MyViewHolder extends RecyclerView.ViewHolder {
 
         public CardView cardView;
@@ -58,7 +56,6 @@ public class SearchAdaptor extends RecyclerView.Adapter<SearchAdaptor.MyViewHold
         }
     }
 
-
     public SearchAdaptor(Context con, ArrayList biz_name, ArrayList tagline, List docIds) {
 
         mcon = con;
@@ -67,18 +64,10 @@ public class SearchAdaptor extends RecyclerView.Adapter<SearchAdaptor.MyViewHold
         this.docIds = docIds;
     }
 
-
-
-
-
-
     @Override
     public SearchAdaptor.MyViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
 
-
         View v = LayoutInflater.from(parent.getContext()).inflate(R.layout.category_list_row, parent, false);
-
-
 
         MyViewHolder vh = new MyViewHolder(v);
         return vh;
@@ -112,21 +101,13 @@ public class SearchAdaptor extends RecyclerView.Adapter<SearchAdaptor.MyViewHold
             @Override
             public void onClick(View view) {
 
-                // here I have to call the individual chats of the user on click
-                // I will leave it like this for now
                 Intent i = new Intent(mcon, DetailActivityFragment.class);
                 i.putExtra("docId",docIds.get(position));
                 i.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                 mcon.startActivity(i);
-//               Intent i = new Intent(mcon, MainActivity.class);
-
-
-
 
             }
         });
-
-
 
     }
 

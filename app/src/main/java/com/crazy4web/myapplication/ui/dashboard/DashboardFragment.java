@@ -182,7 +182,10 @@ public class DashboardFragment extends Fragment {
                         sp.edit().putString("googleEmailId","").apply();
                         sp.edit().putString("fbEmailId","").apply();
                         sp.edit().putString("emailId","").apply();
+                        sp.edit().putString("emailName","").apply();
                         sp.edit().putString("userhascompany","").apply();
+                        sp.edit().putString("googleName","").apply();
+                        sp.edit().putString("fbName","").apply();
 //                        sp.edit().putString("userhascompany","").apply();
                         Intent in = new Intent(getContext(), Email_login.class);
                         startActivity(in);
