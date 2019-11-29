@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.crazy4web.myapplication.ui.SearchResults.Searchoperation;
@@ -22,6 +23,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.view.ViewCompat;
 import androidx.navigation.NavController;
 import androidx.navigation.Navigation;
 import androidx.navigation.ui.AppBarConfiguration;
@@ -36,7 +38,8 @@ public class MainActivity extends AppCompatActivity {
     String name, fbImage, fbEmailId;
     final String prefFile = "com.crazy4web.myapplication.userdata";
     private static final String TAG = "MainActivity";
-    ImageView speechtotext;
+    ImageView speechtotext, backarrow;
+    TextView homesearchtitle;
     SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,16 +50,33 @@ public class MainActivity extends AppCompatActivity {
         SharedPreferences sharedPreferences = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
         speechtotext = findViewById(R.id.sppechtotext);
-
         speechtotext.setVisibility(View.INVISIBLE);
-
         searchView = findViewById(R.id.searchView);
+        backarrow = findViewById(R.id.backarrow);
+        homesearchtitle = findViewById(R.id.homesearchtitle);
+        backarrow.setVisibility(View.INVISIBLE);
 
+
+        backarrow.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+
+                searchView.onActionViewCollapsed();
+                backarrow.setVisibility(View.INVISIBLE);
+                speechtotext.setVisibility(View.INVISIBLE);
+                homesearchtitle.setVisibility(View.VISIBLE);
+            }
+        });
 
         searchView.setOnSearchClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 speechtotext.setVisibility(View.VISIBLE);
+                backarrow.setVisibility(View.VISIBLE);
+                searchView.onActionViewExpanded();
+                homesearchtitle.setVisibility(View.INVISIBLE);
+                ViewCompat.setTranslationZ(backarrow, 1);
+
             }
         });
 
@@ -65,7 +85,8 @@ public class MainActivity extends AppCompatActivity {
             public boolean onClose() {
 
                 speechtotext.setVisibility(View.INVISIBLE);
-
+                backarrow.setVisibility(View.INVISIBLE);
+                homesearchtitle.setVisibility(View.VISIBLE);
                 return false;
             }
         });
@@ -85,6 +106,7 @@ public class MainActivity extends AppCompatActivity {
             @Override
             public boolean onQueryTextChange(String s) {
 
+                speechtotext.setVisibility(View.INVISIBLE);
                 return false;
             }
         });
