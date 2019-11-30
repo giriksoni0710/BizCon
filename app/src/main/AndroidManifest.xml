@@ -26,8 +26,12 @@
         <activity android:name=".ui.Forms.Business_page2"></activity>
         <activity android:name=".ui.Forms.Business_page1"></activity>
         <activity android:name=".ui.Slider.IntroSlider"></activity>
-        <activity android:name=".ui.splashscreen.SplashScreen"></activity>
-        <activity android:name=".ui.Login.Email_login"></activity>
+        <activity android:name=".ui.splashscreen.SplashScreen">
+
+        </activity>
+        <activity android:name=".ui.Login.Email_login">
+
+        </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:theme="@style/AppTheme.NoActionBar" />

@@ -20,6 +20,7 @@
             android:layout_width="150dp"
             android:layout_height="150dp"
             android:adjustViewBounds="true"
+            android:id="@+id/recommender_img"
             android:scaleType="fitXY"
             android:src="@drawable/categorypage1"></ImageView>
 
@@ -29,6 +30,7 @@
             android:layout_marginTop="160dp"
             android:paddingLeft="8dp"
             android:text="Name"
+            android:id="@+id/recommender_name"
             android:textFontWeight="600"
             android:textSize="17dp">
 
@@ -36,7 +38,7 @@
         </TextView>
 
         <RatingBar
-            android:id="@+id/rating"
+            android:id="@+id/recommender_rating"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
