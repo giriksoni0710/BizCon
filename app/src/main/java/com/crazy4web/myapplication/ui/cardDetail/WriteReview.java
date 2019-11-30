@@ -15,6 +15,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.crazy4web.myapplication.MainActivity;
 import com.crazy4web.myapplication.R;
 import com.crazy4web.myapplication.ui.Login.Email_login;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -69,6 +70,7 @@ public class WriteReview extends AppCompatActivity {
         String googleName = sp.getString("googleName","");
         String fbName = sp.getString("fbName","");
         String uName = sp.getString("emailName","");
+        String bid = sp.getString("bid","");
 
 //        Log.d(TAG, googleEmailId+fbEmailId+emailId+uName);
 
@@ -100,13 +102,17 @@ public class WriteReview extends AppCompatActivity {
                         @Override
                         public void onSuccess(DocumentReference documentReference) {
                             Log.d(TAG, "DocumentSnapshot added with ID: " + documentReference.getId());
-                            sp.edit().putString("googleEmailId","").apply();
-                            sp.edit().putString("fbEmailId","").apply();
-                            sp.edit().putString("emailId","").apply();
-                            sp.edit().putString("googleName","").apply();
-                            sp.edit().putString("fbName","").apply();
-                            sp.edit().putString("emailName","").apply();
-                            finish();
+//                            sp.edit().putString("googleEmailId","").apply();
+//                            sp.edit().putString("fbEmailId","").apply();
+//                            sp.edit().putString("emailId","").apply();
+//                            sp.edit().putString("googleName","").apply();
+//                            sp.edit().putString("fbName","").apply();
+//                            sp.edit().putString("emailName","").apply();
+                            Toast.makeText(getApplicationContext(),"Thank you for the review", Toast.LENGTH_LONG).show();
+//                            finish();
+
+                            Intent i = new Intent(getApplicationContext(), MainActivity.class);
+                            startActivity(i);
                         }
                     })
                     .addOnFailureListener(new OnFailureListener() {
