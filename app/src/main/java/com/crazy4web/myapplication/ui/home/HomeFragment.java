@@ -29,6 +29,7 @@ import com.crazy4web.myapplication.ui.categoryview.category_page;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.gson.JsonObject;
 import com.synnapps.carouselview.CarouselView;
@@ -58,6 +59,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     SharedPreferences sharedPreferences;
     CardView recommendationCard;
 
+    ArrayList<String> recommendedbusiness, star;
+
     public LinearLayout linearLayout_technology, linearLayout_music, linearLayout_art,
             linearLayout_advertising, linearLayout_designing, linearLayout_household, linearLayout_fashion;
     private static final String TAG = "HomeFragment";
@@ -79,9 +82,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         //recommendation recycler view
 
         recommendationRecyclerView = root.findViewById(R.id.recommendationRecyclerView);
-        HomeRecommendationAdapter homeRecommendationAdapter = new HomeRecommendationAdapter();
         recommendationRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
-        recommendationRecyclerView.setAdapter(homeRecommendationAdapter);
 
         businessname = root.findViewById(R.id.business_name);
         database = FirebaseFirestore.getInstance();
@@ -192,11 +193,57 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         String email = sharedPreferences.getString("emailId","Default");
         validateIfUserIsBusiness(email);
 
+        settingrecommender();
+
 
 
         return root;
 
     }
+
+    // getting the recommended counts and then sending to call those businesses
+    private void settingrecommender() {
+
+        recommendedbusiness = new ArrayList<>();
+        star = new ArrayList<>();
+
+        database.collection("business").orderBy("count", Query.Direction.DESCENDING).get()
+                .addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
+
+//                        Log.d("docslength",queryDocumentSnapshots.getDocuments().size()+"");
+                        for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+
+                            Map data = new HashMap();
+                            data = document.getData();
+                            jsonObject = new JsonObject();
+                            data.forEach((key, value) -> {
+
+                                jsonObject.addProperty(key.toString(),value.toString());
+
+                            });
+
+                            recommendedbusiness.add(jsonObject.get("company_name").toString());
+
+
+                            }
+
+                        Log.d("recmproj", recommendedbusiness.toString());
+
+                        HomeRecommendationAdapter homeRecommendationAdapter = new HomeRecommendationAdapter(recommendedbusiness);
+
+                        recommendationRecyclerView.setAdapter(homeRecommendationAdapter);
+
+
+
+
+                    }
+
+                });
+
+    }
+
     //validating if the logged in user owns a business
     private void validateIfUserIsBusiness(String email) {
 

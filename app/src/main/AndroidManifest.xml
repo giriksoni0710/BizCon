@@ -33,7 +33,9 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.Login.Email_login"></activity>
+        <activity android:name=".ui.Login.Email_login">
+
+        </activity>
         <activity
             android:name=".ui.cardDetail.DetailActivityFragment"
             android:theme="@style/AppTheme.NoActionBar" />
