@@ -49,16 +49,95 @@
 
     </com.google.android.material.appbar.AppBarLayout>
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/recycler_inner_chat"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appBarLayout2">
 
-    </androidx.recyclerview.widget.RecyclerView>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            app:layout_constraintHorizontal_bias="0.08"
+            app:layout_constraintStart_toEndOf="@+id/sender_image"
+            app:layout_constraintTop_toTopOf="parent"
+            android:layout_marginTop="10dp"
+            >
+
+        </LinearLayout>
+
+        <ImageView
+            android:id="@+id/receiver_image"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="68dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.025"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+        <TextView
+            android:id="@+id/received_msg"
+            android:layout_width="wrap_content"
+            android:layout_height="40dp"
+            android:layout_marginTop="68dp"
+            android:background="@drawable/messagecorner"
+            android:paddingLeft="22dp"
+            android:paddingTop="10dp"
+            android:paddingRight="22dp"
+            android:paddingBottom="10dp"
+            android:textColor="#323232"
+            android:textSize="16dp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.033"
+            app:layout_constraintStart_toEndOf="@+id/receiver_image"
+            app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <TextView
+        android:id="@+id/sent_msg"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:background="@drawable/messagecorner2"
+        android:paddingLeft="22dp"
+        android:paddingTop="10dp"
+        android:layout_marginTop="100dp"
+        android:layout_marginRight="10dp"
+        android:paddingRight="22dp"
+        android:paddingBottom="10dp"
+        android:textColor="#FE9B18"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.856"
+        app:layout_constraintStart_toEndOf="@+id/sender_image"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+    <ImageView
+        android:id="@+id/img5"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="130dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.025"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"></ImageView>
+
+    <TextView
+        android:id="@+id/msg3"
+        android:layout_width="wrap_content"
+        android:layout_height="40dp"
+        android:layout_marginTop="130dp"
+        android:background="@drawable/messagecorner"
+        android:paddingLeft="22dp"
+        android:paddingTop="10dp"
+        android:paddingRight="22dp"
+        android:paddingBottom="10dp"
+        android:textColor="#323232"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.033"
+        app:layout_constraintStart_toEndOf="@+id/receiver_image"
+        app:layout_constraintTop_toTopOf="parent"></TextView>
+
+
+
 
     <EditText
         android:id="@+id/type_message"

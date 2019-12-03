@@ -19,6 +19,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.bumptech.glide.request.RequestOptions;
@@ -36,6 +38,7 @@ import com.google.firebase.iid.FirebaseInstanceId;
 import com.google.gson.JsonObject;
 
 import org.w3c.dom.Document;
+import org.w3c.dom.Text;
 
 import java.io.IOException;
 import java.io.InputStream;
@@ -58,7 +61,7 @@ public class chat_screen extends AppCompatActivity {
     RecyclerView.Adapter mAdaptor;
     RecyclerView.LayoutManager layoutManager;
     int count =0;
-    ImageView imageView;
+    ImageView imageView, img3;
 
     String token, companyname, emailname;
     private String prefFile = "com.crazy4web.myapplication.userdata";
@@ -71,11 +74,31 @@ public class chat_screen extends AppCompatActivity {
     JsonObject jsonObject;
     int countnew=0;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
+    TextView msg2;
+
+    TextView msg, msg3;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_chat_screen);
+
+        imageView = findViewById(R.id.receiver_image);
+        msg2 = findViewById(R.id.sent_msg);
+        msg = findViewById(R.id.received_msg);
+        img3 = findViewById(R.id.img5);
+        msg3 = findViewById(R.id.msg3);
+
+
+
+        imageView.setVisibility(View.GONE);
+        msg.setVisibility(View.GONE);
+        msg2.setVisibility(View.GONE);
+        msg3.setVisibility(View.GONE);
+        img3.setVisibility(View.GONE);
+
+
 
         toolbar = findViewById(R.id.toolbar);
         send_img = findViewById(R.id.send_img);
@@ -95,14 +118,6 @@ public class chat_screen extends AppCompatActivity {
                 finish();
             }
         });
-
-
-        recyclerView = findViewById(R.id.recycler_inner_chat);
-
-        layoutManager = new LinearLayoutManager(getApplicationContext());
-        recyclerView.setHasFixedSize(false);
-
-
 
         SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
@@ -125,7 +140,8 @@ public class chat_screen extends AppCompatActivity {
                 }
                 Log.d("values",bizname+" "+companyname+" "+emailname);
 
-        getmessages();
+             getmessages();
+
 
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowTitleEnabled(false);
@@ -159,10 +175,9 @@ public class chat_screen extends AppCompatActivity {
 
                         message.setText("");
 
-                        while(countnew==0) {
                             getmessages();
-                            countnew++;
-                        }
+
+
                         }
                 });
 
@@ -180,6 +195,7 @@ public class chat_screen extends AppCompatActivity {
         rcvd = new ArrayList<>();
 
 
+        //sent messages
         firebaseFirestore.collection("messages").whereEqualTo("messageuserID",companyname).whereEqualTo("messageUser",emailname).limit(1).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -192,7 +208,7 @@ public class chat_screen extends AppCompatActivity {
                             Map data = new HashMap();
                             data = document.getData();
                             jsonObject = new JsonObject();
-                            count = 0;
+
                             data.forEach((key, value) -> {
 
                                 jsonObject.addProperty(key.toString(),value.toString());
@@ -209,6 +225,8 @@ public class chat_screen extends AppCompatActivity {
                     sent.add(msgs);
                 }
 
+                countnew++;
+
                 Log.d("sent",sent.toString());
 
 
@@ -216,6 +234,8 @@ public class chat_screen extends AppCompatActivity {
                 }
         );
 
+
+        //Received messages
         firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).whereEqualTo("messageUser",companyname).limit(1).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
@@ -238,7 +258,9 @@ public class chat_screen extends AppCompatActivity {
 
                                 });
 
+                                count++;
                             }
+
                 Log.d("I received", bizsentmsg+"");
 
                 for (String msgs:
@@ -248,33 +270,64 @@ public class chat_screen extends AppCompatActivity {
                 }
 
 
-
                 Log.d("The arrays are sent: "+sent,"rcvd: "+rcvd);
 
 
-                if(rcvd.size()>0) {
-                    mAdaptor = new Chatinneradaptor2(getApplicationContext(), rcvd);
-                    recyclerView.setLayoutManager(layoutManager);
-                    recyclerView.setAdapter(mAdaptor);
+
+                if(sent!=null && sent.size()>=1){
+
+                    Log.d("sent messages",sent+"");
+                    msg2.setText(sent.get(0).replaceAll("\"",""));
+                    msg2.setVisibility(View.VISIBLE);
 
                 }
-                //we are here converting the image to a circular image and displaying at the top
-                //of the chat screen
-               if(sent.size()>0) {
-                   mAdaptor = new Chatinneradaptor2(sent);
-                   recyclerView.setLayoutManager(layoutManager);
-                   recyclerView.setAdapter(mAdaptor);
 
-                   imageView = findViewById(R.id.chatimg);
-                   Glide.with(getApplicationContext())
-                           .load(R.drawable.categorypage1)
-                           .apply(RequestOptions.circleCropTransform())
-                           .into(imageView);
-               }
+                if(rcvd!=null && rcvd.size()>=1){
+
+                    Log.d("rcvd messages",rcvd+"");
+
+
+                    if(!userhascompany.equals("")){
+
+                        msg.setText(rcvd.get(0).replaceAll("\"",""));
+                        imageView.setVisibility(View.VISIBLE);
+                        msg.setVisibility(View.VISIBLE);
+
+                        Glide.with(getApplicationContext())
+                                .load(R.drawable.profile_pic_default)
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(imageView);
+
+                    }
+                    else{
+
+                        img3.setVisibility(View.VISIBLE);
+                        msg3.setText(rcvd.get(0).replaceAll("\"",""));
+                        msg3.setVisibility(View.VISIBLE);
+                        imageView.setVisibility(View.INVISIBLE);
+
+                        Glide.with(getApplicationContext())
+                                .load(R.drawable.profile_pic_default)
+                                .apply(RequestOptions.circleCropTransform())
+                                .into(img3);
+
+                    }
+
+
+                }
+
+
+
 
             }
 
-                }
+
+            }
+
+
+
+
+
         );
 
 

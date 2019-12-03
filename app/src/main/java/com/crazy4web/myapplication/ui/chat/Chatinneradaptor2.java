@@ -116,7 +116,7 @@ public class Chatinneradaptor2 extends RecyclerView.Adapter<RecyclerView.ViewHol
 //
         if (sent_msg!=null)
             if(sent_msg!=null && rcvd_msg!=null)
-            return 2;
+            return 1;
             else if (sent_msg!=null && rcvd_msg==null)
                 return sent_msg.size();
             else
@@ -127,7 +127,7 @@ public class Chatinneradaptor2 extends RecyclerView.Adapter<RecyclerView.ViewHol
             if(sent_msg==null)
                 return rcvd_msg.size();
             else if (sent_msg!=null)
-                return 2;
+                return 1;
             else return 0;
 
             return 2;
