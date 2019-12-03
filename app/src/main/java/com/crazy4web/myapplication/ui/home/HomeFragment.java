@@ -233,7 +233,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                             }
 
-                        Log.d("recmproj", recommendedbusiness.toString());
+//                        Log.d("recmproj", recommendedbusiness.toString());
 
                         HomeRecommendationAdapter homeRecommendationAdapter = new HomeRecommendationAdapter(recommendedbusiness);
 
@@ -259,7 +259,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        Log.d("ifbiz", queryDocumentSnapshots.getDocuments() + "");
+//                        Log.d("ifbiz", queryDocumentSnapshots.getDocuments() + "");
 
                         if (queryDocumentSnapshots.getDocuments().size() >= 1) {
 
@@ -274,7 +274,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
                                 });
                             }
-                            Log.d("company_name", jsonObject.get("company_name").toString());
+//                            Log.d("company_name", jsonObject.get("company_name").toString());
 
                             sharedPreferences.edit().putString("userhascompany", jsonObject.get("company_name").toString()).apply();
 

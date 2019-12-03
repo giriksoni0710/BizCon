@@ -40,9 +40,9 @@ public class SliderAdaptor extends PagerAdapter {
 
     public String[] slideDesc = {
 
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry.",
-            "Lorem Ipsum is simply dummy text of the printing and typesetting industry."
+            "Start a business easily with your skillset",
+            "Find services nearby and get work done easily",
+            "Connect with businesses using our chat feature"
 
 
     };
