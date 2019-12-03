@@ -21,12 +21,6 @@
             android:background="@drawable/detailedgradient"
 
             >
-            <ImageView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/like"
-                android:layout_marginLeft="370dp"
-                android:elevation="4dp" />
         </androidx.appcompat.widget.Toolbar>
 
 <!--        android:layout_height="?attr/actionBarSize"-->

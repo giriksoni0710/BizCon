@@ -120,12 +120,14 @@ public class DetailActivityFragment extends AppCompatActivity {
                 sp.edit().putString("businessDesc",arr.get(2)).apply();
                 sp.edit().putString("imagePath",arr.get(3)).apply();
                 sp.edit().putString("companyName",arr.get(4)).apply();
-                sp.edit().putString("tagline",arr.get(5)).apply();
+                sp.edit().putString("tagline",arr.get(6)).apply();
 //                sp.edit().putString("service",arr.get(6)).apply();
                 sp.edit().putString("category",arr.get(7)).apply();
                 updatePageWithData(arr);
 
                 sp.edit().putString("bizname", arr.get(4));
+
+//                Log.d(TAG, ""+arr);
 
             }
         });
@@ -141,6 +143,8 @@ public class DetailActivityFragment extends AppCompatActivity {
         tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
 
         tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+        tabLayout.setBackgroundColor(Color.WHITE);
+        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
 
         SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
@@ -156,6 +160,8 @@ public class DetailActivityFragment extends AppCompatActivity {
                 switch (tab.getPosition()){
 
                     case 0:
+//                        tabLayout.setBackgroundColor(Color.WHITE);
+//                        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
                         recyclerView = findViewById(R.id.recyclerView);
                         recyclerAdapter = new RecyclerAdapter(val);
                         recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
@@ -166,6 +172,8 @@ public class DetailActivityFragment extends AppCompatActivity {
 
                     case 1:
 //                        Log.d(TAG, ""+tab.getPosition());
+//                        tabLayout.setBackgroundColor(Color.WHITE);
+//                        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
                         businessDesc = findViewById(R.id.businessDesc1);
                         businessDesc.setText(sp.getString("businessDesc", ""));
 
@@ -179,6 +187,8 @@ public class DetailActivityFragment extends AppCompatActivity {
                         break;
 
                     case 2:
+//                        tabLayout.setBackgroundColor(Color.WHITE);
+//                        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
 //                        getReviews(count);
                         recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
                         //        write a review
@@ -225,7 +235,7 @@ public class DetailActivityFragment extends AppCompatActivity {
         });
 
         companyName.setText(arr.get(4));
-        company_desc.setText(arr.get(5));
+        company_desc.setText(arr.get(6));
 
 
     }
