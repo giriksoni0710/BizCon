@@ -241,7 +241,6 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
                                 document_ID = documentSnapshot.getId();
                                 docIds.add(data2);
 
-
                                 data.forEach((key, value) -> {
 
                                     if (key.equals("count")) {
@@ -264,8 +263,9 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
                             city.put("count", count + 1);
                             city.put("businessname", companyname
                                     .get(position).toString().replaceAll("\"", ""));
+                            count=count+1;
                             name.put("count", count + 1);
-
+                            Log.d("name",name.toString());
                             database.collection("Recommender").document(docIds.get(position))
                                     .set(city)
                                     .addOnCompleteListener(new OnCompleteListener<Void>() {
@@ -279,9 +279,18 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
                                         }
                                     });
 
+
                             // updating count on business table
                             database.collection("business").document(docIds.get(position))
-                                    .set(name, SetOptions.merge());
+                                    .set(name, SetOptions.merge()).addOnSuccessListener(new OnSuccessListener<Void>() {
+                                @Override
+                                public void onSuccess(Void aVoid) {
+
+                                    Log.d("docIDS",docIds.get(position));
+
+
+                                }
+                            });
 
                         }
                     }
@@ -292,14 +301,19 @@ public class HomeAdaptor extends RecyclerView.Adapter<HomeAdaptor.MyViewHolder> 
 
 
                 // no. of times people viewed business
-                database.collection("Premium").whereEqualTo("businesses", "sk plumbers").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                database.collection("Premium").whereEqualTo("businesses", companyname.get(position).toString().replaceAll("\"", ""))
+                        .get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
                     @Override
                     public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                        Log.d("docs",queryDocumentSnapshots.getDocuments().size()+"");
+                        Log.d("docsop",queryDocumentSnapshots.getDocuments().size()+"");
 
                     }
                 });
+
+                //test reference
+
+
 
 
 

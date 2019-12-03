@@ -29,6 +29,7 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.EventListener;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.firestore.FirebaseFirestoreException;
+import com.google.firebase.firestore.Query;
 import com.google.firebase.firestore.QueryDocumentSnapshot;
 import com.google.firebase.firestore.QuerySnapshot;
 import com.google.firebase.iid.FirebaseInstanceId;
@@ -205,6 +206,9 @@ public class chat_screen extends AppCompatActivity {
                     sent.add(msgs);
                 }
 
+                Log.d("sent",sent.toString());
+
+
                     }
                 }
         );
@@ -243,21 +247,26 @@ public class chat_screen extends AppCompatActivity {
 
 
                 Log.d("The arrays are sent: "+sent,"rcvd: "+rcvd);
-                mAdaptor = new ChatinnerAdaptor(getApplicationContext(), sent, rcvd);
-                recyclerView.setLayoutManager(layoutManager);
-                recyclerView.setAdapter(mAdaptor);
 
+
+                if(rcvd.size()>0) {
+                    mAdaptor = new ChatinnerAdaptor(getApplicationContext(), rcvd);
+                    recyclerView.setLayoutManager(layoutManager);
+                    recyclerView.setAdapter(mAdaptor);
+                }
                 //we are here converting the image to a circular image and displaying at the top
                 //of the chat screen
-                imageView = findViewById(R.id.chatimg);
-                Glide.with(getApplicationContext())
-                        .load(R.drawable.categorypage1)
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(imageView);
+               if(sent.size()>0) {
+                   mAdaptor = new ChatinnerAdaptor(sent);
+                   recyclerView.setLayoutManager(layoutManager);
+                   recyclerView.setAdapter(mAdaptor);
 
-
-
-
+                   imageView = findViewById(R.id.chatimg);
+                   Glide.with(getApplicationContext())
+                           .load(R.drawable.categorypage1)
+                           .apply(RequestOptions.circleCropTransform())
+                           .into(imageView);
+               }
 
             }
 
