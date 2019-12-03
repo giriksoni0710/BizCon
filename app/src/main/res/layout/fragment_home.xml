@@ -90,7 +90,7 @@
     <ImageView
         android:layout_width="67.33dp"
         android:layout_height="67.33dp"
-        android:src="@drawable/artartistcalligraphy57690"
+        android:src="@drawable/design"
     >
     </ImageView>
     <TextView
@@ -147,7 +147,7 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:src="@drawable/music"
+            android:src="@drawable/music2"
             android:layout_marginLeft="15dp"
             >
 
@@ -209,7 +209,7 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:src="@drawable/fashion"
             android:layout_marginLeft="15dp"
             >
 
@@ -240,7 +240,7 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:src="@drawable/art"
             android:layout_marginLeft="15dp"
             >
 
@@ -271,7 +271,7 @@
             <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:src="@drawable/carpentercarpentrycloseup1249611"
+            android:src="@drawable/avatar"
             android:layout_marginLeft="15dp"
             >
 

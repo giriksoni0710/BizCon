@@ -43,8 +43,9 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
                 senderimage = v.findViewById(R.id.sender_image);
                 text2 = v.findViewById(R.id.text2);
             }
-        }
 
+
+        }
 
         public ChatinnerAdaptor(Context con, ArrayList<String> last_msg ) {
 

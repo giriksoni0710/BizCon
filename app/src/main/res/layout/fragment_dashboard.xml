@@ -59,6 +59,7 @@
         android:layout_height="130dp"
         app:civ_border_width="0dp"
         android:layout_marginTop="40dp"
+        android:src="@drawable/profile_pic_default"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />

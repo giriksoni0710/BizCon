@@ -51,6 +51,7 @@ public class Email_login extends AppCompatActivity {
     FirebaseFirestore database;
     private String prefFile = "com.crazy4web.myapplication.userdata";
     ProgressBar progressBar;
+    String email;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -89,41 +90,58 @@ public class Email_login extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                progressBar.setVisibility(View.VISIBLE);
-                String email = textInputLayout.getEditText().getText().toString();
+                email = textInputLayout.getEditText().getText().toString();
                 String password = textInputLayout2.getEditText().getText().toString();
 
+                if(verifyemail() && password.length()>0){
                 SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
                 ArrayList<String> arr = new ArrayList<>();
-                database.collection("users").whereEqualTo("email",email).whereEqualTo("password",password).get()
+                database.collection("users").whereEqualTo("email", email).whereEqualTo("password", password).get()
                         .addOnCompleteListener(task -> {
-                            if(task.isSuccessful() && task.getResult().size() > 0) {
-
+                            if (task.isSuccessful() && task.getResult().size() > 0) {
+                                progressBar.setVisibility(View.VISIBLE);
                                 Log.d(TAG, " " + task.getResult().getDocuments());
 
                                 for (QueryDocumentSnapshot document : task.getResult()) {   // LOOP
-                                    Log.d(TAG,""+document.getData());
+                                    Log.d(TAG, "" + document.getData());
 
                                     Map abcd = new HashMap();
                                     abcd = document.getData();
 
-                                    abcd.forEach((key,value) ->{
-                                        Log.d(TAG, "key -> "+key+" value -> "+ value);
+                                    abcd.forEach((key, value) -> {
+//                                        Log.d(TAG, "key -> " + key + " value -> " + value);
                                         arr.add(value.toString());
                                     });
                                 }
                                 sp.edit().putString("emailId", email).apply();
-                                sp.edit().putString("emailName", arr.get(0)+" "+arr.get(1)).apply();
+                                sp.edit().putString("emailName", arr.get(0) + " " + arr.get(1)).apply();
                                 Intent i = new Intent(getApplicationContext(), MainActivity.class);
                                 startActivity(i);
-                            }else{
-                                Log.d(TAG, "onClick: Nothing found");
+                            } else {
+//                                Toast.makeText(getApplicationContext(), "Please enter valid email/password", Toast.LENGTH_SHORT).show();
                             }
                         });
+
+                    }
+                        else{
+                    Toast.makeText(getApplicationContext(), "Please enter a valid emailid/password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 
     }
     @Override
     public void onBackPressed() {}
+    public boolean verifyemail() {
+
+        String emailPattern = "[a-zA-Z0-9._-]+@[a-z]+\\.+[a-z]+";
+
+        if(!email.toString().trim().matches(emailPattern)){
+
+//            Toast.makeText(getApplicationContext(),"Please enter a valid email address", Toast.LENGTH_SHORT).show();
+            return false;
+        }
+
+        return true;
+    }
 }

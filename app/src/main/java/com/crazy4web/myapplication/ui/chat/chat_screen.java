@@ -69,6 +69,7 @@ public class chat_screen extends AppCompatActivity {
     ArrayList<String > rcvd, sent;
 
     JsonObject jsonObject;
+    int countnew=0;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
 
     @Override
@@ -158,9 +159,11 @@ public class chat_screen extends AppCompatActivity {
 
                         message.setText("");
 
-
-                        getmessages();
-                    }
+                        while(countnew==0) {
+                            getmessages();
+                            countnew++;
+                        }
+                        }
                 });
 
 
@@ -177,7 +180,7 @@ public class chat_screen extends AppCompatActivity {
         rcvd = new ArrayList<>();
 
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",companyname).whereEqualTo("messageUser",emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",companyname).whereEqualTo("messageUser",emailname).limit(1).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
 
@@ -213,7 +216,7 @@ public class chat_screen extends AppCompatActivity {
                 }
         );
 
-        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).whereEqualTo("messageUser",companyname).addSnapshotListener(new EventListener<QuerySnapshot>() {
+        firebaseFirestore.collection("messages").whereEqualTo("messageuserID",emailname).whereEqualTo("messageUser",companyname).limit(1).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {
                             bizsentmsg = new HashSet<>();
@@ -250,14 +253,15 @@ public class chat_screen extends AppCompatActivity {
 
 
                 if(rcvd.size()>0) {
-                    mAdaptor = new ChatinnerAdaptor(getApplicationContext(), rcvd);
+                    mAdaptor = new Chatinneradaptor2(getApplicationContext(), rcvd);
                     recyclerView.setLayoutManager(layoutManager);
                     recyclerView.setAdapter(mAdaptor);
+
                 }
                 //we are here converting the image to a circular image and displaying at the top
                 //of the chat screen
                if(sent.size()>0) {
-                   mAdaptor = new ChatinnerAdaptor(sent);
+                   mAdaptor = new Chatinneradaptor2(sent);
                    recyclerView.setLayoutManager(layoutManager);
                    recyclerView.setAdapter(mAdaptor);
 
