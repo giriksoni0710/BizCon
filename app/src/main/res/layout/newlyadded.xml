@@ -35,10 +35,7 @@
             android:layout_marginTop="190dp"
             android:layout_marginLeft="15dp"
             android:background="@drawable/circularimage"
-            android:src="@drawable/technology"
-            >
-
-        </ImageView>
+            android:src="@drawable/profile_pic_default"/>
         <TextView
             android:layout_width="match_parent"
             android:layout_height="20dp"
