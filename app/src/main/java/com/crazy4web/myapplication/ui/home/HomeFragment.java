@@ -3,6 +3,7 @@ package com.crazy4web.myapplication.ui.home;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -117,46 +118,49 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         List<String> docIds = new ArrayList<>();
 
 
-        database.collection("business").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-//                Log.d("docs", queryDocumentSnapshots.getDocuments()+"");
+            database.collection("business").get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                @Override
+                public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-
-                for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
+    //                Log.d("docs", queryDocumentSnapshots.getDocuments()+"");
 
 
-                    Map data = new HashMap();
-
-                    data = documentSnapshot.getData();
-                    String data2 = documentSnapshot.getId();
-//                    Log.d(TAG, ""+documentSnapshot.getId());
-
-                    docIds.add(data2);
-
-                    JsonObject jsonObject = new JsonObject();
-
-                    data.forEach((key, value) -> {
-
-                       jsonObject.addProperty(key.toString(),value.toString());
-
-                    });
+                    for(DocumentSnapshot documentSnapshot : queryDocumentSnapshots.getDocuments()) {
 
 
-                    biz_name.add(jsonObject.get("company_name"));
+                        Map data = new HashMap();
 
-                    biz_img.add(jsonObject.get("image_path").toString());
+                        data = documentSnapshot.getData();
+                        String data2 = documentSnapshot.getId();
+    //                    Log.d(TAG, ""+documentSnapshot.getId());
+
+                        docIds.add(data2);
+
+                        JsonObject jsonObject = new JsonObject();
+
+                        data.forEach((key, value) -> {
+
+                           jsonObject.addProperty(key.toString(),value.toString());
+
+                        });
+
+
+                        biz_name.add(jsonObject.get("company_name"));
+
+                        biz_img.add(jsonObject.get("image_path").toString());
+
+
+                    }
+                    recycleradaptor = new HomeAdaptor(getContext(), biz_name, biz_name, docIds);
+
+                    recyclerView.setAdapter(recycleradaptor);
 
 
                 }
-                recycleradaptor = new HomeAdaptor(getContext(), biz_name, biz_name, docIds);
-
-                recyclerView.setAdapter(recycleradaptor);
-
-
-            }
-        });
+            });
+//            }
+//        });
 
 
 
@@ -247,33 +251,39 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     //validating if the logged in user owns a business
     private void validateIfUserIsBusiness(String email) {
 
-        database.collection("business").whereEqualTo("email", email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
-            @Override
-            public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                Log.d("ifbiz", queryDocumentSnapshots.getDocuments()+"");
+//        AsyncTask.execute(new Runnable() {
+//            @Override
+//            public void run() {
+                database.collection("business").whereEqualTo("email", email).get().addOnSuccessListener(new OnSuccessListener<QuerySnapshot>() {
+                    @Override
+                    public void onSuccess(QuerySnapshot queryDocumentSnapshots) {
 
-                if(queryDocumentSnapshots.getDocuments().size()>=1){
+                        Log.d("ifbiz", queryDocumentSnapshots.getDocuments() + "");
 
-                    for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
+                        if (queryDocumentSnapshots.getDocuments().size() >= 1) {
 
-                        Map data = new HashMap();
-                        data = document.getData();
-                        jsonObject = new JsonObject();
-                        data.forEach((key, value) -> {
+                            for (DocumentSnapshot document : queryDocumentSnapshots.getDocuments()) {
 
-                            jsonObject.addProperty(key.toString(), value.toString());
+                                Map data = new HashMap();
+                                data = document.getData();
+                                jsonObject = new JsonObject();
+                                data.forEach((key, value) -> {
 
-                        });
+                                    jsonObject.addProperty(key.toString(), value.toString());
+
+                                });
+                            }
+                            Log.d("company_name", jsonObject.get("company_name").toString());
+
+                            sharedPreferences.edit().putString("userhascompany", jsonObject.get("company_name").toString()).apply();
+
+                        }
+
                     }
-                        Log.d("company_name",jsonObject.get("company_name").toString());
-
-                        sharedPreferences.edit().putString("userhascompany",jsonObject.get("company_name").toString()).apply();
-
-                    }
-
-            }
-        });
+                });
+//            }
+//        });
 
     }
 

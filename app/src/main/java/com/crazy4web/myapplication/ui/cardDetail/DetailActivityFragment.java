@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
+import android.os.AsyncTask;
 import android.os.Bundle;
 
 import com.bumptech.glide.Glide;
@@ -16,15 +17,20 @@ import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 import androidx.viewpager.widget.ViewPager;
 
+import android.os.Handler;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.ProgressBar;
 import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -52,6 +58,7 @@ public class DetailActivityFragment extends AppCompatActivity {
 
     FirebaseFirestore database;
     private String prefFile = "com.crazy4web.myapplication.userdata";
+    SharedPreferences sp;
     String id;
     private static final String TAG = "DetailActivityFragment";
     RecyclerView recyclerView,recyclerViewReviews;
@@ -60,169 +67,218 @@ public class DetailActivityFragment extends AppCompatActivity {
     TextView businessDesc, companyName, company_desc;
     ImageView img;
     FirebaseStorage firebaseStorage;
-    ArrayList<String> val = new ArrayList<>();
+    ArrayList<String> val,arr = new ArrayList<>();
     TextView write_a_review;
     List<Map> ratingsList = new ArrayList<>();
     int count =0;
+    ImageView like;
+    ProgressBar progress;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_fragment);
+        progress = findViewById(R.id.progressBarDetailActivity);
+        progress.setVisibility(View.VISIBLE);
+
+//        final Handler handler = new Handler();
+//        handler.postDelayed(new Runnable() {
+//            @Override
+//            public void run() {
+
+
         Toolbar toolbar = findViewById(R.id.toolbarCardDetail);
         setSupportActionBar(toolbar);
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
-        getSupportActionBar().setElevation(0);
-        //        toolbar.setBackgroundColor(Color.parseColor("#000000"));
+//        like = findViewById(R.id.likeWhite);
+
+//        like.bringToFront();
+//        like.setClickable(true);
+//        like.setElevation(5);
+//        like.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Log.d(TAG, "tapped like");
+//                setLike(like);
+//            }
+//        });
+
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+                getSupportActionBar().setElevation(0);
+                //        toolbar.setBackgroundColor(Color.parseColor("#000000"));
 
 
 
-        if (getSupportActionBar() != null){
-            getSupportActionBar().setDisplayHomeAsUpEnabled(true);
-            getSupportActionBar().setDisplayShowHomeEnabled(true);
+                if (getSupportActionBar() != null){
+                    getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+                    getSupportActionBar().setDisplayShowHomeEnabled(true);
 
-        }
+                }
 
-        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                finish();
-            }
-        });
-
-        Intent i = getIntent();
-        if(i != null)
-        {
-            id = i.getStringExtra("docId");
-        }
-
-        companyName = findViewById(R.id.companyName);
-        company_desc = findViewById(R.id.company_desc);
-        img = findViewById(R.id.img);
-
-        database = FirebaseFirestore.getInstance();
-        SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
-        ArrayList<String> arr = new ArrayList<>();
-        database.collection("business").document(id).get().addOnCompleteListener(task ->{
-            if(task.isSuccessful()){
-                task.getResult().getData().forEach((key, value)->{
-//                    Log.d(TAG, key+" -> "+value);
-                    arr.add(value.toString());
-                    if(key.contains("services")){
-
-                        val = (ArrayList<String>) value;
+                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+                        finish();
                     }
                 });
-                sp.edit().putString("videoUrl",arr.get(0)).apply();
-                sp.edit().putString("websiteUrl",arr.get(1)).apply();
-                sp.edit().putString("businessDesc",arr.get(2)).apply();
-                sp.edit().putString("imagePath",arr.get(3)).apply();
-                sp.edit().putString("companyName",arr.get(4)).apply();
-                sp.edit().putString("tagline",arr.get(6)).apply();
-//                sp.edit().putString("service",arr.get(6)).apply();
-                sp.edit().putString("category",arr.get(7)).apply();
-                updatePageWithData(arr);
 
-                sp.edit().putString("bizname", arr.get(4));
+                Intent i = getIntent();
+                if(i != null)
+                {
+                    id = i.getStringExtra("docId");
+                }
+
+                sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+                companyName = findViewById(R.id.companyName);
+                company_desc = findViewById(R.id.company_desc);
+                img = findViewById(R.id.img);
+                database = FirebaseFirestore.getInstance();
+
+        AsyncTask.execute(new Runnable() {
+            @Override
+            public void run() {
+                database.collection("business").document(id).get().addOnCompleteListener(task ->{
+                    if(task.isSuccessful()){
+                        task.getResult().getData().forEach((key, value)->{
+//                    Log.d(TAG, key+" -> "+value);
+                            arr.add(value.toString());
+                            if(key.contains("services")){
+
+                                val = (ArrayList<String>) value;
+                            }
+                        });
+                        sp.edit().putString("videoUrl",arr.get(0)).apply();
+                        sp.edit().putString("websiteUrl",arr.get(1)).apply();
+                        sp.edit().putString("businessDesc",arr.get(2)).apply();
+                        sp.edit().putString("imagePath",arr.get(3)).apply();
+                        sp.edit().putString("companyName",arr.get(4)).apply();
+                        sp.edit().putString("tagline",arr.get(6)).apply();
+//                sp.edit().putString("service",arr.get(6)).apply();
+                        sp.edit().putString("category",arr.get(7)).apply();
+                        updatePageWithData(arr);
+
+                        sp.edit().putString("bizname", arr.get(4));
 
 //                Log.d(TAG, ""+arr);
 
+                    }
+                });
             }
         });
+                getReviews();
 
-        getReviews();
+                sp.edit().putString("bid",id).apply();
 
-        sp.edit().putString("bid",id).apply();
+                final ViewPager viewPager = findViewById(R.id.viewPager);
+                TabLayout tabLayout = findViewById(R.id.tab_layout);
+                tabLayout.addTab(tabLayout.newTab().setText("Services"));
+                tabLayout.addTab(tabLayout.newTab().setText("About"));
+                tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
 
-        final ViewPager viewPager = findViewById(R.id.viewPager);
-        TabLayout tabLayout = findViewById(R.id.tab_layout);
-        tabLayout.addTab(tabLayout.newTab().setText("Services"));
-        tabLayout.addTab(tabLayout.newTab().setText("About"));
-        tabLayout.addTab(tabLayout.newTab().setText("Reviews"));
+                tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
+                tabLayout.setBackgroundColor(Color.WHITE);
+                tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
 
-        tabLayout.setTabGravity(TabLayout.GRAVITY_FILL);
-        tabLayout.setBackgroundColor(Color.WHITE);
-        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
+                SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
 
-        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
+                viewPager.setAdapter(swipeAdapter);
+                viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
 
-        viewPager.setAdapter(swipeAdapter);
-        viewPager.addOnPageChangeListener(new TabLayout.TabLayoutOnPageChangeListener(tabLayout));
+                tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
+                    @Override
+                    public void onTabSelected(TabLayout.Tab tab) {
+                        viewPager.setCurrentItem(tab.getPosition());
+                        Log.d(TAG, "onTabSelected: "+tab.getPosition());
 
-        tabLayout.addOnTabSelectedListener(new TabLayout.OnTabSelectedListener() {
-            @Override
-            public void onTabSelected(TabLayout.Tab tab) {
-                viewPager.setCurrentItem(tab.getPosition());
-                Log.d(TAG, "onTabSelected: "+tab.getPosition());
+                        switch (tab.getPosition()){
 
-                switch (tab.getPosition()){
-
-                    case 0:
+                            case 0:
 //                        tabLayout.setBackgroundColor(Color.WHITE);
 //                        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
-                        recyclerView = findViewById(R.id.recyclerView);
-                        recyclerAdapter = new RecyclerAdapter(val);
-                        recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        recyclerView.setAdapter(recyclerAdapter);
-                        Log.d(TAG, "from Detail activity fragment: "+arr.get(6));
+                                recyclerView = findViewById(R.id.recyclerView);
+                                recyclerAdapter = new RecyclerAdapter(val);
+                                recyclerView.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                                recyclerView.setAdapter(recyclerAdapter);
+                                Log.d(TAG, "from Detail activity fragment: "+arr.get(6));
 
-                        break;
+                                break;
 
-                    case 1:
+                            case 1:
 //                        Log.d(TAG, ""+tab.getPosition());
 //                        tabLayout.setBackgroundColor(Color.WHITE);
 //                        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
-                        businessDesc = findViewById(R.id.businessDesc1);
-                        businessDesc.setText(sp.getString("businessDesc", ""));
+                                businessDesc = findViewById(R.id.businessDesc1);
+                                businessDesc.setText(sp.getString("businessDesc", ""));
 
-                        toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                businessDesc.setText("");
-                                finish();
-                            }
-                        });
-                        break;
+                                toolbar.setNavigationOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        businessDesc.setText("");
+                                        finish();
+                                    }
+                                });
+                                break;
 
-                    case 2:
+                            case 2:
 //                        tabLayout.setBackgroundColor(Color.WHITE);
 //                        tabLayout.setTabTextColors(Color.BLACK, Color.parseColor("#fe9b18"));
 //                        getReviews(count);
-                        recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
-                        //        write a review
-                        write_a_review = findViewById(R.id.write_a_review);
-                        write_a_review.setOnClickListener(new View.OnClickListener() {
-                            @Override
-                            public void onClick(View view) {
-                                Intent intentReview = new Intent(getApplicationContext(), WriteReview.class);
-                                startActivity(intentReview);
-                            }
-                        });
-                        recyclerAdapterReviews = new RecyclerAdapterReviews(ratingsList);
-                        recyclerViewReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        recyclerViewReviews.setAdapter(recyclerAdapterReviews);
+                                recyclerViewReviews = findViewById(R.id.recyclerViewReviews);
+                                //        write a review
+                                write_a_review = findViewById(R.id.write_a_review);
+                                write_a_review.setOnClickListener(new View.OnClickListener() {
+                                    @Override
+                                    public void onClick(View view) {
+                                        Intent intentReview = new Intent(getApplicationContext(), WriteReview.class);
+                                        startActivity(intentReview);
+                                    }
+                                });
+                                recyclerAdapterReviews = new RecyclerAdapterReviews(ratingsList);
+                                recyclerViewReviews.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                                recyclerViewReviews.setAdapter(recyclerAdapterReviews);
 
-                        break;
-                }
-            }
+                                break;
+                        }
+                    }
 
-            @Override
-            public void onTabUnselected(TabLayout.Tab tab) {
+                    @Override
+                    public void onTabUnselected(TabLayout.Tab tab) {
 //                Log.d(TAG, "onTabUnselected: ");
-            }
+                    }
 
-            @Override
-            public void onTabReselected(TabLayout.Tab tab) {
+                    @Override
+                    public void onTabReselected(TabLayout.Tab tab) {
 
-            }
-        });
+                    }
+                });
 //        viewPager.setOffscreenPageLimit(1); // how many fragments you want to load in the memory
 //        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
 //        viewPager.setAdapter(swipeAdapter);
 //        viewPager.setCurrentItem(0);//the first fragment
 //        viewPager.setCurrentItem(0);
+//            }
+//        }, 1500);
+//        ConstraintLayout cl = findViewById(R.id.cl);
+//
+//        //creating imageview
+//        ImageView iv = new ImageView(this);
+//        iv.setImageDrawable(getDrawable(R.drawable.like));
+//        iv.setId(View.generateViewId());
+//
+//        ConstraintSet constraintSet = new ConstraintSet();
+//        constraintSet.clone(cl);
+//        constraintSet.applyTo(cl);
+
+
+
+//        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+
+//        constraintSet.connect(R.id.imageView,ConstraintSet.RIGHT,R.id.check_answer1,ConstraintSet.RIGHT,0);
+//        constraintSet.connect(R.id.imageView,ConstraintSet.TOP,R.id.check_answer1,ConstraintSet.TOP,0);
+//        constraintSet.applyTo(constraintLayout);
     }
 
     private void updatePageWithData(ArrayList<String> arr){
@@ -232,16 +288,17 @@ public class DetailActivityFragment extends AppCompatActivity {
         StorageReference storageReference = firebaseStorage.getReferenceFromUrl(arr.get(3));
         storageReference.getDownloadUrl().addOnSuccessListener(url ->{
             Glide.with(getApplicationContext()).load(url).into(img);
+
         });
 
         companyName.setText(arr.get(4));
         company_desc.setText(arr.get(6));
 
-
+        progress.setVisibility(View.GONE);
     }
 
     public void getReviews(){
-//        if(counts == 0){
+
             database.collection("reviews").whereEqualTo("bid",id).get()
                 .addOnCompleteListener(task -> {
                     if(task.isSuccessful()){
@@ -253,23 +310,17 @@ public class DetailActivityFragment extends AppCompatActivity {
                     }
                 });
             count = ratingsList.size();
-//            return true;
-//        }else if(counts > count){
-//            database.collection("reviews").whereEqualTo("bid",id).get()
-//                    .addOnCompleteListener(task -> {
-//                        if(task.isSuccessful()){
-////                                        Log.d(TAG, task.getResult().getDocuments().toString());
-//
-//                            for (QueryDocumentSnapshot document : task.getResult()) {
-//                                ratingsList.add(document.getData());
-//                            }
-//                        }
-//                    });
-//            count = ratingsList.size();
-//            return true;
-//        }
-//        return false;
     }
 
+    public void setLike(ImageView like){
+//        int likeRedId = getResources().getIdentifier("com.crazy4web.myapplication:drawable/" + StringGenerated, null, null);
+        if(count == 0){
+            like.setBackgroundResource(R.drawable.like_red);
+            count++;
+        }else{
+            like.setBackgroundResource(R.drawable.like);
+            count = 0;
+        }
+    }
 
 }
