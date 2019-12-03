@@ -37,7 +37,7 @@ public class ChatinnerAdaptor extends RecyclerView.Adapter<ChatinnerAdaptor.MyVi
                 super(v);
 
                 constraintLayout = v.findViewById(R.id.constrain_inner_chat);
-                received = v.findViewById(R.id.received_msg);
+//                received = v.findViewById(R.id.received_msg);
                 sentmsg = v.findViewById(R.id.sent_msg);
                 imageView = v.findViewById(R.id.business_image_category);
                 senderimage = v.findViewById(R.id.sender_image);

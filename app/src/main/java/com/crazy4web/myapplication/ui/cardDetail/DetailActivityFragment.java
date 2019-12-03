@@ -25,6 +25,7 @@ import androidx.viewpager.widget.ViewPager;
 
 import android.os.Handler;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
@@ -49,8 +50,11 @@ import com.google.firebase.storage.StorageReference;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.HashSet;
+import java.util.Iterator;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -60,7 +64,7 @@ public class DetailActivityFragment extends AppCompatActivity {
     private String prefFile = "com.crazy4web.myapplication.userdata";
     SharedPreferences sp;
     String id;
-    private static final String TAG = "DetailActivityFragment";
+    private static final String TAG = "DetailActivityFragmentn";
     RecyclerView recyclerView,recyclerViewReviews;
     RecyclerAdapter recyclerAdapter;
     RecyclerAdapterReviews recyclerAdapterReviews;
@@ -70,16 +74,58 @@ public class DetailActivityFragment extends AppCompatActivity {
     ArrayList<String> val,arr = new ArrayList<>();
     TextView write_a_review;
     List<Map> ratingsList = new ArrayList<>();
-    int count =0;
+//    int count =0;
+    Boolean likeFlag = false;
     ImageView like;
     ProgressBar progress;
-
+    Set<String> hash_set = new HashSet<>();
+    Set<String> likedIds = new HashSet<>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
 
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_detail_fragment);
+        like = findViewById(R.id.likeWhite);
+        sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+        Intent i = getIntent();
+        if(i != null)
+        {
+            id = i.getStringExtra("docId");
+        }
+
+//        Set<String> abcd = new HashSet<>();
+//        Set<String> hashs = sp.getStringSet("likeFlag", new HashSet<>());
+//        if(hashs != null) {
+//            hashs.forEach(likes -> {
+//                if(id.equals(likes.split(",")[0])){
+//                    if(likeFlag.equals(likes.split(",")[1]) && likeFlag == true){
+//                    like.setImageResource(R.drawable.like);
+//                }
+//                like.setImageResource(R.drawable.like_red);
+//                }
+//            });
+//        }
+
+//        hash_set = sp.getStringSet("likedIds",new HashSet<>());
+
+        String likedDoc = sp.getString(id,"");
+        if(likedDoc != null){
+            if(id.equals(likedDoc.split(",")[0])){
+
+                if(likedDoc.split(",")[1].contains("true")){
+                    like.setImageResource(R.drawable.like_red);
+                    likeFlag = false;
+                }else {
+                    like.setImageResource(R.drawable.like);
+                    likeFlag = true;
+                }
+
+            }else{
+                Log.d(TAG, "id does not match");
+            }
+        }
+
         progress = findViewById(R.id.progressBarDetailActivity);
         progress.setVisibility(View.VISIBLE);
 
@@ -87,23 +133,24 @@ public class DetailActivityFragment extends AppCompatActivity {
 //        handler.postDelayed(new Runnable() {
 //            @Override
 //            public void run() {
+//                like.setForegroundGravity(Gravity.TOP);
+                like.setOnClickListener(new View.OnClickListener() {
+                    @Override
+                    public void onClick(View view) {
+//                        Log.d(TAG, "tapped like");
+                        setLike(like);
+                    }
+                });
+//            }
+//        },1000);
 
 
         Toolbar toolbar = findViewById(R.id.toolbarCardDetail);
         setSupportActionBar(toolbar);
-
-//        like = findViewById(R.id.likeWhite);
-
+//        Log.d(TAG, "onCreate: "+like.getForegroundGravity());
 //        like.bringToFront();
 //        like.setClickable(true);
 //        like.setElevation(5);
-//        like.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Log.d(TAG, "tapped like");
-//                setLike(like);
-//            }
-//        });
 
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
                 getSupportActionBar().setElevation(0);
@@ -120,17 +167,25 @@ public class DetailActivityFragment extends AppCompatActivity {
                 toolbar.setNavigationOnClickListener(new View.OnClickListener() {
                     @Override
                     public void onClick(View view) {
+
+//                        if()
+                        if(sp.getStringSet("likedIds", new HashSet<>()).isEmpty()){
+                            sp.edit().putStringSet("likedIds",likedIds).apply();
+                        }
+                            hash_set = sp.getStringSet("likedIds", new HashSet<>());
+                            Log.d(TAG, "hash_set"+hash_set);
+                            Iterator<String> iter = likedIds.iterator();
+                            while(iter.hasNext()){
+                                hash_set.add(iter.next());
+                            }
+                            sp.edit().putStringSet("hashSet", hash_set).apply();
+
                         finish();
                     }
                 });
 
-                Intent i = getIntent();
-                if(i != null)
-                {
-                    id = i.getStringExtra("docId");
-                }
 
-                sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
+
                 companyName = findViewById(R.id.companyName);
                 company_desc = findViewById(R.id.company_desc);
                 img = findViewById(R.id.img);
@@ -253,32 +308,6 @@ public class DetailActivityFragment extends AppCompatActivity {
 
                     }
                 });
-//        viewPager.setOffscreenPageLimit(1); // how many fragments you want to load in the memory
-//        SwipeAdapter swipeAdapter = new SwipeAdapter(getSupportFragmentManager());
-//        viewPager.setAdapter(swipeAdapter);
-//        viewPager.setCurrentItem(0);//the first fragment
-//        viewPager.setCurrentItem(0);
-//            }
-//        }, 1500);
-//        ConstraintLayout cl = findViewById(R.id.cl);
-//
-//        //creating imageview
-//        ImageView iv = new ImageView(this);
-//        iv.setImageDrawable(getDrawable(R.drawable.like));
-//        iv.setId(View.generateViewId());
-//
-//        ConstraintSet constraintSet = new ConstraintSet();
-//        constraintSet.clone(cl);
-//        constraintSet.applyTo(cl);
-
-
-
-//        ViewGroup.LayoutParams lp = new ViewGroup.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-
-//        constraintSet.connect(R.id.imageView,ConstraintSet.RIGHT,R.id.check_answer1,ConstraintSet.RIGHT,0);
-//        constraintSet.connect(R.id.imageView,ConstraintSet.TOP,R.id.check_answer1,ConstraintSet.TOP,0);
-//        constraintSet.applyTo(constraintLayout);
     }
 
     private void updatePageWithData(ArrayList<String> arr){
@@ -309,17 +338,21 @@ public class DetailActivityFragment extends AppCompatActivity {
                         }
                     }
                 });
-            count = ratingsList.size();
+//            count = ratingsList.size();
     }
 
     public void setLike(ImageView like){
-//        int likeRedId = getResources().getIdentifier("com.crazy4web.myapplication:drawable/" + StringGenerated, null, null);
-        if(count == 0){
-            like.setBackgroundResource(R.drawable.like_red);
-            count++;
+        if(likeFlag == false){
+            like.setImageResource(R.drawable.like_red);
+            likeFlag = true;
+            sp.edit().putString(id,id+","+likeFlag.toString()).apply();
+            likedIds.add(id);
         }else{
-            like.setBackgroundResource(R.drawable.like);
-            count = 0;
+            like.setImageResource(R.drawable.like);
+            likeFlag = false;
+            sp.edit().putString(id, id + "," + likeFlag.toString()).apply();
+            likedIds.remove(id);
+            sp.edit().putStringSet("likedIds", new HashSet<>()).apply();
         }
     }
 

@@ -7,33 +7,50 @@
     app:layout_behavior="@string/appbar_scrolling_view_behavior"
     tools:context=".ui.cardDetail.DetailActivityFragment"
     tools:showIn="@layout/activity_detail_fragment"
-    android:layout_marginTop="-50dp"
-    android:id="@+id/cl">
+    android:layout_marginTop="-50dp">
 
-<!--    <ImageView-->
-<!--        android:id="@+id/likeWhite"-->
-<!--        android:layout_width="wrap_content"-->
-<!--        android:layout_height="wrap_content"-->
-<!--        android:layout_marginTop="16dp"-->
-<!--        android:layout_marginEnd="45dp"-->
-<!--        android:elevation="4dp"-->
-<!--        android:src="@drawable/like"-->
+<!--    <FrameLayout-->
+<!--        android:id="@+id/frameLayout"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="200dp"-->
 <!--        app:layout_constraintEnd_toEndOf="parent"-->
-<!--        app:layout_constraintHorizontal_bias="0.927"-->
 <!--        app:layout_constraintStart_toStartOf="parent"-->
-<!--        app:layout_constraintTop_toTopOf="parent" />-->
+<!--        app:layout_constraintTop_toTopOf="parent" >-->
 
+<!--        <ImageView-->
+<!--            android:id="@+id/img"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="200dp"-->
+<!--            android:scaleType="fitXY"-->
+<!--            android:adjustViewBounds="true"-->
+<!--            android:layout_gravity="fill"/>-->
 
-    <ImageView
-        android:id="@+id/share"
-        android:layout_width="31dp"
-        android:layout_height="26dp"
-        android:layout_marginTop="16dp"
-        android:layout_marginEnd="29dp"
-        android:elevation="4dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/img"
-        android:src="@drawable/share"/>
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content">-->
+
+<!--            <ImageView-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:layout_marginLeft="50dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="11dp"-->
+<!--                android:layout_toStartOf="@+id/share"-->
+<!--                android:src="@drawable/like" />-->
+
+<!--            <ImageView-->
+<!--                android:id="@+id/share"-->
+<!--                android:layout_width="31dp"-->
+<!--                android:layout_height="26dp"-->
+<!--                android:layout_alignParentEnd="true"-->
+<!--                android:layout_marginLeft="100dp"-->
+<!--                android:layout_marginTop="16dp"-->
+<!--                android:layout_marginEnd="29dp"-->
+<!--                android:elevation="4dp"-->
+<!--                android:src="@drawable/share" />-->
+<!--        </RelativeLayout>-->
+
+<!--    </FrameLayout>-->
 
     <ImageView
         android:id="@+id/img"
@@ -41,11 +58,12 @@
         android:layout_height="200dp"
         android:scaleType="fitXY"
         android:adjustViewBounds="true"
+        android:layout_gravity="fill"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"/>
 
-<!--    android:src="@drawable/categorypage1"-->
+    <!--    android:src="@drawable/categorypage1"-->
 
     <ImageView
         android:id="@+id/profile_pic"

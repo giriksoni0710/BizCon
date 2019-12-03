@@ -5,7 +5,6 @@
     <string name="title_dashboard">Dashboard</string>
     <string name="title_notifications">Notifications</string>
     <string name="title_activity_sign_up_email">SignUpEmail</string>
-    <string name="title_activity_detail_fragment">DetailActivityFragment</string>
     <string name="about_tab">What we do</string>
     <string name="review"><u>Write a review</u></string>
     <string name="facebook_app_id">2470490759907098</string>
