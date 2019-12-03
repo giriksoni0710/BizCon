@@ -6,7 +6,6 @@
     android:orientation="vertical">
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/recommendationCard"
         android:layout_width="150dp"
         android:layout_height="218dp"
         android:layout_marginLeft="30dp"

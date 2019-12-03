@@ -32,7 +32,6 @@
     </LinearLayout>
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/recommendationCard"
         android:layout_width="300dp"
         android:layout_height="147dp"
         android:layout_marginLeft="52dp"
@@ -100,7 +99,6 @@
         android:text="Submit"/>
 
     <TextView
-        android:id="@+id/ratingView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content" />
 </LinearLayout>

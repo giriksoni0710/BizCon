@@ -88,7 +88,6 @@
         android:id="@+id/design_category">
 
     <ImageView
-        android:id="@+id/design"
         android:layout_width="67.33dp"
         android:layout_height="67.33dp"
         android:src="@drawable/design"
@@ -115,7 +114,6 @@
         <ImageView
             android:layout_width="67.33dp"
             android:layout_height="67.33dp"
-            android:id="@+id/household"
             android:src="@drawable/carpentercarpentrycloseup1249611"
             android:layout_marginLeft="14dp"
             >
@@ -336,7 +334,6 @@
 
 
     <LinearLayout
-        android:id="@+id/recommendationCardLinearHolder"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"

@@ -17,10 +17,27 @@
             android:id="@+id/toolbarCardDetail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:background="@drawable/detailedgradient">
 
-            android:background="@drawable/detailedgradient"
+            <ImageView
+                android:id="@+id/share"
+                android:layout_width="31dp"
+                android:layout_height="26dp"
+                android:layout_alignParentEnd="true"
+                android:layout_gravity="right"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="30dp"
+                android:src="@drawable/share" />
 
-            >
+            <ImageView
+                android:id="@+id/likeWhite"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="right"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="10dp"
+                android:src="@drawable/like" />
+
         </androidx.appcompat.widget.Toolbar>
 
 <!--        android:layout_height="?attr/actionBarSize"-->

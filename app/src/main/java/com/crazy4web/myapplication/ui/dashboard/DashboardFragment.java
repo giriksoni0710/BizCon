@@ -44,6 +44,8 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 
 import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.HashSet;
 import java.util.List;
 
 public class DashboardFragment extends Fragment {
@@ -187,7 +189,11 @@ public class DashboardFragment extends Fragment {
                         sp.edit().putString("userhascompany","").apply();
                         sp.edit().putString("googleName","").apply();
                         sp.edit().putString("fbName","").apply();
-//                        sp.edit().putString("userhascompany","").apply();
+                        sp.edit().putStringSet("likedIds",new HashSet<>()).apply();
+                        sp.edit().putStringSet("hashSet",new HashSet<>()).apply();
+                        sp.edit().clear();
+                        sp.edit().commit();
+
                         Intent in = new Intent(getContext(), Email_login.class);
                         startActivity(in);
                         break;
