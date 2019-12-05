@@ -38,7 +38,7 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Business Name"
+                android:id="@+id/business_name_toolbar"
                 android:elevation="1dp"
                 android:letterSpacing="0.05"
                 android:textSize="16dp"

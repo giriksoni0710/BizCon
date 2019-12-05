@@ -80,7 +80,7 @@ public class Searchoperation extends AppCompatActivity {
 
         String[] db_keys = new String[2];
 
-        db_keys[0] = "services";
+        db_keys[0] = "services2";
         db_keys[1] = "category";
 
         biz_name = new ArrayList();

@@ -78,13 +78,15 @@ public class ChatFragment extends Fragment {
 
 //        emailname = sp.getString("emailName","Default");
 
+
+
         if(!userhascompany.equals("")){
-         Log.d("in","in");
             field="messageuserID";
             emailname= userhascompany;
         }else {
-            emailname = sp.getString("emailName","Default");
-            field = "messageUser";
+
+                emailname = sp.getString("emailName","Default");
+                field = "messageUser";
         }
 
         getmessages();

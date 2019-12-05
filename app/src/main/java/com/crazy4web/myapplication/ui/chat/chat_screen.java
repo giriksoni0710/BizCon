@@ -74,7 +74,8 @@ public class chat_screen extends AppCompatActivity {
     JsonObject jsonObject;
     int countnew=0;
     FirebaseFirestore firebaseFirestore = FirebaseFirestore.getInstance();
-    TextView msg2;
+    TextView msg2, business_name_toolbar;
+
 
     TextView msg, msg3;
 
@@ -109,8 +110,10 @@ public class chat_screen extends AppCompatActivity {
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
 
-        getSupportActionBar().setDisplayShowTitleEnabled(false);
+//        getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setElevation(0);
+        business_name_toolbar = findViewById(R.id.business_name_toolbar);
+
 
         toolbar.setNavigationOnClickListener(new View.OnClickListener() {
             @Override
@@ -123,21 +126,36 @@ public class chat_screen extends AppCompatActivity {
 
                 Intent i = getIntent();
                 bizname = i.getStringExtra("bizName");
+                String businessname=i.getStringExtra("businessname");
+                companyname = sp.getString("companyName","Default");
 
-              companyname = sp.getString("companyName","Default");
+                String googlename = sp.getString("googleName", "Default");
+                String fbname = sp.getString("fbName", "Default");
 
-              if(bizname!=null){
+
+
+        if(bizname!=null){
                   companyname = bizname;
+                    Log.d("companyname", companyname);
               }
                 userhascompany= sp.getString("userhascompany","").replaceAll("\"","");
 
               //emailid->email
                 emailname = sp.getString("emailName","Default");
 
+                // check the length of all and set the loggedin user
+
+                if(googlename.length()>emailname.length()){
+                    emailname=googlename;
+                }else if(fbname.length()>emailname.length()){
+                    emailname=fbname;
+                }
+
                 if(!userhascompany.equals("")){
                     emailname=userhascompany;
                     companyname=bizname;
                 }
+
                 Log.d("values",bizname+" "+companyname+" "+emailname);
 
              getmessages();
@@ -178,7 +196,7 @@ public class chat_screen extends AppCompatActivity {
                             getmessages();
 
 
-                        }
+                    }
                 });
 
 
@@ -202,7 +220,7 @@ public class chat_screen extends AppCompatActivity {
 
                         mysentmsgs = new HashSet<>();
                         Log.d("companyname:"+companyname,"emailname"+emailname);
-
+                        business_name_toolbar.setText(companyname);
                         for (DocumentSnapshot document: queryDocumentSnapshots.getDocuments()) {
 
                             Map data = new HashMap();
