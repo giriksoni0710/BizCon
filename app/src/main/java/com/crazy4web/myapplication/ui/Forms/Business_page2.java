@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.localbroadcastmanager.content.LocalBroadcastManager;
 
+import android.app.ActivityOptions;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
@@ -109,6 +110,8 @@ public class Business_page2 extends AppCompatActivity {
                 i.putExtra("googleEmailId", googleEmailId);
                 i.putExtra("fbEmailId", fbEmailId);
                 i.putExtra("emailId", emailId);
+                ActivityOptions options =
+                        ActivityOptions.makeCustomAnimation(getApplicationContext(), R.anim.nav_default_pop_enter_anim, R.anim.nav_default_pop_exit_anim);
                 startActivity(i);
 
 
