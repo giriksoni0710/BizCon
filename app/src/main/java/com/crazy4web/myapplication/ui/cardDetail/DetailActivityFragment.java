@@ -154,7 +154,7 @@ public class DetailActivityFragment extends AppCompatActivity {
 
                 getSupportActionBar().setDisplayShowTitleEnabled(false);
                 getSupportActionBar().setElevation(0);
-                //        toolbar.setBackgroundColor(Color.parseColor("#000000"));
+//                toolbar.setBackgroundColor(Color.parseColor("#000000"));
 
 
 
