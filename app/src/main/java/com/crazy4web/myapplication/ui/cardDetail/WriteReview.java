@@ -25,8 +25,12 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.FirebaseFirestore;
 import com.google.firebase.storage.FirebaseStorage;
 
+import java.text.DateFormat;
+import java.util.Date;
 import java.util.HashMap;
 import java.util.Map;
+
+import static java.text.DateFormat.getDateTimeInstance;
 
 public class WriteReview extends AppCompatActivity {
 
@@ -73,19 +77,21 @@ public class WriteReview extends AppCompatActivity {
         String bid = sp.getString("bid","");
 
 //        Log.d(TAG, googleEmailId+fbEmailId+emailId+uName);
+        DateFormat dateFormat = getDateTimeInstance();
 
+//        Log.d(TAG, netDate.toString());
         btnn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 int noofstars = write_a_review_rating.getNumStars();
                 float getrating = write_a_review_rating.getRating();
                 String getComment = commentSection.getEditText().getText().toString();
-
+                Date netDate = (new Date());
                 review_obj = new HashMap();
                 review_obj.put("bid",sp.getString("bid",""));
                 review_obj.put("rating",getrating);
                 review_obj.put("comment",getComment);
-
+                review_obj.put("date",netDate);
                 if(!googleEmailId.equals("") && !googleName.equals("")) {
                     review_obj.put("userEmail", googleEmailId);
                     review_obj.put("userName", googleName);

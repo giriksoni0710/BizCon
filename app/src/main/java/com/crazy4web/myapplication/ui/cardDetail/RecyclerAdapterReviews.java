@@ -52,60 +52,59 @@ public class RecyclerAdapterReviews extends RecyclerView.Adapter<RecyclerAdapter
                 holder.comment.setText(value.toString());
             }
             if(key.equals("rating")){
-                Float val = getFloatVal(value);
-                holder.rating.setRating(val);
-//                Log.d(TAG, ""+value);
+//                Float val = getFloatVal(value.toString());
+                Log.d(TAG, value.toString());
+
+                switch (value.toString()){
+                    case "0.0":
+//                        return 0.0f;
+                        holder.rating.setRating(0.0f);
+                        break;
+
+                    case "0.5":
+                        holder.rating.setRating(0.5f);
+                        break;
+
+                    case "1.0":
+                        holder.rating.setRating(1.0f);
+                        break;
+
+                    case "1.5":
+                        holder.rating.setRating(1.5f);
+                        break;
+
+                    case "2.0":
+                        holder.rating.setRating(2.0f);
+                        break;
+
+                    case "2.5":
+                        holder.rating.setRating(2.5f);
+                        break;
+
+                    case "3.0":
+                        holder.rating.setRating(3.0f);
+                        break;
+
+                    case "3.5":
+                        holder.rating.setRating(3.5f);
+                        break;
+
+                    case "4.0":
+                        holder.rating.setRating(4.0f);
+                        break;
+
+                    case "4.5":
+                        holder.rating.setRating(4.5f);
+                        break;
+
+                    case "5.0":
+                        holder.rating.setRating(5.0f);
+                        break;
+                }
+//                holder.rating.setRating(val);
             }
         });
 
-    }
-    public Float getFloatVal(Object value){
-        switch (value.toString()){
-            case "0":
-                return 0.0f;
-//                break;
-
-            case "0.5":
-                return 0.5f;
-//                break;
-
-            case "1":
-                return 1.0f;
-//                break;
-
-            case "1.5":
-                return 1.5f;
-//                break;
-
-            case "2":
-                return 2.0f;
-//                break;
-
-            case "2.5":
-                return 2.5f;
-//                break;
-
-            case "3":
-                return 3.0f;
-//                break;
-
-            case "3.5":
-                return 3.5f;
-//                break;
-
-            case "4":
-                return 4.0f;
-//                break;
-
-            case "4.5":
-                return 4.5f;
-//                break;
-
-            case "5":
-                return 5.0f;
-//                break;
-        }
-        return 0f;
     }
 
     @Override
