@@ -136,7 +136,7 @@ public class DetailActivityFragment extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                if(sp.getStringSet("likedIds", new HashSet<>()).isEmpty()){
+                if(sp.getStringSet("likedIds", new HashSet<>()).isEmpty() && likeFlag == true){
                     sp.edit().putStringSet("likedIds",likedIds).apply();
                 }
                     hash_set = sp.getStringSet("likedIds", new HashSet<>());
@@ -290,7 +290,6 @@ public class DetailActivityFragment extends AppCompatActivity {
             likeFlag = true;
             sp.edit().putString(id,id+","+likeFlag.toString()).apply();
             likedIds.add(id);
-            sp.edit().putStringSet("likedIds", new HashSet<>()).apply();
         }else{
             like.setImageResource(R.drawable.like);
             likeFlag = false;
