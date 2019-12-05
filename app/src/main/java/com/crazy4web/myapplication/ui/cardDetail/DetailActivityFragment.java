@@ -124,6 +124,14 @@ public class DetailActivityFragment extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbarCardDetail);
         setSupportActionBar(toolbar);
 
+//        Log.d(TAG, "onCreate: "+like.getForegroundGravity());
+//        like.bringToFront();
+//        like.setClickable(true);
+//        like.setElevation(5);
+
+                getSupportActionBar().setDisplayShowTitleEnabled(false);
+                getSupportActionBar().setElevation(0);
+//                toolbar.setBackgroundColor(Color.parseColor("#000000"));
         getSupportActionBar().setDisplayShowTitleEnabled(false);
         getSupportActionBar().setElevation(0);
 

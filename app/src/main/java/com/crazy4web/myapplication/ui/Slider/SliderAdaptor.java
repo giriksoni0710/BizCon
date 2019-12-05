@@ -28,8 +28,8 @@ public class SliderAdaptor extends PagerAdapter {
     public int[] slideImages = {
 
             R.drawable.intro_image,
-            R.drawable.intro_image,
-            R.drawable.intro_image
+            R.drawable.slider2,
+            R.drawable.slider1
     };
 
     public String[] slideHeadings = {
