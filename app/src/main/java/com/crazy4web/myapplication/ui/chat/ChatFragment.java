@@ -78,16 +78,31 @@ public class ChatFragment extends Fragment {
 
 //        emailname = sp.getString("emailName","Default");
 
+        String googlename = sp.getString("googleName", "");
+        String fbname = sp.getString("fbName", "");
+
+
+
 
 
         if(!userhascompany.equals("")){
             field="messageuserID";
             emailname= userhascompany;
+
         }else {
 
-                emailname = sp.getString("emailName","Default");
+            if(!googlename.equals("")){
+            emailname=googlename;
+            }else if(!fbname.equals("")){
+            emailname=fbname;
+            }
+//            emailname = sp.getString("emailName","Default");
+//            Log.d("emailname", "getmessages: "+emailname);
                 field = "messageUser";
         }
+
+
+
 
         getmessages();
         return root;
@@ -96,10 +111,10 @@ public class ChatFragment extends Fragment {
 
     private void getmessages() {
 
+        Log.d("fields",field+":"+emailname+":"+userhascompany);
         msg = new HashSet<>();
         biz = new HashSet<>();
 
-        Log.d("field: "+field,"emailname: "+emailname);
         firebaseFirestore.collection("messages").whereEqualTo(field,emailname).addSnapshotListener(new EventListener<QuerySnapshot>() {
             @Override
             public void onEvent(@Nullable QuerySnapshot queryDocumentSnapshots, @Nullable FirebaseFirestoreException e) {

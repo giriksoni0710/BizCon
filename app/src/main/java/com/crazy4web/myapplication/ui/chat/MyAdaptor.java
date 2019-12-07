@@ -40,7 +40,6 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
 
         public ConstraintLayout constraintLayout;
         public TextView usrname,lstmsg;
-        public ImageView usrimg;
 
 
 
@@ -51,7 +50,6 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
             constraintLayout = v.findViewById(R.id.chatrow);
             usrname = v.findViewById(R.id.user_name);
             lstmsg = v.findViewById(R.id.last_msg);
-            usrimg = v.findViewById(R.id.user_img);
         }
     }
 
@@ -89,19 +87,19 @@ public class MyAdaptor extends RecyclerView.Adapter<MyAdaptor.MyViewHolder> {
         holder.usrname.setText(biz_name.get(position).toString().replaceAll("\"",""));
         holder.lstmsg.setText(last_msg.get(position).toString().replaceAll("\"",""));
 
-        storage = FirebaseStorage.getInstance();
-        StorageReference storageRef = storage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/"+biz_name.get(position).toString().replaceAll("\"","").trim()+".jpg");
-
-        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
-            @Override
-            public void onSuccess(Uri uri) {
-                Glide.with(mcon)
-                        .load(uri)
-                        .apply(RequestOptions.circleCropTransform())
-                        .into(holder.usrimg);
-
-            }
-        });
+//        storage = FirebaseStorage.getInstance();
+//        StorageReference storageRef = storage.getReferenceFromUrl("gs://bizcon-17781.appspot.com/Images/"+biz_name.get(position).toString().replaceAll("\"","").trim()+".jpg");
+//
+//        storageRef.getDownloadUrl().addOnSuccessListener(new OnSuccessListener<Uri>() {
+//            @Override
+//            public void onSuccess(Uri uri) {
+//                Glide.with(mcon)
+//                        .load(uri)
+//                        .apply(RequestOptions.circleCropTransform())
+//                        .into(holder.usrimg);
+//
+//            }
+//        });
 
 
         holder.constraintLayout.setOnClickListener(new View.OnClickListener() {
