@@ -124,9 +124,9 @@ public class chat_screen extends AppCompatActivity {
 
         SharedPreferences sp = getSharedPreferences("prefFile", Context.MODE_PRIVATE);
 
-                Intent i = getIntent();
-                bizname = i.getStringExtra("bizName");
-                String businessname=i.getStringExtra("businessname");
+                    Intent i = getIntent();
+                    bizname = i.getStringExtra("bizName");
+                    String businessname=i.getStringExtra("businessname");
                 companyname = sp.getString("companyName","Default");
 
                 String googlename = sp.getString("googleName", "Default");
